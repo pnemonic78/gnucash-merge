@@ -1,2 +1,2 @@
-# gnucash-merge
+# gnucash merge
 Merge two gnucash XML files.
