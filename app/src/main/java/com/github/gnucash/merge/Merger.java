@@ -4,7 +4,10 @@
  */
 package com.github.gnucash.merge;
 
-import com.github.gnucash.example.*;
+import com.github.gnucash.example.ObjectFactory;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Unmarshaller;
 
 /**
  * Merge gnucash files.
@@ -12,8 +15,10 @@ import com.github.gnucash.example.*;
  * @author Moshe Waisberg
  */
 public class Merger {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.println("gnucash merge.");
-        Item item = new Item();
+        JAXBContext context = JAXBContext.newInstance(ObjectFactory.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        System.out.println(unmarshaller);
     }
 }

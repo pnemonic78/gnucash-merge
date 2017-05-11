@@ -7,15 +7,6 @@ plugins {
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
 
-
-sourceSets {
-    main {
-        java {
-            srcDirs += file('src/generated/java')
-        }
-    }
-}
-
 jaxb2 {
     xjc {
         'example-classes' {
