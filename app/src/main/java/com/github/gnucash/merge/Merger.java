@@ -4,6 +4,8 @@
  */
 package com.github.gnucash.merge;
 
+import com.github.gnucash.example.*;
+
 /**
  * Merge gnucash files.
  *
@@ -12,5 +14,6 @@ package com.github.gnucash.merge;
 public class Merger {
     public static void main(String[] args) {
         System.out.println("gnucash merge.");
+        Item item = new Item();
     }
 }

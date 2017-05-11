@@ -1,9 +1,30 @@
-apply plugin: 'java'
-apply plugin: 'application'
-
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+plugins {
+    id 'java'
+    id 'application'
+    id "com.ewerk.gradle.plugins.jaxb2" version "1.0.4"
 }
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
+
+
+sourceSets {
+    main {
+        java {
+            srcDirs += file('src/generated/java')
+        }
+    }
+}
+
+jaxb2 {
+    xjc {
+        'example-classes' {
+            basePackage = 'com.github.gnucash.example'
+            schema = 'src/main/xsd/example.xsd'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
