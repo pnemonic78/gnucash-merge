@@ -1,0 +1,1 @@
+java -jar ../trang/trang.jar -I rnc -O xsd ./src/main/xsd/gnucash-v2.rnc ./src/main/xsd/gnucash-v2.xsd
