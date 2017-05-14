@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.gnucash.org/XML/owner" xmlns:bt-prox="http://www.gnucash.org/XML/bt-prox" xmlns:owner="http://www.gnucash.org/XML/owner" xmlns:bgt="http://www.gnucash.org/XML/bgt" xmlns:book="http://www.gnucash.org/XML/book" xmlns:lot="http://www.gnucash.org/XML/lot" xmlns:act="http://www.gnucash.org/XML/act" xmlns:cmdty="http://www.gnucash.org/XML/cmdty" xmlns:addr="http://www.gnucash.org/XML/addr" xmlns:split="http://www.gnucash.org/XML/split" xmlns:vendor="http://www.gnucash.org/XML/vendor" xmlns:entry="http://www.gnucash.org/XML/entry" xmlns:price="http://www.gnucash.org/XML/price" xmlns:recurrence="http://www.gnucash.org/XML/recurrence" xmlns:job="http://www.gnucash.org/XML/job" xmlns:slot="http://www.gnucash.org/XML/slot" xmlns:ts="http://www.gnucash.org/XML/ts" xmlns:order="http://www.gnucash.org/XML/order" xmlns:trn="http://www.gnucash.org/XML/trn" xmlns:cust="http://www.gnucash.org/XML/cust" xmlns:employee="http://www.gnucash.org/XML/employee" xmlns:invoice="http://www.gnucash.org/XML/invoice" xmlns:billterm="http://www.gnucash.org/XML/billterm" xmlns:gnc="http://www.gnucash.org/XML/gnc" xmlns:taxtable="http://www.gnucash.org/XML/taxtable" xmlns:sx="http://www.gnucash.org/XML/sx" xmlns:cd="http://www.gnucash.org/XML/cd" xmlns:bt-days="http://www.gnucash.org/XML/bt-days" xmlns:tte="http://www.gnucash.org/XML/tte">
+  <xs:import namespace="http://www.gnucash.org/XML/act" schemaLocation="act.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/addr" schemaLocation="addr.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/bgt" schemaLocation="bgt.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/billterm" schemaLocation="billterm.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/book" schemaLocation="book.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/bt-days" schemaLocation="bt-days.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/bt-prox" schemaLocation="bt-prox.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/cd" schemaLocation="cd.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/cmdty" schemaLocation="cmdty.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/cust" schemaLocation="cust.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/employee" schemaLocation="employee.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/entry" schemaLocation="entry.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/gnc" schemaLocation="gnucash-v2.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/invoice" schemaLocation="invoice.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/job" schemaLocation="job.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/lot" schemaLocation="lot.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/order" schemaLocation="order.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/price" schemaLocation="price.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/recurrence" schemaLocation="recurrence.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/slot" schemaLocation="slot.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/split" schemaLocation="split.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/sx" schemaLocation="sx.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/taxtable" schemaLocation="taxtable.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/trn" schemaLocation="trn.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/ts" schemaLocation="ts.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
+  <xs:element name="type">
+    <xs:simpleType>
+      <xs:restriction base="xs:token">
+        <xs:enumeration value="gncCustomer"/>
+        <xs:enumeration value="gncJob"/>
+        <xs:enumeration value="gncVendor"/>
+        <xs:enumeration value="gncEmployee"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="id">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="gnc:GUID">
+          <xs:attribute name="type" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:token">
+                <xs:enumeration value="guid"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -9,9 +9,9 @@ targetCompatibility = "1.7"
 
 jaxb2 {
     xjc {
-        'example-classes' {
-            basePackage = 'com.github.gnucash.example'
-            schema = 'src/main/xsd/example.xsd'
+        'gnucash-classes' {
+            basePackage = 'com.github.gnucash.v2'
+            schema = 'src/main/xsd/gnucash-v2.xsd'
         }
     }
 }
