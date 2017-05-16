@@ -121,8 +121,12 @@
   </xs:complexType>
   <xs:complexType name="valueBinary">
     <xs:simpleContent>
-      <xs:restriction base="xs:string">
-        <xs:pattern value="[0-9a-f]*"/>
+      <xs:restriction base="xs:anyType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9a-f]*"/>
+          </xs:restriction>
+        </xs:simpleType>
         <xs:attribute name="type" use="required">
           <xs:simpleType>
             <xs:restriction base="xs:token">
