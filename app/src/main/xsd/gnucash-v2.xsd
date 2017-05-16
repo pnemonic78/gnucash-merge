@@ -125,16 +125,16 @@
   </xs:group>
   <xs:group name="KvpValue">
     <xs:choice>
-      <xs:group ref="slot:value"/>
-      <xs:group ref="slot:value1"/>
-      <xs:group ref="slot:value2"/>
-      <xs:group ref="slot:value3"/>
-      <xs:group ref="slot:value4"/>
-      <xs:group ref="slot:value5"/>
-      <xs:group ref="slot:value6"/>
-      <xs:group ref="slot:value7"/>
-      <xs:group ref="slot:value8"/>
-      <xs:group ref="slot:value9"/>
+      <xs:element name="value" type="slot:valueInteger"/>
+      <xs:element name="value" type="slot:valueDouble"/>
+      <xs:element name="value" type="slot:valueNumeric"/>
+      <xs:element name="value" type="slot:valueString"/>
+      <xs:element name="value" type="slot:valueGUID"/>
+      <xs:element name="value" type="slot:valueTimeSpec"/>
+      <xs:element name="value" type="slot:valueGDate"/>
+      <xs:element name="value" type="slot:valueBinary"/>
+      <xs:element name="value" type="slot:valueList"/>
+      <xs:element name="value" type="slot:valueFrame"/>
     </xs:choice>
   </xs:group>
   <!-- various patterns -->
