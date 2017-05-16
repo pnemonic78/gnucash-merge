@@ -49,47 +49,26 @@
   <xs:import namespace="http://www.gnucash.org/XML/ts" schemaLocation="ts.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
+
+  <xs:complexType name="count-data">
+    <xs:simpleContent>
+      <xs:extension base="xs:int">
+        <xs:attributeGroup ref="cd:type"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
   <xs:group name="GnuCashXml">
     <xs:sequence>
       <xs:element name="gnc-v2" form="unqualified">
         <xs:complexType>
           <xs:choice>
             <xs:sequence>
-              <xs:element name="count-data">
-                <xs:complexType>
-                  <xs:simpleContent>
-                    <xs:restriction base="xs:anyType">
-                      <xs:simpleType>
-                        <xs:restriction base="xs:token">
-                          <xs:enumeration value="1"/>
-                        </xs:restriction>
-                      </xs:simpleType>
-                      <xs:attributeGroup ref="cd:type"/>
-                    </xs:restriction>
-                  </xs:simpleContent>
-                </xs:complexType>
-              </xs:element>
+              <xs:element name="count-data" type="gnc:count-data" default="1"/>
               <xs:element ref="gnc:book"/>
             </xs:sequence>
             <xs:sequence>
-              <xs:element minOccurs="0" name="count-data">
-                <xs:complexType>
-                  <xs:simpleContent>
-                    <xs:extension base="xs:int">
-                      <xs:attributeGroup ref="cd:type1"/>
-                    </xs:extension>
-                  </xs:simpleContent>
-                </xs:complexType>
-              </xs:element>
-              <xs:element minOccurs="0" name="count-data">
-                <xs:complexType>
-                  <xs:simpleContent>
-                    <xs:extension base="xs:int">
-                      <xs:attributeGroup ref="cd:type2"/>
-                    </xs:extension>
-                  </xs:simpleContent>
-                </xs:complexType>
-              </xs:element>
+              <xs:element minOccurs="0" maxOccurs="2" name="count-data" type="gnc:count-data"/>
               <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:commodity"/>
               <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:account"/>
             </xs:sequence>
@@ -104,141 +83,7 @@
       <xs:sequence>
         <xs:element ref="book:id"/>
         <xs:element minOccurs="0" ref="book:slots"/>
-        <xs:element minOccurs="0" name="count-data">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attributeGroup ref="cd:type1"/>
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element minOccurs="0" name="count-data">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attributeGroup ref="cd:type2"/>
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element minOccurs="0" name="count-data">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attributeGroup ref="cd:type3"/>
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element minOccurs="0" name="count-data">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attributeGroup ref="cd:type4"/>
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element minOccurs="0" name="count-data">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attributeGroup ref="cd:type5"/>
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element minOccurs="0" name="count-data">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attributeGroup ref="cd:type6"/>
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element minOccurs="0" name="count-data">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attributeGroup ref="cd:type7"/>
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element minOccurs="0" name="count-data">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attributeGroup ref="cd:type8"/>
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element minOccurs="0" name="count-data">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attributeGroup ref="cd:type9"/>
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element minOccurs="0" name="count-data">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attributeGroup ref="cd:type10"/>
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element minOccurs="0" name="count-data">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attributeGroup ref="cd:type11"/>
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element minOccurs="0" name="count-data">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attributeGroup ref="cd:type12"/>
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element minOccurs="0" name="count-data">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attributeGroup ref="cd:type13"/>
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element minOccurs="0" name="count-data">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attributeGroup ref="cd:type14"/>
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
-        <xs:element minOccurs="0" name="count-data">
-          <xs:complexType>
-            <xs:simpleContent>
-              <xs:extension base="xs:int">
-                <xs:attributeGroup ref="cd:type15"/>
-              </xs:extension>
-            </xs:simpleContent>
-          </xs:complexType>
-        </xs:element>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="count-data" type="gnc:count-data"/>
         <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:commodity"/>
         <xs:element minOccurs="0" ref="gnc:pricedb"/>
         <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:account"/>

@@ -32,140 +32,20 @@
       <xs:simpleType>
         <xs:restriction base="xs:token">
           <xs:enumeration value="book"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="type1">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
           <xs:enumeration value="commodity"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="type2">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
           <xs:enumeration value="account"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="type3">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
           <xs:enumeration value="transaction"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="type4">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
           <xs:enumeration value="schedxaction"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="type5">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
           <xs:enumeration value="budget"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="type6">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
           <xs:enumeration value="price"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="type7">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
           <xs:enumeration value="gnc:GncBillTerm"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="type8">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
           <xs:enumeration value="gnc:GncCustomer"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="type9">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
           <xs:enumeration value="gnc:GncEmployee"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="type10">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
           <xs:enumeration value="gnc:GncEntry"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="type11">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
           <xs:enumeration value="gnc:GncInvoice"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="type12">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
           <xs:enumeration value="gnc:GncJob"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="type13">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
           <xs:enumeration value="gnc:GncOrder"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="type14">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
           <xs:enumeration value="gnc:GncTaxTable"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
-  <xs:attributeGroup name="type15">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
           <xs:enumeration value="gnc:GncVendor"/>
         </xs:restriction>
       </xs:simpleType>
