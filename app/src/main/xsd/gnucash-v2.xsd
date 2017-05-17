@@ -100,23 +100,6 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="recurrence" type="gnc:RecurrenceContent"/>
-  <!-- from recurrence_to_dom_tree in src/backend/xml/gnc-recurrence-xml-v2.c -->
-  <xs:complexType name="RecurrenceContent">
-    <xs:sequence>
-      <xs:element ref="recurrence:mult"/>
-      <xs:element ref="recurrence:period_type"/>
-      <xs:element ref="recurrence:start"/>
-      <xs:element minOccurs="0" ref="recurrence:weekend_adj"/>
-    </xs:sequence>
-    <xs:attribute name="version" use="required">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
-          <xs:enumeration value="1.0.0"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:complexType>
   <!-- from gnc_budget_dom_tree_create in src/backend/xml/gnc-budget-xml-v2.c -->
   <xs:element name="budget">
     <xs:complexType>

@@ -83,27 +83,27 @@
   <xs:element name="schedxaction">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="sx:id"/>
-        <xs:element ref="sx:name"/>
-        <xs:element ref="sx:enabled"/>
-        <xs:element ref="sx:autoCreate"/>
-        <xs:element ref="sx:autoCreateNotify"/>
-        <xs:element ref="sx:advanceCreateDays"/>
-        <xs:element ref="sx:advanceRemindDays"/>
-        <xs:element ref="sx:instanceCount"/>
-        <xs:element ref="sx:start"/>
-        <xs:element minOccurs="0" ref="sx:last"/>
+        <xs:element ref="id"/>
+        <xs:element ref="name"/>
+        <xs:element ref="enabled"/>
+        <xs:element ref="autoCreate"/>
+        <xs:element ref="autoCreateNotify"/>
+        <xs:element ref="advanceCreateDays"/>
+        <xs:element ref="advanceRemindDays"/>
+        <xs:element ref="instanceCount"/>
+        <xs:element ref="start"/>
+        <xs:element minOccurs="0" ref="last"/>
         <xs:choice minOccurs="0">
           <xs:sequence>
-            <xs:element ref="sx:num-occur"/>
-            <xs:element ref="sx:rem-occur"/>
+            <xs:element ref="num-occur"/>
+            <xs:element ref="rem-occur"/>
           </xs:sequence>
-          <xs:element ref="sx:end"/>
+          <xs:element ref="end"/>
         </xs:choice>
-        <xs:element ref="sx:templ-acct"/>
-        <xs:element ref="sx:schedule"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="sx:deferredInstance"/>
-        <xs:element minOccurs="0" ref="sx:slots"/>
+        <xs:element ref="templ-acct"/>
+        <xs:element ref="schedule"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="deferredInstance"/>
+        <xs:element minOccurs="0" ref="slots"/>
       </xs:sequence>
       <xs:attribute name="version" use="required">
         <xs:simpleType>

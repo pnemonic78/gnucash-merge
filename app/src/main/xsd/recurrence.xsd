@@ -52,4 +52,21 @@
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
+  <xs:element name="recurrence" type="RecurrenceContent"/>
+  <!-- from recurrence_to_dom_tree in src/backend/xml/gnc-recurrence-xml-v2.c -->
+  <xs:complexType name="RecurrenceContent">
+    <xs:sequence>
+      <xs:element ref="mult"/>
+      <xs:element ref="period_type"/>
+      <xs:element ref="start"/>
+      <xs:element minOccurs="0" ref="weekend_adj"/>
+    </xs:sequence>
+    <xs:attribute name="version" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="1.0.0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
 </xs:schema>
