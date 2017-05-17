@@ -1,27 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Aug 2012: A RELAX NG Compact schema for gnucash "v2" XML files.
-  Copyright (C) 2006 Joshua Sled <jsled@asynchronous.org>
-  Copyright (C) 2012 Baptiste Carvello <devel@baptiste-carvello.net>
--->
-<!--
-  This program is free software; you can redistribute it and/or
-  modify it under the terms of the GNU General Public License as
-  published by the Free Software Foundation; either version 2 of
-  the License, or (at your option) version 3.
--->
-<!--
-  This schema is non-normative; files emitted by gnucash <= 2.0 (and perhaps
-  later) that do not validate against it likely represent a problem with the
-  schema, not the file. The schema was last updated for gnucash trunk, rev 22330.
--->
-<!-- http://relaxng.org/compact-tutorial-20030326.html -->
-<!-- from write_v2_header in src/backend/xml/io-gncxml-v2.c -->
-<!--
-  plugins, in order (address, owner, bill-term, customer, employee, entry, invoice,
-  job, order, tax-table, vendor)
--->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.gnucash.org/XML/gnc" xmlns:bt-prox="http://www.gnucash.org/XML/bt-prox" xmlns:owner="http://www.gnucash.org/XML/owner" xmlns:bgt="http://www.gnucash.org/XML/bgt" xmlns:book="http://www.gnucash.org/XML/book" xmlns:lot="http://www.gnucash.org/XML/lot" xmlns:act="http://www.gnucash.org/XML/act" xmlns:cmdty="http://www.gnucash.org/XML/cmdty" xmlns:addr="http://www.gnucash.org/XML/addr" xmlns:split="http://www.gnucash.org/XML/split" xmlns:vendor="http://www.gnucash.org/XML/vendor" xmlns:entry="http://www.gnucash.org/XML/entry" xmlns:price="http://www.gnucash.org/XML/price" xmlns:recurrence="http://www.gnucash.org/XML/recurrence" xmlns:job="http://www.gnucash.org/XML/job" xmlns:slot="http://www.gnucash.org/XML/slot" xmlns:ts="http://www.gnucash.org/XML/ts" xmlns:order="http://www.gnucash.org/XML/order" xmlns:trn="http://www.gnucash.org/XML/trn" xmlns:cust="http://www.gnucash.org/XML/cust" xmlns:employee="http://www.gnucash.org/XML/employee" xmlns:invoice="http://www.gnucash.org/XML/invoice" xmlns:billterm="http://www.gnucash.org/XML/billterm" xmlns:gnc="http://www.gnucash.org/XML/gnc" xmlns:taxtable="http://www.gnucash.org/XML/taxtable" xmlns:sx="http://www.gnucash.org/XML/sx" xmlns:cd="http://www.gnucash.org/XML/cd" xmlns:bt-days="http://www.gnucash.org/XML/bt-days" xmlns:tte="http://www.gnucash.org/XML/tte">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" xmlns:bt-prox="http://www.gnucash.org/XML/bt-prox" xmlns:owner="http://www.gnucash.org/XML/owner" xmlns:bgt="http://www.gnucash.org/XML/bgt" xmlns:book="http://www.gnucash.org/XML/book" xmlns:lot="http://www.gnucash.org/XML/lot" xmlns:act="http://www.gnucash.org/XML/act" xmlns:cmdty="http://www.gnucash.org/XML/cmdty" xmlns:addr="http://www.gnucash.org/XML/addr" xmlns:split="http://www.gnucash.org/XML/split" xmlns:vendor="http://www.gnucash.org/XML/vendor" xmlns:entry="http://www.gnucash.org/XML/entry" xmlns:price="http://www.gnucash.org/XML/price" xmlns:recurrence="http://www.gnucash.org/XML/recurrence" xmlns:job="http://www.gnucash.org/XML/job" xmlns:slot="http://www.gnucash.org/XML/slot" xmlns:ts="http://www.gnucash.org/XML/ts" xmlns:order="http://www.gnucash.org/XML/order" xmlns:trn="http://www.gnucash.org/XML/trn" xmlns:cust="http://www.gnucash.org/XML/cust" xmlns:employee="http://www.gnucash.org/XML/employee" xmlns:invoice="http://www.gnucash.org/XML/invoice" xmlns:billterm="http://www.gnucash.org/XML/billterm" xmlns:gnc="http://www.gnucash.org/XML/gnc" xmlns:taxtable="http://www.gnucash.org/XML/taxtable" xmlns:sx="http://www.gnucash.org/XML/sx" xmlns:cd="http://www.gnucash.org/XML/cd" xmlns:bt-days="http://www.gnucash.org/XML/bt-days" xmlns:tte="http://www.gnucash.org/XML/tte">
   <xs:import namespace="http://www.gnucash.org/XML/act" schemaLocation="act.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/addr" schemaLocation="addr.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/bgt" schemaLocation="bgt.xsd"/>
@@ -34,6 +12,7 @@
   <xs:import namespace="http://www.gnucash.org/XML/cust" schemaLocation="cust.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/employee" schemaLocation="employee.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/entry" schemaLocation="entry.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/gnc" schemaLocation="gnc.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/invoice" schemaLocation="invoice.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/job" schemaLocation="job.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/lot" schemaLocation="lot.xsd"/>
@@ -50,14 +29,6 @@
   <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
 
-  <xs:complexType name="count-data">
-    <xs:simpleContent>
-      <xs:extension base="xs:int">
-        <xs:attributeGroup ref="cd:type"/>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
-
   <xs:complexType name="GnuCashXml">
     <xs:choice>
       <xs:sequence>
@@ -71,52 +42,5 @@
       </xs:sequence>
     </xs:choice>
   </xs:complexType>
-  <xs:element name="gnc-v2" type="gnc:GnuCashXml"/>
-  <!-- various patterns -->
-  <xs:simpleType name="GncNumeric">
-    <xs:restriction base="xs:string">
-      <xs:pattern value="-?[0-9]+/-?[0-9]+"/>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:simpleType name="GUID">
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[0-9a-f]{32}"/>
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:complexType name="TimeSpec">
-    <xs:sequence>
-      <xs:element ref="ts:date"/>
-      <xs:element minOccurs="0" ref="ts:ns"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="GDate">
-    <xs:sequence>
-      <xs:element name="gdate" form="unqualified">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:pattern value="[0-9]{4}-[0-9]{2}-[0-9]{2}"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="guid">
-    <xs:simpleContent>
-      <xs:extension base="gnc:GUID">
-        <xs:attribute name="type" use="required">
-          <xs:simpleType>
-            <xs:restriction base="xs:token">
-              <xs:enumeration value="guid"/>
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:attribute>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
-  <xs:complexType name="currency">
-    <xs:sequence>
-      <xs:group ref="cmdty:space1"/>
-      <xs:element ref="cmdty:id"/>
-    </xs:sequence>
-  </xs:complexType>
+  <xs:element name="gnc-v2" type="GnuCashXml"/>
 </xs:schema>
