@@ -41,4 +41,26 @@
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
+  <!-- from order_dom_tree_create in src/backend/xml/gnc-order-xml-v2.c -->
+  <xs:element name="GncOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="guid"/>
+        <xs:element ref="id"/>
+        <xs:element ref="owner"/>
+        <xs:element ref="opened"/>
+        <xs:element minOccurs="0" ref="closed"/>
+        <xs:element minOccurs="0" ref="notes"/>
+        <xs:element minOccurs="0" ref="reference"/>
+        <xs:element ref="active"/>
+      </xs:sequence>
+      <xs:attribute name="version" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="2.0.0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

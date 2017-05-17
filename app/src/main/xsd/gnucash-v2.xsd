@@ -120,28 +120,6 @@
       </xs:attribute>
     </xs:complexType>
   </xs:element>
-  <!-- from order_dom_tree_create in src/backend/xml/gnc-order-xml-v2.c -->
-  <xs:element name="GncOrder">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="order:guid"/>
-        <xs:element ref="order:id"/>
-        <xs:element ref="order:owner"/>
-        <xs:element ref="order:opened"/>
-        <xs:element minOccurs="0" ref="order:closed"/>
-        <xs:element minOccurs="0" ref="order:notes"/>
-        <xs:element minOccurs="0" ref="order:reference"/>
-        <xs:element ref="order:active"/>
-      </xs:sequence>
-      <xs:attribute name="version" use="required">
-        <xs:simpleType>
-          <xs:restriction base="xs:token">
-            <xs:enumeration value="2.0.0"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
   <!-- from taxtable_dom_tree_create in src/backend/xml/gnc-tax-table-xml-v2.c -->
   <xs:element name="GncTaxTable">
     <xs:complexType>
