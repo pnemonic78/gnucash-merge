@@ -62,4 +62,33 @@
   </xs:element>
   <xs:element name="taxtable" type="gnc:guid"/>
   <xs:element name="slots" type="slot:slots"/>
+  <!-- from customer_dom_tree_create in src/backend/xml/gnc-customer-xml-v2.c -->
+  <xs:element name="GncCustomer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="guid"/>
+        <xs:element ref="name"/>
+        <xs:element ref="id"/>
+        <xs:element ref="addr"/>
+        <xs:element ref="shipaddr"/>
+        <xs:element minOccurs="0" ref="notes"/>
+        <xs:element minOccurs="0" ref="terms"/>
+        <xs:element ref="taxincluded"/>
+        <xs:element ref="active"/>
+        <xs:element ref="discount"/>
+        <xs:element ref="credit"/>
+        <xs:element ref="currency"/>
+        <xs:element ref="use-tt"/>
+        <xs:element minOccurs="0" ref="taxtable"/>
+        <xs:element minOccurs="0" ref="slots"/>
+      </xs:sequence>
+      <xs:attribute name="version" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="2.0.0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
