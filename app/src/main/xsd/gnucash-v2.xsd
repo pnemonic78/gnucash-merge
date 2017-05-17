@@ -67,7 +67,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" maxOccurs="2" name="count-data" type="gnc:count-data"/>
         <xs:element minOccurs="0" maxOccurs="1" name="commodity" type="cmdty:Commodity"/>
-        <xs:element minOccurs="0" maxOccurs="1" ref="gnc:account"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="act:account"/>
       </xs:sequence>
     </xs:choice>
   </xs:complexType>
@@ -100,38 +100,6 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <!-- from gnc_transaction_dom_tree_create in src/backend/xml/gnc-transaction-xml-v2.c -->
-  <xs:element name="transaction">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="trn:id"/>
-        <xs:element ref="trn:currency"/>
-        <xs:element minOccurs="0" ref="trn:num"/>
-        <xs:element ref="trn:date-posted"/>
-        <xs:element ref="trn:date-entered"/>
-        <xs:element minOccurs="0" ref="trn:description"/>
-        <xs:element minOccurs="0" ref="trn:slots"/>
-        <xs:element ref="trn:splits"/>
-      </xs:sequence>
-      <xs:attribute name="version" use="required">
-        <xs:simpleType>
-          <xs:restriction base="xs:token">
-            <xs:enumeration value="2.0.0"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
-  <!-- from split_to_dom_tree in src/backend/xml/gnc-transaction-xml-v2.c -->
-  <!-- from write_template_transaction_data in src/backend/xml/io-gncxml-v2.c -->
-  <xs:element name="template-transactions">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:account"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:transaction"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <!-- from gnc_schedXaction_dom_tree_create in src/backend/xml/gnc-schedxaction-xml-v2.c -->
   <xs:element name="schedxaction">
     <xs:complexType>

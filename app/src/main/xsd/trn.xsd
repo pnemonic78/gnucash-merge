@@ -57,4 +57,36 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <!-- from gnc_transaction_dom_tree_create in src/backend/xml/gnc-transaction-xml-v2.c -->
+  <xs:element name="transaction">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="id"/>
+        <xs:element ref="currency"/>
+        <xs:element minOccurs="0" ref="num"/>
+        <xs:element ref="date-posted"/>
+        <xs:element ref="date-entered"/>
+        <xs:element minOccurs="0" ref="description"/>
+        <xs:element minOccurs="0" ref="slots"/>
+        <xs:element ref="splits"/>
+      </xs:sequence>
+      <xs:attribute name="version" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="2.0.0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- from split_to_dom_tree in src/backend/xml/gnc-transaction-xml-v2.c -->
+  <!-- from write_template_transaction_data in src/backend/xml/io-gncxml-v2.c -->
+  <xs:element name="template-transactions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="act:account"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="transaction"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

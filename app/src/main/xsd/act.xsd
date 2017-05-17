@@ -67,7 +67,7 @@
   <xs:element name="lots">
     <xs:complexType>
       <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="gnc:lot"/>
+        <xs:element maxOccurs="unbounded" ref="lot:lot"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
