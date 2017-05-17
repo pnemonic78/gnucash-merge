@@ -1,17 +1,15 @@
 plugins {
     id 'java'
     id 'application'
-    id "com.ewerk.gradle.plugins.jaxb2" version "1.0.4"
 }
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
 
-jaxb2 {
-    xjc {
-        'gnucash-classes' {
-            basePackage = 'com.github.gnucash.v2'
-            schema = 'src/main/xsd/gnucash-v2.xsd'
+sourceSets {
+    main {
+        java {
+            srcDirs += ['src/generated/java']
         }
     }
 }
