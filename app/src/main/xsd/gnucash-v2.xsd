@@ -120,20 +120,6 @@
       </xs:attribute>
     </xs:complexType>
   </xs:element>
-  <!-- from gnc_owner_to_dom_tree in src/backend/xml/gnc-owner-xml-v2.c -->
-  <xs:complexType name="OwnerContent">
-    <xs:sequence>
-      <xs:element ref="owner:type"/>
-      <xs:element ref="owner:id"/>
-    </xs:sequence>
-    <xs:attribute name="version" use="required">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
-          <xs:enumeration value="2.0.0"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:complexType>
   <!-- from invoice_dom_tree_create in src/backend/xml/gnc-invoice-xml-v2.c -->
   <xs:element name="GncInvoice">
     <xs:complexType>

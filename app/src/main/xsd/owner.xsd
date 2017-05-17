@@ -38,4 +38,18 @@
     </xs:simpleType>
   </xs:element>
   <xs:element name="id" type="gnc:guid"/>
+  <!-- from gnc_owner_to_dom_tree in src/backend/xml/gnc-owner-xml-v2.c -->
+  <xs:complexType name="OwnerContent">
+    <xs:sequence>
+      <xs:element ref="type"/>
+      <xs:element ref="id"/>
+    </xs:sequence>
+    <xs:attribute name="version" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="2.0.0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
 </xs:schema>
