@@ -9,6 +9,7 @@ import org.gnucash.xml.gnc.GnuCashXml;
 import java.io.File;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
@@ -38,6 +39,7 @@ public class Merger {
      * @param primaryFile   The primary file. It is also the destination file.
      * @param secondaryFile The secondary file with changes.
      */
+    @SuppressWarnings("unchecked")
     public void merge(File primaryFile, File secondaryFile) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(
                 org.gnucash.xml.ObjectFactory.class,
@@ -70,8 +72,10 @@ public class Merger {
 
         // Read from files.
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        GnuCashXml primary = (GnuCashXml) unmarshaller.unmarshal(primaryFile);
-        GnuCashXml secondary = (GnuCashXml) unmarshaller.unmarshal(secondaryFile);
+        JAXBElement<GnuCashXml> element = (JAXBElement<GnuCashXml>) unmarshaller.unmarshal(primaryFile);
+        GnuCashXml primary = element.getValue();
+        element = (JAXBElement<GnuCashXml>) unmarshaller.unmarshal(secondaryFile);
+        GnuCashXml secondary = element.getValue();
 
         // Merge.
         merge(primary, secondary);
@@ -89,5 +93,6 @@ public class Merger {
      */
     public void merge(GnuCashXml primary, GnuCashXml secondary) {
         //TODO implement me!
+        System.out.println("±!@ " + primary + " " + secondary);
     }
 }
