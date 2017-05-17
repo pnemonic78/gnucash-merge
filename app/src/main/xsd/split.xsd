@@ -46,5 +46,5 @@
   <xs:element name="quantity" type="gnc:GncNumeric"/>
   <xs:element name="account" type="gnc:guid"/>
   <xs:element name="lot" type="gnc:guid"/>
-  <xs:element name="slots" type="gnc:slots"/>
+  <xs:element name="slots" type="slot:slots"/>
 </xs:schema>

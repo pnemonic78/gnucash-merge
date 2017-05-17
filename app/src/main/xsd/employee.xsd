@@ -44,5 +44,5 @@
   <xs:element name="rate" type="gnc:GncNumeric"/>
   <xs:element name="currency" type="gnc:currency"/>
   <xs:element name="ccard" type="gnc:guid"/>
-  <xs:element name="slots" type="gnc:slots"/>
+  <xs:element name="slots" type="slot:slots"/>
 </xs:schema>

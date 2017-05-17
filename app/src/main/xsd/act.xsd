@@ -62,13 +62,40 @@
   </xs:element>
   <xs:element name="code" type="xs:string"/>
   <xs:element name="description" type="xs:string"/>
-  <xs:element name="slots" type="gnc:slots"/>
+  <xs:element name="slots" type="slot:slots"/>
   <xs:element name="parent" type="gnc:guid"/>
   <xs:element name="lots">
     <xs:complexType>
       <xs:sequence>
         <xs:element maxOccurs="unbounded" ref="gnc:lot"/>
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <!-- from gnc_account_dom_tree_create in src/backend/xml/gnc-account-xml-v2.c -->
+  <xs:element name="account">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="name"/>
+        <xs:element ref="id"/>
+        <xs:element ref="type"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="commodity"/>
+          <xs:element ref="commodity-scu"/>
+          <xs:element minOccurs="0" ref="non-standard-scu"/>
+        </xs:sequence>
+        <xs:element minOccurs="0" ref="code"/>
+        <xs:element minOccurs="0" ref="description"/>
+        <xs:element minOccurs="0" ref="slots"/>
+        <xs:element minOccurs="0" ref="parent"/>
+        <xs:element minOccurs="0" ref="lots"/>
+      </xs:sequence>
+      <xs:attribute name="version" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="2.0.0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
     </xs:complexType>
   </xs:element>
 </xs:schema>
