@@ -55,14 +55,7 @@
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
-  <xs:element name="commodity">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:group ref="cmdty:space1"/>
-        <xs:element ref="cmdty:id"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="commodity" type="gnc:currency"/>
   <xs:element name="commodity-scu" type="xs:int"/>
   <xs:element name="non-standard-scu">
     <xs:complexType/>
