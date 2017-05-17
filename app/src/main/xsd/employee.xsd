@@ -50,20 +50,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ccard">
-    <xs:complexType>
-      <xs:simpleContent>
-        <xs:extension base="gnc:GUID">
-          <xs:attribute name="type" use="required">
-            <xs:simpleType>
-              <xs:restriction base="xs:token">
-                <xs:enumeration value="guid"/>
-              </xs:restriction>
-            </xs:simpleType>
-          </xs:attribute>
-        </xs:extension>
-      </xs:simpleContent>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="ccard" type="gnc:id"/>
   <xs:element name="slots" type="gnc:KvpSlots"/>
 </xs:schema>

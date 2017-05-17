@@ -32,21 +32,7 @@
   <xs:element name="owner" type="gnc:OwnerContent"/>
   <xs:element name="opened" type="gnc:TimeSpec"/>
   <xs:element name="posted" type="gnc:TimeSpec"/>
-  <xs:element name="terms">
-    <xs:complexType>
-      <xs:simpleContent>
-        <xs:extension base="gnc:GUID">
-          <xs:attribute name="type" use="required">
-            <xs:simpleType>
-              <xs:restriction base="xs:token">
-                <xs:enumeration value="guid"/>
-              </xs:restriction>
-            </xs:simpleType>
-          </xs:attribute>
-        </xs:extension>
-      </xs:simpleContent>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="terms" type="gnc:id"/>
   <xs:element name="billing_id" type="xs:string"/>
   <xs:element name="notes" type="xs:string"/>
   <xs:element name="active">
@@ -56,51 +42,9 @@
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
-  <xs:element name="posttxn">
-    <xs:complexType>
-      <xs:simpleContent>
-        <xs:extension base="gnc:GUID">
-          <xs:attribute name="type" use="required">
-            <xs:simpleType>
-              <xs:restriction base="xs:token">
-                <xs:enumeration value="guid"/>
-              </xs:restriction>
-            </xs:simpleType>
-          </xs:attribute>
-        </xs:extension>
-      </xs:simpleContent>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="postlot">
-    <xs:complexType>
-      <xs:simpleContent>
-        <xs:extension base="gnc:GUID">
-          <xs:attribute name="type" use="required">
-            <xs:simpleType>
-              <xs:restriction base="xs:token">
-                <xs:enumeration value="guid"/>
-              </xs:restriction>
-            </xs:simpleType>
-          </xs:attribute>
-        </xs:extension>
-      </xs:simpleContent>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="postacc">
-    <xs:complexType>
-      <xs:simpleContent>
-        <xs:extension base="gnc:GUID">
-          <xs:attribute name="type" use="required">
-            <xs:simpleType>
-              <xs:restriction base="xs:token">
-                <xs:enumeration value="guid"/>
-              </xs:restriction>
-            </xs:simpleType>
-          </xs:attribute>
-        </xs:extension>
-      </xs:simpleContent>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="posttxn" type="gnc:id"/>
+  <xs:element name="postlot" type="gnc:id"/>
+  <xs:element name="postacc" type="gnc:id"/>
   <xs:element name="currency">
     <xs:complexType>
       <xs:sequence>

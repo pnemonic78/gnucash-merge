@@ -61,21 +61,7 @@
   <xs:element name="num-occur" type="xs:int"/>
   <xs:element name="rem-occur" type="xs:int"/>
   <xs:element name="end" type="gnc:GDate"/>
-  <xs:element name="templ-acct">
-    <xs:complexType>
-      <xs:simpleContent>
-        <xs:extension base="gnc:GUID">
-          <xs:attribute name="type" use="required">
-            <xs:simpleType>
-              <xs:restriction base="xs:token">
-                <xs:enumeration value="guid"/>
-              </xs:restriction>
-            </xs:simpleType>
-          </xs:attribute>
-        </xs:extension>
-      </xs:simpleContent>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="templ-acct" type="gnc:id"/>
   <xs:element name="schedule">
     <xs:complexType>
       <xs:sequence>
