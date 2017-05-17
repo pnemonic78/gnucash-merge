@@ -11,7 +11,7 @@
   <xs:import namespace="http://www.gnucash.org/XML/cmdty" schemaLocation="cmdty.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/cust" schemaLocation="cust.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/entry" schemaLocation="entry.xsd"/>
-  <xs:import namespace="http://www.gnucash.org/XML/gnc" schemaLocation="gnucash-v2.xsd"/>
+  <xs:import namespace="http://www.gnucash.org/XML/gnc" schemaLocation="gnc.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/invoice" schemaLocation="invoice.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/job" schemaLocation="job.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/lot" schemaLocation="lot.xsd"/>
