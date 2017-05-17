@@ -120,32 +120,6 @@
       </xs:attribute>
     </xs:complexType>
   </xs:element>
-  <!-- from vendor_dom_tree_create in src/backend/xml/gnc-vendor-xml-v2.c -->
-  <xs:element name="GncVendor">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="vendor:guid"/>
-        <xs:element ref="vendor:name"/>
-        <xs:element ref="vendor:id"/>
-        <xs:element ref="vendor:addr"/>
-        <xs:element minOccurs="0" ref="vendor:notes"/>
-        <xs:element minOccurs="0" ref="vendor:terms"/>
-        <xs:element ref="vendor:taxincluded"/>
-        <xs:element ref="vendor:active"/>
-        <xs:element ref="vendor:currency"/>
-        <xs:element ref="vendor:use-tt"/>
-        <xs:element minOccurs="0" ref="vendor:taxtable"/>
-        <xs:element minOccurs="0" ref="vendor:slots"/>
-      </xs:sequence>
-      <xs:attribute name="version" use="required">
-        <xs:simpleType>
-          <xs:restriction base="xs:token">
-            <xs:enumeration value="2.0.0"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
   <xs:complexType name="guid">
     <xs:simpleContent>
       <xs:extension base="gnc:GUID">
