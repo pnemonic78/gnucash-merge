@@ -100,26 +100,6 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <!-- from gnc_budget_dom_tree_create in src/backend/xml/gnc-budget-xml-v2.c -->
-  <xs:element name="budget">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="bgt:id"/>
-        <xs:element ref="bgt:name"/>
-        <xs:element ref="bgt:description"/>
-        <xs:element ref="bgt:num-periods"/>
-        <xs:element ref="bgt:recurrence"/>
-        <xs:element minOccurs="0" ref="bgt:slots"/>
-      </xs:sequence>
-      <xs:attribute name="version" use="required">
-        <xs:simpleType>
-          <xs:restriction base="xs:token">
-            <xs:enumeration value="2.0.0"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
   <xs:complexType name="guid">
     <xs:simpleContent>
       <xs:extension base="gnc:GUID">

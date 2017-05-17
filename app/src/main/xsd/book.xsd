@@ -41,7 +41,7 @@
       <xs:element minOccurs="0" maxOccurs="unbounded" ref="trn:transaction"/>
       <xs:element minOccurs="0" maxOccurs="unbounded" ref="trn:template-transactions"/>
       <xs:element minOccurs="0" maxOccurs="unbounded" ref="sx:schedxaction"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:budget"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="bgt:budget"/>
       <xs:element minOccurs="0" maxOccurs="unbounded" ref="billterm:GncBillTerm"/>
       <xs:element minOccurs="0" maxOccurs="unbounded" ref="cust:GncCustomer"/>
       <xs:element minOccurs="0" maxOccurs="unbounded" ref="employee:GncEmployee"/>
