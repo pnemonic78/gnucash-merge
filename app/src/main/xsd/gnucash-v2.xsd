@@ -120,27 +120,7 @@
       </xs:attribute>
     </xs:complexType>
   </xs:element>
-  <!-- from gnc_address_to_dom_tree in src/backend/xml/gnc-address-xml-v2.c -->
-  <xs:complexType name="AddressContent">
-    <xs:sequence minOccurs="0">
-      <xs:element minOccurs="0" ref="addr:name"/>
-      <xs:element minOccurs="0" ref="addr:addr1"/>
-      <xs:element minOccurs="0" ref="addr:addr2"/>
-      <xs:element minOccurs="0" ref="addr:addr3"/>
-      <xs:element minOccurs="0" ref="addr:addr4"/>
-      <xs:element minOccurs="0" ref="addr:phone"/>
-      <xs:element minOccurs="0" ref="addr:fax"/>
-      <xs:element minOccurs="0" ref="addr:email"/>
-    </xs:sequence>
-    <xs:attribute name="version" use="required">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
-          <xs:enumeration value="2.0.0"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:complexType>
-  <!-- from employee_dom_tree_create in src/backend/xml/gnc-employee-xml-v2.c -->
+ <!-- from employee_dom_tree_create in src/backend/xml/gnc-employee-xml-v2.c -->
   <xs:element name="GncEmployee">
     <xs:complexType>
       <xs:sequence>
