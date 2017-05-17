@@ -72,33 +72,6 @@
     </xs:choice>
   </xs:complexType>
   <xs:element name="gnc-v2" type="gnc:GnuCashXml"/>
-  <!-- from src/backend/xml/sixtp-dom-generators.c -->
-  <xs:group name="KvpSlot">
-    <xs:sequence>
-      <xs:element name="slot" form="unqualified">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element ref="slot:key"/>
-            <xs:group ref="gnc:KvpValue"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:sequence>
-  </xs:group>
-  <xs:group name="KvpValue">
-    <xs:choice>
-      <xs:element name="value" type="slot:valueInteger"/>
-      <xs:element name="value" type="slot:valueDouble"/>
-      <xs:element name="value" type="slot:valueNumeric"/>
-      <xs:element name="value" type="slot:valueString"/>
-      <xs:element name="value" type="slot:valueGUID"/>
-      <xs:element name="value" type="slot:valueTimeSpec"/>
-      <xs:element name="value" type="slot:valueGDate"/>
-      <xs:element name="value" type="slot:valueBinary"/>
-      <xs:element name="value" type="slot:valueList"/>
-      <xs:element name="value" type="slot:valueFrame"/>
-    </xs:choice>
-  </xs:group>
   <!-- various patterns -->
   <xs:simpleType name="GncNumeric">
     <xs:restriction base="xs:string">
@@ -627,7 +600,7 @@
     </xs:complexType>
   </xs:element>
   <xs:complexType name="slots">
-    <xs:group maxOccurs="unbounded" ref="gnc:KvpSlot"/>
+    <xs:group maxOccurs="unbounded" ref="slot:KvpSlot"/>
   </xs:complexType>
   <xs:complexType name="guid">
     <xs:simpleContent>
