@@ -45,4 +45,35 @@
     </xs:simpleType>
   </xs:element>
   <xs:element name="value" type="gnc:GncNumeric"/>
+  <!-- from gnc_price_to_dom_tree in src/backend/xml/gnc-pricedb-xml-v2.c -->
+  <xs:group name="Price">
+    <xs:sequence>
+      <xs:element name="price" form="unqualified">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="id"/>
+            <xs:element ref="commodity"/>
+            <xs:element ref="currency"/>
+            <xs:element ref="time"/>
+            <xs:element minOccurs="0" ref="source"/>
+            <xs:element minOccurs="0" ref="type"/>
+            <xs:element ref="value"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+  <!-- from gnc_pricedb_to_dom_tree in src/backend/xml/gnc-pricedb-xml-v2.c -->
+  <xs:element name="pricedb">
+    <xs:complexType>
+      <xs:group maxOccurs="unbounded" ref="Price"/>
+      <xs:attribute name="version" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
