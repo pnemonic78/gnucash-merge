@@ -28,14 +28,7 @@
   <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
   <xs:element name="id" type="gnc:id"/>
-  <xs:element name="currency">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:group ref="cmdty:space1"/>
-        <xs:element ref="cmdty:id"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="currency" type="gnc:currency"/>
   <xs:element name="num" type="xs:string"/>
   <xs:element name="date-posted" type="gnc:TimeSpec"/>
   <xs:element name="date-entered" type="gnc:TimeSpec"/>

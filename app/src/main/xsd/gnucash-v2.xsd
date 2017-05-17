@@ -680,4 +680,10 @@
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
+  <xs:complexType name="currency">
+    <xs:sequence>
+      <xs:group ref="cmdty:space1"/>
+      <xs:element ref="cmdty:id"/>
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>

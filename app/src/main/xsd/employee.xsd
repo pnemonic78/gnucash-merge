@@ -42,14 +42,7 @@
   </xs:element>
   <xs:element name="workday" type="gnc:GncNumeric"/>
   <xs:element name="rate" type="gnc:GncNumeric"/>
-  <xs:element name="currency">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:group ref="cmdty:space1"/>
-        <xs:element ref="cmdty:id"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="currency" type="gnc:currency"/>
   <xs:element name="ccard" type="gnc:id"/>
   <xs:element name="slots" type="gnc:KvpSlots"/>
 </xs:schema>
