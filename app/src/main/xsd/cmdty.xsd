@@ -52,5 +52,5 @@
   </xs:element>
   <xs:element name="quote_source" type="xs:string"/>
   <xs:element name="quote_tz" type="xs:string"/>
-  <xs:element name="slots" type="gnc:KvpSlots"/>
+  <xs:element name="slots" type="gnc:slots"/>
 </xs:schema>

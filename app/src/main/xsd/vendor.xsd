@@ -58,5 +58,5 @@
     </xs:simpleType>
   </xs:element>
   <xs:element name="taxtable" type="gnc:id"/>
-  <xs:element name="slots" type="gnc:KvpSlots"/>
+  <xs:element name="slots" type="gnc:slots"/>
 </xs:schema>

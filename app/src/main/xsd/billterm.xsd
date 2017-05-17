@@ -38,7 +38,7 @@
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
-  <xs:element name="slots" type="gnc:KvpSlots"/>
+  <xs:element name="slots" type="gnc:slots"/>
   <xs:element name="child" type="gnc:id"/>
   <xs:element name="parent" type="gnc:id"/>
   <xs:element name="days">

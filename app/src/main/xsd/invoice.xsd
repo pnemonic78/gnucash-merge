@@ -48,5 +48,5 @@
   <xs:element name="currency" type="gnc:currency"/>
   <xs:element name="billto" type="gnc:OwnerContent"/>
   <xs:element name="charge-amt" type="gnc:GncNumeric"/>
-  <xs:element name="slots" type="gnc:KvpSlots"/>
+  <xs:element name="slots" type="gnc:slots"/>
 </xs:schema>
