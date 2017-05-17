@@ -45,14 +45,14 @@
   <xs:element name="GncOrder">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="guid"/>
-        <xs:element ref="id"/>
-        <xs:element ref="owner"/>
-        <xs:element ref="opened"/>
-        <xs:element minOccurs="0" ref="closed"/>
-        <xs:element minOccurs="0" ref="notes"/>
-        <xs:element minOccurs="0" ref="reference"/>
-        <xs:element ref="active"/>
+        <xs:element ref="order:guid"/>
+        <xs:element ref="order:id"/>
+        <xs:element ref="order:owner"/>
+        <xs:element ref="order:opened"/>
+        <xs:element minOccurs="0" ref="order:closed"/>
+        <xs:element minOccurs="0" ref="order:notes"/>
+        <xs:element minOccurs="0" ref="order:reference"/>
+        <xs:element ref="order:active"/>
       </xs:sequence>
       <xs:attribute name="version" use="required">
         <xs:simpleType>

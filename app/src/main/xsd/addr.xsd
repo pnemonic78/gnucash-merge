@@ -38,14 +38,14 @@
   <!-- from gnc_address_to_dom_tree in src/backend/xml/gnc-address-xml-v2.c -->
   <xs:complexType name="AddressContent">
     <xs:sequence minOccurs="0">
-      <xs:element minOccurs="0" ref="name"/>
-      <xs:element minOccurs="0" ref="addr1"/>
-      <xs:element minOccurs="0" ref="addr2"/>
-      <xs:element minOccurs="0" ref="addr3"/>
-      <xs:element minOccurs="0" ref="addr4"/>
-      <xs:element minOccurs="0" ref="phone"/>
-      <xs:element minOccurs="0" ref="fax"/>
-      <xs:element minOccurs="0" ref="email"/>
+      <xs:element minOccurs="0" ref="addr:name"/>
+      <xs:element minOccurs="0" ref="addr:addr1"/>
+      <xs:element minOccurs="0" ref="addr:addr2"/>
+      <xs:element minOccurs="0" ref="addr:addr3"/>
+      <xs:element minOccurs="0" ref="addr:addr4"/>
+      <xs:element minOccurs="0" ref="addr:phone"/>
+      <xs:element minOccurs="0" ref="addr:fax"/>
+      <xs:element minOccurs="0" ref="addr:email"/>
     </xs:sequence>
     <xs:attribute name="version" use="required">
       <xs:simpleType>

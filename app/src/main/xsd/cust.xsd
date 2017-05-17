@@ -66,21 +66,21 @@
   <xs:element name="GncCustomer">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="guid"/>
-        <xs:element ref="name"/>
-        <xs:element ref="id"/>
-        <xs:element ref="addr"/>
-        <xs:element ref="shipaddr"/>
-        <xs:element minOccurs="0" ref="notes"/>
-        <xs:element minOccurs="0" ref="terms"/>
-        <xs:element ref="taxincluded"/>
-        <xs:element ref="active"/>
-        <xs:element ref="discount"/>
-        <xs:element ref="credit"/>
-        <xs:element ref="currency"/>
-        <xs:element ref="use-tt"/>
-        <xs:element minOccurs="0" ref="taxtable"/>
-        <xs:element minOccurs="0" ref="slots"/>
+        <xs:element ref="cust:guid"/>
+        <xs:element ref="cust:name"/>
+        <xs:element ref="cust:id"/>
+        <xs:element ref="cust:addr"/>
+        <xs:element ref="cust:shipaddr"/>
+        <xs:element minOccurs="0" ref="cust:notes"/>
+        <xs:element minOccurs="0" ref="cust:terms"/>
+        <xs:element ref="cust:taxincluded"/>
+        <xs:element ref="cust:active"/>
+        <xs:element ref="cust:discount"/>
+        <xs:element ref="cust:credit"/>
+        <xs:element ref="cust:currency"/>
+        <xs:element ref="cust:use-tt"/>
+        <xs:element minOccurs="0" ref="cust:taxtable"/>
+        <xs:element minOccurs="0" ref="cust:slots"/>
       </xs:sequence>
       <xs:attribute name="version" use="required">
         <xs:simpleType>

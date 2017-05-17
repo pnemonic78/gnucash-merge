@@ -138,7 +138,7 @@
     </xs:simpleContent>
   </xs:complexType>
   <xs:complexType name="valueList">
-    <xs:group minOccurs="0" maxOccurs="unbounded" ref="KvpValue"/>
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="slot:KvpValue"/>
     <xs:attribute name="type" use="required">
       <xs:simpleType>
         <xs:restriction base="xs:token">
@@ -148,7 +148,7 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="valueFrame">
-    <xs:group minOccurs="0" maxOccurs="unbounded" ref="KvpSlot"/>
+    <xs:group minOccurs="0" maxOccurs="unbounded" ref="slot:KvpSlot"/>
     <xs:attribute name="type" use="required">
       <xs:simpleType>
         <xs:restriction base="xs:token">
@@ -163,8 +163,8 @@
       <xs:element name="slot" form="unqualified">
         <xs:complexType>
           <xs:sequence>
-            <xs:element ref="key"/>
-            <xs:group ref="KvpValue"/>
+            <xs:element ref="slot:key"/>
+            <xs:group ref="slot:KvpValue"/>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -172,19 +172,19 @@
   </xs:group>
   <xs:group name="KvpValue">
     <xs:choice>
-      <xs:element name="value" type="valueInteger"/>
-      <xs:element name="value" type="valueDouble"/>
-      <xs:element name="value" type="valueNumeric"/>
-      <xs:element name="value" type="valueString"/>
-      <xs:element name="value" type="valueGUID"/>
-      <xs:element name="value" type="valueTimeSpec"/>
-      <xs:element name="value" type="valueGDate"/>
-      <xs:element name="value" type="valueBinary"/>
-      <xs:element name="value" type="valueList"/>
-      <xs:element name="value" type="valueFrame"/>
+      <xs:element name="value" type="slot:valueInteger"/>
+      <xs:element name="value" type="slot:valueDouble"/>
+      <xs:element name="value" type="slot:valueNumeric"/>
+      <xs:element name="value" type="slot:valueString"/>
+      <xs:element name="value" type="slot:valueGUID"/>
+      <xs:element name="value" type="slot:valueTimeSpec"/>
+      <xs:element name="value" type="slot:valueGDate"/>
+      <xs:element name="value" type="slot:valueBinary"/>
+      <xs:element name="value" type="slot:valueList"/>
+      <xs:element name="value" type="slot:valueFrame"/>
     </xs:choice>
   </xs:group>
   <xs:complexType name="slots">
-    <xs:group maxOccurs="unbounded" ref="KvpSlot"/>
+    <xs:group maxOccurs="unbounded" ref="slot:KvpSlot"/>
   </xs:complexType>
 </xs:schema>

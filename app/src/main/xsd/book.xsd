@@ -32,8 +32,8 @@
   <!-- from write_book in src/backend/xml/io-gncxml-v2.c -->
   <xs:complexType name="Book">
     <xs:sequence>
-      <xs:element ref="id"/>
-      <xs:element minOccurs="0" ref="slots"/>
+      <xs:element ref="book:id"/>
+      <xs:element minOccurs="0" ref="book:slots"/>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="count-data" type="gnc:count-data"/>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="commodity" type="cmdty:Commodity"/>
       <xs:element minOccurs="0" ref="price:pricedb"/>

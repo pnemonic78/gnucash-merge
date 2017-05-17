@@ -64,17 +64,17 @@
   <xs:element name="GncBillTerm">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" ref="guid"/>
-        <xs:element ref="name"/>
-        <xs:element ref="desc"/>
-        <xs:element ref="refcount"/>
-        <xs:element ref="invisible"/>
-        <xs:element minOccurs="0" ref="slots"/>
-        <xs:element minOccurs="0" ref="child"/>
-        <xs:element minOccurs="0" ref="parent"/>
+        <xs:element minOccurs="0" ref="billterm:guid"/>
+        <xs:element ref="billterm:name"/>
+        <xs:element ref="billterm:desc"/>
+        <xs:element ref="billterm:refcount"/>
+        <xs:element ref="billterm:invisible"/>
+        <xs:element minOccurs="0" ref="billterm:slots"/>
+        <xs:element minOccurs="0" ref="billterm:child"/>
+        <xs:element minOccurs="0" ref="billterm:parent"/>
         <xs:choice>
-          <xs:element ref="days"/>
-          <xs:element ref="proximo"/>
+          <xs:element ref="billterm:days"/>
+          <xs:element ref="billterm:proximo"/>
         </xs:choice>
       </xs:sequence>
       <xs:attribute name="version" use="required">

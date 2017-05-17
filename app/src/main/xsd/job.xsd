@@ -43,12 +43,12 @@
   <xs:element name="GncJob">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="guid"/>
-        <xs:element ref="id"/>
-        <xs:element ref="name"/>
-        <xs:element minOccurs="0" ref="reference"/>
-        <xs:element ref="owner"/>
-        <xs:element ref="active"/>
+        <xs:element ref="job:guid"/>
+        <xs:element ref="job:id"/>
+        <xs:element ref="job:name"/>
+        <xs:element minOccurs="0" ref="job:reference"/>
+        <xs:element ref="job:owner"/>
+        <xs:element ref="job:active"/>
       </xs:sequence>
       <xs:attribute name="version" use="required">
         <xs:simpleType>

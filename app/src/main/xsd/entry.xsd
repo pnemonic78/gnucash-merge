@@ -109,36 +109,36 @@
   <xs:element name="GncEntry">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="guid"/>
-        <xs:element ref="date"/>
-        <xs:element ref="entered"/>
-        <xs:element minOccurs="0" ref="description"/>
-        <xs:element minOccurs="0" ref="action"/>
-        <xs:element minOccurs="0" ref="notes"/>
-        <xs:element minOccurs="0" ref="qty"/>
-        <xs:element minOccurs="0" ref="i-acct"/>
-        <xs:element minOccurs="0" ref="i-price"/>
-        <xs:element minOccurs="0" ref="i-discount"/>
+        <xs:element ref="entry:guid"/>
+        <xs:element ref="entry:date"/>
+        <xs:element ref="entry:entered"/>
+        <xs:element minOccurs="0" ref="entry:description"/>
+        <xs:element minOccurs="0" ref="entry:action"/>
+        <xs:element minOccurs="0" ref="entry:notes"/>
+        <xs:element minOccurs="0" ref="entry:qty"/>
+        <xs:element minOccurs="0" ref="entry:i-acct"/>
+        <xs:element minOccurs="0" ref="entry:i-price"/>
+        <xs:element minOccurs="0" ref="entry:i-discount"/>
         <xs:sequence minOccurs="0">
-          <xs:element ref="invoice"/>
-          <xs:element ref="i-disc-type"/>
-          <xs:element ref="i-disc-how"/>
-          <xs:element ref="i-taxable"/>
-          <xs:element ref="i-taxincluded"/>
+          <xs:element ref="entry:invoice"/>
+          <xs:element ref="entry:i-disc-type"/>
+          <xs:element ref="entry:i-disc-how"/>
+          <xs:element ref="entry:i-taxable"/>
+          <xs:element ref="entry:i-taxincluded"/>
         </xs:sequence>
-        <xs:element minOccurs="0" ref="i-taxtable"/>
-        <xs:element minOccurs="0" ref="b-acct"/>
-        <xs:element minOccurs="0" ref="b-price"/>
+        <xs:element minOccurs="0" ref="entry:i-taxtable"/>
+        <xs:element minOccurs="0" ref="entry:b-acct"/>
+        <xs:element minOccurs="0" ref="entry:b-price"/>
         <xs:sequence minOccurs="0">
-          <xs:element ref="bill"/>
-          <xs:element ref="billable"/>
-          <xs:element minOccurs="0" ref="billto"/>
-          <xs:element ref="b-taxable"/>
-          <xs:element ref="b-taxincluded"/>
-          <xs:element minOccurs="0" ref="b-pay"/>
+          <xs:element ref="entry:bill"/>
+          <xs:element ref="entry:billable"/>
+          <xs:element minOccurs="0" ref="entry:billto"/>
+          <xs:element ref="entry:b-taxable"/>
+          <xs:element ref="entry:b-taxincluded"/>
+          <xs:element minOccurs="0" ref="entry:b-pay"/>
         </xs:sequence>
-        <xs:element minOccurs="0" ref="b-taxtable"/>
-        <xs:element minOccurs="0" ref="order"/>
+        <xs:element minOccurs="0" ref="entry:b-taxtable"/>
+        <xs:element minOccurs="0" ref="entry:order"/>
       </xs:sequence>
       <xs:attribute name="version" use="required">
         <xs:simpleType>

@@ -33,8 +33,8 @@
   <xs:element name="lot">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="id"/>
-        <xs:element ref="slots"/>
+        <xs:element ref="lot:id"/>
+        <xs:element ref="lot:slots"/>
       </xs:sequence>
       <xs:attribute name="version" use="required">
         <xs:simpleType>

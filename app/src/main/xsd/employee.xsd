@@ -49,18 +49,18 @@
   <xs:element name="GncEmployee">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="guid"/>
-        <xs:element ref="username"/>
-        <xs:element ref="id"/>
-        <xs:element ref="addr"/>
-        <xs:element minOccurs="0" ref="language"/>
-        <xs:element minOccurs="0" ref="acl"/>
-        <xs:element ref="active"/>
-        <xs:element ref="workday"/>
-        <xs:element ref="rate"/>
-        <xs:element ref="currency"/>
-        <xs:element minOccurs="0" ref="ccard"/>
-        <xs:element minOccurs="0" ref="slots"/>
+        <xs:element ref="employee:guid"/>
+        <xs:element ref="employee:username"/>
+        <xs:element ref="employee:id"/>
+        <xs:element ref="employee:addr"/>
+        <xs:element minOccurs="0" ref="employee:language"/>
+        <xs:element minOccurs="0" ref="employee:acl"/>
+        <xs:element ref="employee:active"/>
+        <xs:element ref="employee:workday"/>
+        <xs:element ref="employee:rate"/>
+        <xs:element ref="employee:currency"/>
+        <xs:element minOccurs="0" ref="employee:ccard"/>
+        <xs:element minOccurs="0" ref="employee:slots"/>
       </xs:sequence>
       <xs:attribute name="version" use="required">
         <xs:simpleType>

@@ -63,18 +63,18 @@
   <xs:element name="GncVendor">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="guid"/>
-        <xs:element ref="name"/>
-        <xs:element ref="id"/>
-        <xs:element ref="addr"/>
-        <xs:element minOccurs="0" ref="notes"/>
-        <xs:element minOccurs="0" ref="terms"/>
-        <xs:element ref="taxincluded"/>
-        <xs:element ref="active"/>
-        <xs:element ref="currency"/>
-        <xs:element ref="use-tt"/>
-        <xs:element minOccurs="0" ref="taxtable"/>
-        <xs:element minOccurs="0" ref="slots"/>
+        <xs:element ref="vendor:guid"/>
+        <xs:element ref="vendor:name"/>
+        <xs:element ref="vendor:id"/>
+        <xs:element ref="vendor:addr"/>
+        <xs:element minOccurs="0" ref="vendor:notes"/>
+        <xs:element minOccurs="0" ref="vendor:terms"/>
+        <xs:element ref="vendor:taxincluded"/>
+        <xs:element ref="vendor:active"/>
+        <xs:element ref="vendor:currency"/>
+        <xs:element ref="vendor:use-tt"/>
+        <xs:element minOccurs="0" ref="vendor:taxtable"/>
+        <xs:element minOccurs="0" ref="vendor:slots"/>
       </xs:sequence>
       <xs:attribute name="version" use="required">
         <xs:simpleType>

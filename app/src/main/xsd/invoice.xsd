@@ -53,22 +53,22 @@
   <xs:element name="GncInvoice">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="guid"/>
-        <xs:element ref="id"/>
-        <xs:element ref="owner"/>
-        <xs:element ref="opened"/>
-        <xs:element minOccurs="0" ref="posted"/>
-        <xs:element minOccurs="0" ref="terms"/>
-        <xs:element minOccurs="0" ref="billing_id"/>
-        <xs:element minOccurs="0" ref="notes"/>
-        <xs:element ref="active"/>
-        <xs:element minOccurs="0" ref="posttxn"/>
-        <xs:element minOccurs="0" ref="postlot"/>
-        <xs:element minOccurs="0" ref="postacc"/>
-        <xs:element ref="currency"/>
-        <xs:element minOccurs="0" ref="billto"/>
-        <xs:element minOccurs="0" ref="charge-amt"/>
-        <xs:element minOccurs="0" ref="slots"/>
+        <xs:element ref="invoice:guid"/>
+        <xs:element ref="invoice:id"/>
+        <xs:element ref="invoice:owner"/>
+        <xs:element ref="invoice:opened"/>
+        <xs:element minOccurs="0" ref="invoice:posted"/>
+        <xs:element minOccurs="0" ref="invoice:terms"/>
+        <xs:element minOccurs="0" ref="invoice:billing_id"/>
+        <xs:element minOccurs="0" ref="invoice:notes"/>
+        <xs:element ref="invoice:active"/>
+        <xs:element minOccurs="0" ref="invoice:posttxn"/>
+        <xs:element minOccurs="0" ref="invoice:postlot"/>
+        <xs:element minOccurs="0" ref="invoice:postacc"/>
+        <xs:element ref="invoice:currency"/>
+        <xs:element minOccurs="0" ref="invoice:billto"/>
+        <xs:element minOccurs="0" ref="invoice:charge-amt"/>
+        <xs:element minOccurs="0" ref="invoice:slots"/>
       </xs:sequence>
       <xs:attribute name="version" use="required">
         <xs:simpleType>

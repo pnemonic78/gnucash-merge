@@ -61,14 +61,14 @@
   <xs:element name="transaction">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="id"/>
-        <xs:element ref="currency"/>
-        <xs:element minOccurs="0" ref="num"/>
-        <xs:element ref="date-posted"/>
-        <xs:element ref="date-entered"/>
-        <xs:element minOccurs="0" ref="description"/>
-        <xs:element minOccurs="0" ref="slots"/>
-        <xs:element ref="splits"/>
+        <xs:element ref="trn:id"/>
+        <xs:element ref="trn:currency"/>
+        <xs:element minOccurs="0" ref="trn:num"/>
+        <xs:element ref="trn:date-posted"/>
+        <xs:element ref="trn:date-entered"/>
+        <xs:element minOccurs="0" ref="trn:description"/>
+        <xs:element minOccurs="0" ref="trn:slots"/>
+        <xs:element ref="trn:splits"/>
       </xs:sequence>
       <xs:attribute name="version" use="required">
         <xs:simpleType>
@@ -85,7 +85,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" maxOccurs="unbounded" ref="act:account"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="transaction"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="trn:transaction"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

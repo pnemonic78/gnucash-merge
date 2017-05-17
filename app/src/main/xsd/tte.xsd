@@ -41,9 +41,9 @@
   <xs:element name="GncTaxTableEntry">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" ref="acct"/>
-        <xs:element ref="amount"/>
-        <xs:element ref="type"/>
+        <xs:element minOccurs="0" ref="tte:acct"/>
+        <xs:element ref="tte:amount"/>
+        <xs:element ref="tte:type"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
