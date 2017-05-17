@@ -31,7 +31,7 @@
   <xs:element name="id" type="xs:string"/>
   <xs:element name="name" type="xs:string"/>
   <xs:element name="reference" type="xs:string"/>
-  <xs:element name="owner" type="gnc:OwnerContent"/>
+  <xs:element name="owner" type="owner:OwnerContent"/>
   <xs:element name="active">
     <xs:simpleType>
       <xs:restriction base="xs:boolean">

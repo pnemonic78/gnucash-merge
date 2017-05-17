@@ -80,7 +80,7 @@
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
-  <xs:element name="billto" type="gnc:OwnerContent"/>
+  <xs:element name="billto" type="owner:OwnerContent"/>
   <xs:element name="b-taxable">
     <xs:simpleType>
       <xs:restriction base="xs:boolean">

@@ -42,7 +42,7 @@
   <xs:element name="entries">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:GncTaxTableEntry"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="tte:GncTaxTableEntry"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

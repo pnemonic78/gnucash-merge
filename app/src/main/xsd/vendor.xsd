@@ -30,7 +30,7 @@
   <xs:element name="guid" type="gnc:guid"/>
   <xs:element name="name" type="xs:string"/>
   <xs:element name="id" type="xs:string"/>
-  <xs:element name="addr" type="gnc:AddressContent"/>
+  <xs:element name="addr" type="addr:AddressContent"/>
   <xs:element name="notes" type="xs:string"/>
   <xs:element name="terms" type="gnc:guid"/>
   <xs:element name="taxincluded">

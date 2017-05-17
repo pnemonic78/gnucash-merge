@@ -30,7 +30,7 @@
   <xs:element name="guid" type="gnc:guid"/>
   <xs:element name="username" type="xs:string"/>
   <xs:element name="id" type="xs:string"/>
-  <xs:element name="addr" type="address:AddressContent"/>
+  <xs:element name="addr" type="addr:AddressContent"/>
   <xs:element name="language" type="xs:string"/>
   <xs:element name="acl" type="xs:string"/>
   <xs:element name="active">

@@ -35,22 +35,22 @@
       <xs:element ref="id"/>
       <xs:element minOccurs="0" ref="slots"/>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="count-data" type="gnc:count-data"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:commodity"/>
-      <xs:element minOccurs="0" ref="gnc:pricedb"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:account"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:transaction"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:template-transactions"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:schedxaction"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="commodity" type="cmdty:Commodity"/>
+      <xs:element minOccurs="0" ref="price:pricedb"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="act:account"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="trn:transaction"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="trn:template-transactions"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="sx:schedxaction"/>
       <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:budget"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:GncBillTerm"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:GncCustomer"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:GncEmployee"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:GncEntry"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:GncInvoice"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:GncJob"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:GncOrder"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:GncTaxTable"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:GncVendor"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="billterm:GncBillTerm"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="cust:GncCustomer"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="employee:GncEmployee"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="entry:GncEntry"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="invoice:GncInvoice"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="job:GncJob"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="order:GncOrder"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="taxtable:GncTaxTable"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="vendor:GncVendor"/>
     </xs:sequence>
     <xs:attribute name="version" use="required">
       <xs:simpleType>

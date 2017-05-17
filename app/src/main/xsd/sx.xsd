@@ -65,7 +65,7 @@
   <xs:element name="schedule">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="gnc:recurrence"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="recurrence:recurrence"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
