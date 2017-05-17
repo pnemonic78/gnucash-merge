@@ -105,4 +105,48 @@
   </xs:element>
   <xs:element name="b-taxtable" type="gnc:guid"/>
   <xs:element name="order" type="gnc:guid"/>
+  <!-- from entry_dom_tree_create in src/backend/xml/gnc-entry-xml-v2.c -->
+  <xs:element name="GncEntry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="guid"/>
+        <xs:element ref="date"/>
+        <xs:element ref="entered"/>
+        <xs:element minOccurs="0" ref="description"/>
+        <xs:element minOccurs="0" ref="action"/>
+        <xs:element minOccurs="0" ref="notes"/>
+        <xs:element minOccurs="0" ref="qty"/>
+        <xs:element minOccurs="0" ref="i-acct"/>
+        <xs:element minOccurs="0" ref="i-price"/>
+        <xs:element minOccurs="0" ref="i-discount"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="invoice"/>
+          <xs:element ref="i-disc-type"/>
+          <xs:element ref="i-disc-how"/>
+          <xs:element ref="i-taxable"/>
+          <xs:element ref="i-taxincluded"/>
+        </xs:sequence>
+        <xs:element minOccurs="0" ref="i-taxtable"/>
+        <xs:element minOccurs="0" ref="b-acct"/>
+        <xs:element minOccurs="0" ref="b-price"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="bill"/>
+          <xs:element ref="billable"/>
+          <xs:element minOccurs="0" ref="billto"/>
+          <xs:element ref="b-taxable"/>
+          <xs:element ref="b-taxincluded"/>
+          <xs:element minOccurs="0" ref="b-pay"/>
+        </xs:sequence>
+        <xs:element minOccurs="0" ref="b-taxtable"/>
+        <xs:element minOccurs="0" ref="order"/>
+      </xs:sequence>
+      <xs:attribute name="version" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="2.0.0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
