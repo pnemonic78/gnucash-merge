@@ -27,12 +27,12 @@
   <xs:import namespace="http://www.gnucash.org/XML/trn" schemaLocation="trn.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/ts" schemaLocation="ts.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
-  <xs:element name="guid" type="gnc:id"/>
+  <xs:element name="guid" type="gnc:guid"/>
   <xs:element name="name" type="xs:string"/>
   <xs:element name="id" type="xs:string"/>
   <xs:element name="addr" type="gnc:AddressContent"/>
   <xs:element name="notes" type="xs:string"/>
-  <xs:element name="terms" type="gnc:id"/>
+  <xs:element name="terms" type="gnc:guid"/>
   <xs:element name="taxincluded">
     <xs:simpleType>
       <xs:restriction base="xs:token">
@@ -57,6 +57,6 @@
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
-  <xs:element name="taxtable" type="gnc:id"/>
+  <xs:element name="taxtable" type="gnc:guid"/>
   <xs:element name="slots" type="gnc:slots"/>
 </xs:schema>

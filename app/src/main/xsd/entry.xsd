@@ -27,17 +27,17 @@
   <xs:import namespace="http://www.gnucash.org/XML/ts" schemaLocation="ts.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
-  <xs:element name="guid" type="gnc:id"/>
+  <xs:element name="guid" type="gnc:guid"/>
   <xs:element name="date" type="gnc:TimeSpec"/>
   <xs:element name="entered" type="gnc:TimeSpec"/>
   <xs:element name="description" type="xs:string"/>
   <xs:element name="action" type="xs:string"/>
   <xs:element name="notes" type="xs:string"/>
   <xs:element name="qty" type="gnc:GncNumeric"/>
-  <xs:element name="i-acct" type="gnc:id"/>
+  <xs:element name="i-acct" type="gnc:guid"/>
   <xs:element name="i-price" type="gnc:GncNumeric"/>
   <xs:element name="i-discount" type="gnc:GncNumeric"/>
-  <xs:element name="invoice" type="gnc:id"/>
+  <xs:element name="invoice" type="gnc:guid"/>
   <xs:element name="i-disc-type">
     <xs:simpleType>
       <xs:restriction base="xs:token">
@@ -69,10 +69,10 @@
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
-  <xs:element name="i-taxtable" type="gnc:id"/>
-  <xs:element name="b-acct" type="gnc:id"/>
+  <xs:element name="i-taxtable" type="gnc:guid"/>
+  <xs:element name="b-acct" type="gnc:guid"/>
   <xs:element name="b-price" type="gnc:GncNumeric"/>
-  <xs:element name="bill" type="gnc:id"/>
+  <xs:element name="bill" type="gnc:guid"/>
   <xs:element name="billable">
     <xs:simpleType>
       <xs:restriction base="xs:boolean">
@@ -103,6 +103,6 @@
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
-  <xs:element name="b-taxtable" type="gnc:id"/>
-  <xs:element name="order" type="gnc:id"/>
+  <xs:element name="b-taxtable" type="gnc:guid"/>
+  <xs:element name="order" type="gnc:guid"/>
 </xs:schema>

@@ -27,7 +27,7 @@
   <xs:import namespace="http://www.gnucash.org/XML/ts" schemaLocation="ts.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
-  <xs:element name="id" type="gnc:id"/>
+  <xs:element name="id" type="gnc:guid"/>
   <xs:element name="name" type="xs:string"/>
   <xs:element name="enabled">
     <xs:simpleType>
@@ -61,7 +61,7 @@
   <xs:element name="num-occur" type="xs:int"/>
   <xs:element name="rem-occur" type="xs:int"/>
   <xs:element name="end" type="gnc:GDate"/>
-  <xs:element name="templ-acct" type="gnc:id"/>
+  <xs:element name="templ-acct" type="gnc:guid"/>
   <xs:element name="schedule">
     <xs:complexType>
       <xs:sequence>

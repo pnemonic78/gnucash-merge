@@ -27,7 +27,7 @@
   <xs:import namespace="http://www.gnucash.org/XML/ts" schemaLocation="ts.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
-  <xs:element name="guid" type="gnc:id"/>
+  <xs:element name="guid" type="gnc:guid"/>
   <xs:element name="id" type="xs:string"/>
   <xs:element name="name" type="xs:string"/>
   <xs:element name="reference" type="xs:string"/>

@@ -27,7 +27,7 @@
   <xs:import namespace="http://www.gnucash.org/XML/ts" schemaLocation="ts.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
-  <xs:element name="guid" type="gnc:id"/>
+  <xs:element name="guid" type="gnc:guid"/>
   <xs:element name="name" type="xs:string"/>
   <xs:element name="refcount" type="xs:int"/>
   <xs:element name="invisible">
@@ -37,8 +37,8 @@
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
-  <xs:element name="child" type="gnc:id"/>
-  <xs:element name="parent" type="gnc:id"/>
+  <xs:element name="child" type="gnc:guid"/>
+  <xs:element name="parent" type="gnc:guid"/>
   <xs:element name="entries">
     <xs:complexType>
       <xs:sequence>

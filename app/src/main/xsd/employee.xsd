@@ -27,7 +27,7 @@
   <xs:import namespace="http://www.gnucash.org/XML/ts" schemaLocation="ts.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
-  <xs:element name="guid" type="gnc:id"/>
+  <xs:element name="guid" type="gnc:guid"/>
   <xs:element name="username" type="xs:string"/>
   <xs:element name="id" type="xs:string"/>
   <xs:element name="addr" type="gnc:AddressContent"/>
@@ -43,6 +43,6 @@
   <xs:element name="workday" type="gnc:GncNumeric"/>
   <xs:element name="rate" type="gnc:GncNumeric"/>
   <xs:element name="currency" type="gnc:currency"/>
-  <xs:element name="ccard" type="gnc:id"/>
+  <xs:element name="ccard" type="gnc:guid"/>
   <xs:element name="slots" type="gnc:slots"/>
 </xs:schema>

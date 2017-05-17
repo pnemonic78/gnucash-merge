@@ -27,7 +27,7 @@
   <xs:import namespace="http://www.gnucash.org/XML/trn" schemaLocation="trn.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/ts" schemaLocation="ts.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
-  <xs:element name="acct" type="gnc:id"/>
+  <xs:element name="acct" type="gnc:guid"/>
   <xs:element name="amount" type="gnc:GncNumeric"/>
   <xs:element name="type">
     <xs:simpleType>

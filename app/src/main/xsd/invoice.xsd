@@ -27,12 +27,12 @@
   <xs:import namespace="http://www.gnucash.org/XML/ts" schemaLocation="ts.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
-  <xs:element name="guid" type="gnc:id"/>
+  <xs:element name="guid" type="gnc:guid"/>
   <xs:element name="id" type="xs:string"/>
   <xs:element name="owner" type="gnc:OwnerContent"/>
   <xs:element name="opened" type="gnc:TimeSpec"/>
   <xs:element name="posted" type="gnc:TimeSpec"/>
-  <xs:element name="terms" type="gnc:id"/>
+  <xs:element name="terms" type="gnc:guid"/>
   <xs:element name="billing_id" type="xs:string"/>
   <xs:element name="notes" type="xs:string"/>
   <xs:element name="active">
@@ -42,9 +42,9 @@
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
-  <xs:element name="posttxn" type="gnc:id"/>
-  <xs:element name="postlot" type="gnc:id"/>
-  <xs:element name="postacc" type="gnc:id"/>
+  <xs:element name="posttxn" type="gnc:guid"/>
+  <xs:element name="postlot" type="gnc:guid"/>
+  <xs:element name="postacc" type="gnc:guid"/>
   <xs:element name="currency" type="gnc:currency"/>
   <xs:element name="billto" type="gnc:OwnerContent"/>
   <xs:element name="charge-amt" type="gnc:GncNumeric"/>

@@ -667,7 +667,7 @@
   <xs:complexType name="slots">
     <xs:group maxOccurs="unbounded" ref="gnc:KvpSlot"/>
   </xs:complexType>
-  <xs:complexType name="id">
+  <xs:complexType name="guid">
     <xs:simpleContent>
       <xs:extension base="gnc:GUID">
         <xs:attribute name="type" use="required">

@@ -27,7 +27,7 @@
   <xs:import namespace="http://www.gnucash.org/XML/ts" schemaLocation="ts.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
-  <xs:element name="id" type="gnc:id"/>
+  <xs:element name="id" type="gnc:guid"/>
   <xs:element name="memo" type="xs:string"/>
   <xs:element name="action" type="xs:string"/>
   <xs:element name="reconciled-state">
@@ -44,7 +44,7 @@
   <xs:element name="reconcile-date" type="gnc:TimeSpec"/>
   <xs:element name="value" type="gnc:GncNumeric"/>
   <xs:element name="quantity" type="gnc:GncNumeric"/>
-  <xs:element name="account" type="gnc:id"/>
-  <xs:element name="lot" type="gnc:id"/>
+  <xs:element name="account" type="gnc:guid"/>
+  <xs:element name="lot" type="gnc:guid"/>
   <xs:element name="slots" type="gnc:slots"/>
 </xs:schema>
