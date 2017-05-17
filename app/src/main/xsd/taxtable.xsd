@@ -46,4 +46,25 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <!-- from taxtable_dom_tree_create in src/backend/xml/gnc-tax-table-xml-v2.c -->
+  <xs:element name="GncTaxTable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="guid"/>
+        <xs:element ref="name"/>
+        <xs:element ref="refcount"/>
+        <xs:element ref="invisible"/>
+        <xs:element minOccurs="0" ref="child"/>
+        <xs:element minOccurs="0" ref="parent"/>
+        <xs:element ref="entries"/>
+      </xs:sequence>
+      <xs:attribute name="version" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="2.0.0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

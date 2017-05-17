@@ -120,27 +120,6 @@
       </xs:attribute>
     </xs:complexType>
   </xs:element>
-  <!-- from taxtable_dom_tree_create in src/backend/xml/gnc-tax-table-xml-v2.c -->
-  <xs:element name="GncTaxTable">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" ref="taxtable:guid"/>
-        <xs:element ref="taxtable:name"/>
-        <xs:element ref="taxtable:refcount"/>
-        <xs:element ref="taxtable:invisible"/>
-        <xs:element minOccurs="0" ref="taxtable:child"/>
-        <xs:element minOccurs="0" ref="taxtable:parent"/>
-        <xs:element ref="taxtable:entries"/>
-      </xs:sequence>
-      <xs:attribute name="version" use="required">
-        <xs:simpleType>
-          <xs:restriction base="xs:token">
-            <xs:enumeration value="2.0.0"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
   <!-- from ttentry_dom_tree_create in src/backend/xml/gnc-tax-table-xml-v2.c -->
   <xs:element name="GncTaxTableEntry">
     <xs:complexType>
