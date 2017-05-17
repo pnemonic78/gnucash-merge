@@ -5,5 +5,5 @@
 // Generated on: 2017.05.17 at 04:36:48 PM IDT 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.gnucash.org/XML/gnc", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package org.gnucash.xml.gnc;
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.gnucash.org/XML/recurrence", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+package org.gnucash.xml.recurrence;
