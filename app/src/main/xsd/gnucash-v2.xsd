@@ -667,4 +667,17 @@
   <xs:complexType name="KvpSlots">
     <xs:group maxOccurs="unbounded" ref="gnc:KvpSlot"/>
   </xs:complexType>
+  <xs:complexType name="id">
+    <xs:simpleContent>
+      <xs:extension base="gnc:GUID">
+        <xs:attribute name="type" use="required">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="guid"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
 </xs:schema>
