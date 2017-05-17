@@ -184,4 +184,7 @@
       <xs:element name="value" type="valueFrame"/>
     </xs:choice>
   </xs:group>
+  <xs:complexType name="slots">
+    <xs:group maxOccurs="unbounded" ref="KvpSlot"/>
+  </xs:complexType>
 </xs:schema>

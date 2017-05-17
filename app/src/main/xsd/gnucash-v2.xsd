@@ -66,7 +66,7 @@
       </xs:sequence>
       <xs:sequence>
         <xs:element minOccurs="0" maxOccurs="2" name="count-data" type="gnc:count-data"/>
-        <xs:element minOccurs="0" maxOccurs="1" ref="gnc:commodity"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="commodity" type="cmdty:Commodity"/>
         <xs:element minOccurs="0" maxOccurs="1" ref="gnc:account"/>
       </xs:sequence>
     </xs:choice>
@@ -100,39 +100,6 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <!-- from gnc_commodity_dom_tree_create in src/backend/xml/gnc-commodity-xml-v2.c -->
-  <xs:element name="commodity">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:choice>
-          <xs:sequence>
-            <xs:group ref="cmdty:space"/>
-            <xs:element ref="cmdty:id"/>
-          </xs:sequence>
-          <xs:sequence>
-            <xs:group ref="cmdty:space1"/>
-            <xs:element ref="cmdty:id"/>
-            <xs:element minOccurs="0" ref="cmdty:name"/>
-            <xs:element minOccurs="0" ref="cmdty:xcode"/>
-            <xs:element ref="cmdty:fraction"/>
-          </xs:sequence>
-        </xs:choice>
-        <xs:sequence minOccurs="0">
-          <xs:element ref="cmdty:get_quotes"/>
-          <xs:element minOccurs="0" ref="cmdty:quote_source"/>
-          <xs:element minOccurs="0" ref="cmdty:quote_tz"/>
-        </xs:sequence>
-        <xs:element minOccurs="0" ref="cmdty:slots"/>
-      </xs:sequence>
-      <xs:attribute name="version" use="required">
-        <xs:simpleType>
-          <xs:restriction base="xs:token">
-            <xs:enumeration value="2.0.0"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
   <!-- from gnc_pricedb_to_dom_tree in src/backend/xml/gnc-pricedb-xml-v2.c -->
   <xs:element name="pricedb">
     <xs:complexType>
@@ -599,9 +566,6 @@
       </xs:attribute>
     </xs:complexType>
   </xs:element>
-  <xs:complexType name="slots">
-    <xs:group maxOccurs="unbounded" ref="slot:KvpSlot"/>
-  </xs:complexType>
   <xs:complexType name="guid">
     <xs:simpleContent>
       <xs:extension base="gnc:GUID">

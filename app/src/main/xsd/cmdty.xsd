@@ -52,5 +52,36 @@
   </xs:element>
   <xs:element name="quote_source" type="xs:string"/>
   <xs:element name="quote_tz" type="xs:string"/>
-  <xs:element name="slots" type="gnc:slots"/>
+  <xs:element name="slots" type="slot:slots"/>
+  <!-- from gnc_commodity_dom_tree_create in src/backend/xml/gnc-commodity-xml-v2.c -->
+  <xs:complexType name="Commodity">
+    <xs:sequence>
+      <xs:choice>
+        <xs:sequence>
+          <xs:group ref="space"/>
+          <xs:element ref="id"/>
+        </xs:sequence>
+        <xs:sequence>
+          <xs:group ref="space1"/>
+          <xs:element ref="id"/>
+          <xs:element minOccurs="0" maxOccurs="1" ref="name"/>
+          <xs:element minOccurs="0" maxOccurs="1" ref="xcode"/>
+          <xs:element ref="fraction"/>
+        </xs:sequence>
+      </xs:choice>
+      <xs:sequence minOccurs="0">
+        <xs:element ref="get_quotes"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="quote_source"/>
+        <xs:element minOccurs="0" maxOccurs="1" ref="quote_tz"/>
+      </xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" ref="slots"/>
+    </xs:sequence>
+    <xs:attribute name="version" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="2.0.0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
 </xs:schema>
