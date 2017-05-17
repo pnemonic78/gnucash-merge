@@ -40,6 +40,7 @@ public class Merger {
      */
     public void merge(File primaryFile, File secondaryFile) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(
+                org.gnucash.xml.ObjectFactory.class,
                 org.gnucash.xml.act.ObjectFactory.class,
                 org.gnucash.xml.addr.ObjectFactory.class,
                 org.gnucash.xml.bgt.ObjectFactory.class,
