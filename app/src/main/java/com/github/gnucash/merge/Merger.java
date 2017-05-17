@@ -4,7 +4,14 @@
  */
 package com.github.gnucash.merge;
 
+import org.gnucash.xml.gnc.GnuCashXml;
+import org.xml.sax.InputSource;
+
+import java.io.File;
+
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 /**
@@ -15,8 +22,46 @@ import javax.xml.bind.Unmarshaller;
 public class Merger {
     public static void main(String[] args) throws Exception {
         System.out.println("gnucash merge.");
+        if (args.length < 2) {
+            System.out.println("args: primary-file secondary-file");
+            System.exit(1);
+            return;
+        }
+
+        File primaryFile = new File(args[0]);
+        File secondaryFile = new File(args[1]);
+        new Merger().merge(primaryFile, secondaryFile);
+    }
+
+    /**
+     * Merge gnucash files.
+     *
+     * @param primaryFile   The primary file. It is also the destination file.
+     * @param secondaryFile The secondary file with changes.
+     */
+    public void merge(File primaryFile, File secondaryFile) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(org.gnucash.xml.cmdty.ObjectFactory.class, org.gnucash.xml.gnc.ObjectFactory.class);
+
+        // Read from files.
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        System.out.println(unmarshaller);
+        GnuCashXml primary = (GnuCashXml) unmarshaller.unmarshal(primaryFile);
+        GnuCashXml secondary = (GnuCashXml) unmarshaller.unmarshal(secondaryFile);
+
+        // Merge.
+        merge(primary, secondary);
+
+        // Write back to file.
+        Marshaller marshaller = context.createMarshaller();
+        //TODO marshaller.marshal(primary, primaryFile);
+    }
+
+    /**
+     * Merge gnucash files.
+     *
+     * @param primary   The primary data. It is also the destination file.
+     * @param secondary The secondary data with changes.
+     */
+    public void merge(GnuCashXml primary, GnuCashXml secondary) {
+        //TODO implement me!
     }
 }
