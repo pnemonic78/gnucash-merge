@@ -52,9 +52,5 @@
   </xs:element>
   <xs:element name="quote_source" type="xs:string"/>
   <xs:element name="quote_tz" type="xs:string"/>
-  <xs:element name="slots">
-    <xs:complexType>
-      <xs:group maxOccurs="unbounded" ref="gnc:KvpSlot"/>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="slots" type="gnc:KvpSlots"/>
 </xs:schema>

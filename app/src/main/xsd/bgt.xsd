@@ -46,9 +46,5 @@
   <xs:element name="description" type="xs:string"/>
   <xs:element name="num-periods" type="xs:int"/>
   <xs:element name="recurrence" type="gnc:RecurrenceContent"/>
-  <xs:element name="slots">
-    <xs:complexType>
-      <xs:group maxOccurs="unbounded" ref="gnc:KvpSlot"/>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="slots" type="gnc:KvpSlots"/>
 </xs:schema>

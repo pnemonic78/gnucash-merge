@@ -42,9 +42,5 @@
       </xs:simpleContent>
     </xs:complexType>
   </xs:element>
-  <xs:element name="slots">
-    <xs:complexType>
-      <xs:group maxOccurs="unbounded" ref="gnc:KvpSlot"/>
-    </xs:complexType>
-  </xs:element>
+  <xs:element name="slots" type="gnc:KvpSlots"/>
 </xs:schema>
