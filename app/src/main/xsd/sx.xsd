@@ -79,4 +79,39 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <!-- from gnc_schedXaction_dom_tree_create in src/backend/xml/gnc-schedxaction-xml-v2.c -->
+  <xs:element name="schedxaction">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="sx:id"/>
+        <xs:element ref="sx:name"/>
+        <xs:element ref="sx:enabled"/>
+        <xs:element ref="sx:autoCreate"/>
+        <xs:element ref="sx:autoCreateNotify"/>
+        <xs:element ref="sx:advanceCreateDays"/>
+        <xs:element ref="sx:advanceRemindDays"/>
+        <xs:element ref="sx:instanceCount"/>
+        <xs:element ref="sx:start"/>
+        <xs:element minOccurs="0" ref="sx:last"/>
+        <xs:choice minOccurs="0">
+          <xs:sequence>
+            <xs:element ref="sx:num-occur"/>
+            <xs:element ref="sx:rem-occur"/>
+          </xs:sequence>
+          <xs:element ref="sx:end"/>
+        </xs:choice>
+        <xs:element ref="sx:templ-acct"/>
+        <xs:element ref="sx:schedule"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="sx:deferredInstance"/>
+        <xs:element minOccurs="0" ref="sx:slots"/>
+      </xs:sequence>
+      <xs:attribute name="version" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="2.0.0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
