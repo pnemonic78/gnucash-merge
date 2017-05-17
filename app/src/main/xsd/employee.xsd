@@ -30,7 +30,7 @@
   <xs:element name="guid" type="gnc:guid"/>
   <xs:element name="username" type="xs:string"/>
   <xs:element name="id" type="xs:string"/>
-  <xs:element name="addr" type="gnc:AddressContent"/>
+  <xs:element name="addr" type="address:AddressContent"/>
   <xs:element name="language" type="xs:string"/>
   <xs:element name="acl" type="xs:string"/>
   <xs:element name="active">
@@ -45,4 +45,30 @@
   <xs:element name="currency" type="gnc:currency"/>
   <xs:element name="ccard" type="gnc:guid"/>
   <xs:element name="slots" type="slot:slots"/>
+  <!-- from employee_dom_tree_create in src/backend/xml/gnc-employee-xml-v2.c -->
+  <xs:element name="GncEmployee">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="guid"/>
+        <xs:element ref="username"/>
+        <xs:element ref="id"/>
+        <xs:element ref="addr"/>
+        <xs:element minOccurs="0" ref="language"/>
+        <xs:element minOccurs="0" ref="acl"/>
+        <xs:element ref="active"/>
+        <xs:element ref="workday"/>
+        <xs:element ref="rate"/>
+        <xs:element ref="currency"/>
+        <xs:element minOccurs="0" ref="ccard"/>
+        <xs:element minOccurs="0" ref="slots"/>
+      </xs:sequence>
+      <xs:attribute name="version" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="2.0.0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
