@@ -4,8 +4,6 @@
  */
 package com.github.gnucash.merge;
 
-import com.github.gnucash.example.ObjectFactory;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 
@@ -17,7 +15,7 @@ import javax.xml.bind.Unmarshaller;
 public class Merger {
     public static void main(String[] args) throws Exception {
         System.out.println("gnucash merge.");
-        JAXBContext context = JAXBContext.newInstance(ObjectFactory.class);
+        JAXBContext context = JAXBContext.newInstance(org.gnucash.xml.cmdty.ObjectFactory.class, org.gnucash.xml.gnc.ObjectFactory.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
         System.out.println(unmarshaller);
     }
