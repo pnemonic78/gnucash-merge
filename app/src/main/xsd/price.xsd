@@ -46,34 +46,28 @@
   </xs:element>
   <xs:element name="value" type="gnc:GncNumeric"/>
   <!-- from gnc_price_to_dom_tree in src/backend/xml/gnc-pricedb-xml-v2.c -->
-  <xs:group name="Price">
+  <xs:complexType name="Price">
     <xs:sequence>
-      <xs:element name="price" form="unqualified">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element ref="price:id"/>
-            <xs:element ref="price:commodity"/>
-            <xs:element ref="price:currency"/>
-            <xs:element ref="price:time"/>
-            <xs:element minOccurs="0" ref="price:source"/>
-            <xs:element minOccurs="0" ref="price:type"/>
-            <xs:element ref="price:value"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
+      <xs:element ref="price:id"/>
+      <xs:element ref="price:commodity"/>
+      <xs:element ref="price:currency"/>
+      <xs:element ref="price:time"/>
+      <xs:element minOccurs="0" ref="price:source"/>
+      <xs:element minOccurs="0" ref="price:type"/>
+      <xs:element ref="price:value"/>
     </xs:sequence>
-  </xs:group>
+  </xs:complexType>
   <!-- from gnc_pricedb_to_dom_tree in src/backend/xml/gnc-pricedb-xml-v2.c -->
-  <xs:element name="pricedb">
-    <xs:complexType>
-      <xs:group maxOccurs="unbounded" ref="price:Price"/>
-      <xs:attribute name="version" use="required">
-        <xs:simpleType>
-          <xs:restriction base="xs:token">
-            <xs:enumeration value="1"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
+  <xs:complexType name="PriceDb">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="price" type="price:Price"/>
+    </xs:sequence>
+    <xs:attribute name="version" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="1"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
 </xs:schema>

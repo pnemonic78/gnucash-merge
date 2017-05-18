@@ -46,29 +46,27 @@
   <xs:element name="ccard" type="gnc:guid"/>
   <xs:element name="slots" type="slot:slots"/>
   <!-- from employee_dom_tree_create in src/backend/xml/gnc-employee-xml-v2.c -->
-  <xs:element name="GncEmployee">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="employee:guid"/>
-        <xs:element ref="employee:username"/>
-        <xs:element ref="employee:id"/>
-        <xs:element ref="employee:addr"/>
-        <xs:element minOccurs="0" ref="employee:language"/>
-        <xs:element minOccurs="0" ref="employee:acl"/>
-        <xs:element ref="employee:active"/>
-        <xs:element ref="employee:workday"/>
-        <xs:element ref="employee:rate"/>
-        <xs:element ref="employee:currency"/>
-        <xs:element minOccurs="0" ref="employee:ccard"/>
-        <xs:element minOccurs="0" ref="employee:slots"/>
-      </xs:sequence>
-      <xs:attribute name="version" use="required">
-        <xs:simpleType>
-          <xs:restriction base="xs:token">
-            <xs:enumeration value="2.0.0"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
+  <xs:complexType name="GncEmployee">
+    <xs:sequence>
+      <xs:element ref="employee:guid"/>
+      <xs:element ref="employee:username"/>
+      <xs:element ref="employee:id"/>
+      <xs:element ref="employee:addr"/>
+      <xs:element minOccurs="0" ref="employee:language"/>
+      <xs:element minOccurs="0" ref="employee:acl"/>
+      <xs:element ref="employee:active"/>
+      <xs:element ref="employee:workday"/>
+      <xs:element ref="employee:rate"/>
+      <xs:element ref="employee:currency"/>
+      <xs:element minOccurs="0" ref="employee:ccard"/>
+      <xs:element minOccurs="0" ref="employee:slots"/>
+    </xs:sequence>
+    <xs:attribute name="version" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="2.0.0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
 </xs:schema>

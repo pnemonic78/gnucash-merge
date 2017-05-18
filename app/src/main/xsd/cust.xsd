@@ -63,32 +63,30 @@
   <xs:element name="taxtable" type="gnc:guid"/>
   <xs:element name="slots" type="slot:slots"/>
   <!-- from customer_dom_tree_create in src/backend/xml/gnc-customer-xml-v2.c -->
-  <xs:element name="GncCustomer">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="cust:guid"/>
-        <xs:element ref="cust:name"/>
-        <xs:element ref="cust:id"/>
-        <xs:element ref="cust:addr"/>
-        <xs:element ref="cust:shipaddr"/>
-        <xs:element minOccurs="0" ref="cust:notes"/>
-        <xs:element minOccurs="0" ref="cust:terms"/>
-        <xs:element ref="cust:taxincluded"/>
-        <xs:element ref="cust:active"/>
-        <xs:element ref="cust:discount"/>
-        <xs:element ref="cust:credit"/>
-        <xs:element ref="cust:currency"/>
-        <xs:element ref="cust:use-tt"/>
-        <xs:element minOccurs="0" ref="cust:taxtable"/>
-        <xs:element minOccurs="0" ref="cust:slots"/>
-      </xs:sequence>
-      <xs:attribute name="version" use="required">
-        <xs:simpleType>
-          <xs:restriction base="xs:token">
-            <xs:enumeration value="2.0.0"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
+  <xs:complexType name="GncCustomer">
+    <xs:sequence>
+      <xs:element ref="cust:guid"/>
+      <xs:element ref="cust:name"/>
+      <xs:element ref="cust:id"/>
+      <xs:element ref="cust:addr"/>
+      <xs:element ref="cust:shipaddr"/>
+      <xs:element minOccurs="0" ref="cust:notes"/>
+      <xs:element minOccurs="0" ref="cust:terms"/>
+      <xs:element ref="cust:taxincluded"/>
+      <xs:element ref="cust:active"/>
+      <xs:element ref="cust:discount"/>
+      <xs:element ref="cust:credit"/>
+      <xs:element ref="cust:currency"/>
+      <xs:element ref="cust:use-tt"/>
+      <xs:element minOccurs="0" ref="cust:taxtable"/>
+      <xs:element minOccurs="0" ref="cust:slots"/>
+    </xs:sequence>
+    <xs:attribute name="version" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="2.0.0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
 </xs:schema>

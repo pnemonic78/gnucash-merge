@@ -38,13 +38,11 @@
     </xs:simpleType>
   </xs:element>
   <!-- from ttentry_dom_tree_create in src/backend/xml/gnc-tax-table-xml-v2.c -->
-  <xs:element name="GncTaxTableEntry">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" ref="tte:acct"/>
-        <xs:element ref="tte:amount"/>
-        <xs:element ref="tte:type"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  <xs:complexType name="GncTaxTableEntry">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="tte:acct"/>
+      <xs:element ref="tte:amount"/>
+      <xs:element ref="tte:type"/>
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>

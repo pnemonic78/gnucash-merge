@@ -30,19 +30,17 @@
   <xs:element name="id" type="gnc:guid"/>
   <xs:element name="slots" type="slot:slots"/>
   <!-- from gnc_lot_dom_tree_create in src/backend/xml/gnc-lot-xml-v2.c -->
-  <xs:element name="lot">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="lot:id"/>
-        <xs:element ref="lot:slots"/>
-      </xs:sequence>
-      <xs:attribute name="version" use="required">
-        <xs:simpleType>
-          <xs:restriction base="xs:token">
-            <xs:enumeration value="2.0.0"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
+  <xs:complexType name="Lot">
+    <xs:sequence>
+      <xs:element ref="lot:id"/>
+      <xs:element ref="lot:slots"/>
+    </xs:sequence>
+    <xs:attribute name="version" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="2.0.0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
 </xs:schema>

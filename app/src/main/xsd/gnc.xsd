@@ -67,7 +67,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" maxOccurs="2" name="count-data" type="gnc:count-data"/>
         <xs:element minOccurs="0" maxOccurs="1" name="commodity" type="cmdty:Commodity"/>
-        <xs:element minOccurs="0" maxOccurs="1" ref="act:account"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="account" type="act:Account"/>
       </xs:sequence>
     </xs:choice>
   </xs:complexType>

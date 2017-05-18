@@ -40,23 +40,21 @@
     </xs:simpleType>
   </xs:element>
   <!-- from job_dom_tree_create in src/backend/xml/gnc-job-xml-v2.c -->
-  <xs:element name="GncJob">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="job:guid"/>
-        <xs:element ref="job:id"/>
-        <xs:element ref="job:name"/>
-        <xs:element minOccurs="0" ref="job:reference"/>
-        <xs:element ref="job:owner"/>
-        <xs:element ref="job:active"/>
-      </xs:sequence>
-      <xs:attribute name="version" use="required">
-        <xs:simpleType>
-          <xs:restriction base="xs:token">
-            <xs:enumeration value="2.0.0"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
+  <xs:complexType name="GncJob">
+    <xs:sequence>
+      <xs:element ref="job:guid"/>
+      <xs:element ref="job:id"/>
+      <xs:element ref="job:name"/>
+      <xs:element minOccurs="0" ref="job:reference"/>
+      <xs:element ref="job:owner"/>
+      <xs:element ref="job:active"/>
+    </xs:sequence>
+    <xs:attribute name="version" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="2.0.0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
 </xs:schema>

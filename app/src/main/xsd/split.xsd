@@ -47,4 +47,18 @@
   <xs:element name="account" type="gnc:guid"/>
   <xs:element name="lot" type="gnc:guid"/>
   <xs:element name="slots" type="slot:slots"/>
+  <xs:complexType name="Split">
+    <xs:sequence>
+      <xs:element ref="split:id"/>
+      <xs:element minOccurs="0" ref="split:memo"/>
+      <xs:element minOccurs="0" ref="split:action"/>
+      <xs:element ref="split:reconciled-state"/>
+      <xs:element minOccurs="0" ref="split:reconcile-date"/>
+      <xs:element ref="split:value"/>
+      <xs:element ref="split:quantity"/>
+      <xs:element ref="split:account"/>
+      <xs:element minOccurs="0" ref="split:lot"/>
+      <xs:element minOccurs="0" ref="split:slots"/>
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>

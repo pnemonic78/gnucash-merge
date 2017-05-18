@@ -61,29 +61,27 @@
     </xs:complexType>
   </xs:element>
   <!-- from in src/backend/xml/gnc-bill-term-xml-v2.c -->
-  <xs:element name="GncBillTerm">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" ref="billterm:guid"/>
-        <xs:element ref="billterm:name"/>
-        <xs:element ref="billterm:desc"/>
-        <xs:element ref="billterm:refcount"/>
-        <xs:element ref="billterm:invisible"/>
-        <xs:element minOccurs="0" ref="billterm:slots"/>
-        <xs:element minOccurs="0" ref="billterm:child"/>
-        <xs:element minOccurs="0" ref="billterm:parent"/>
-        <xs:choice>
-          <xs:element ref="billterm:days"/>
-          <xs:element ref="billterm:proximo"/>
-        </xs:choice>
-      </xs:sequence>
-      <xs:attribute name="version" use="required">
-        <xs:simpleType>
-          <xs:restriction base="xs:token">
-            <xs:enumeration value="2.0.0"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
+  <xs:complexType name="GncBillTerm">
+    <xs:sequence>
+      <xs:element minOccurs="0" ref="billterm:guid"/>
+      <xs:element ref="billterm:name"/>
+      <xs:element ref="billterm:desc"/>
+      <xs:element ref="billterm:refcount"/>
+      <xs:element ref="billterm:invisible"/>
+      <xs:element minOccurs="0" ref="billterm:slots"/>
+      <xs:element minOccurs="0" ref="billterm:child"/>
+      <xs:element minOccurs="0" ref="billterm:parent"/>
+      <xs:choice>
+        <xs:element ref="billterm:days"/>
+        <xs:element ref="billterm:proximo"/>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="version" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="2.0.0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
 </xs:schema>

@@ -37,56 +37,36 @@
   <xs:element name="splits">
     <xs:complexType>
       <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="trn:split"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="split">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="split:id"/>
-        <xs:element minOccurs="0" ref="split:memo"/>
-        <xs:element minOccurs="0" ref="split:action"/>
-        <xs:element ref="split:reconciled-state"/>
-        <xs:element minOccurs="0" ref="split:reconcile-date"/>
-        <xs:element ref="split:value"/>
-        <xs:element ref="split:quantity"/>
-        <xs:element ref="split:account"/>
-        <xs:element minOccurs="0" ref="split:lot"/>
-        <xs:element minOccurs="0" ref="split:slots"/>
+        <xs:element maxOccurs="unbounded" name="split" type="split:Split"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <!-- from gnc_transaction_dom_tree_create in src/backend/xml/gnc-transaction-xml-v2.c -->
-  <xs:element name="transaction">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="trn:id"/>
-        <xs:element ref="trn:currency"/>
-        <xs:element minOccurs="0" ref="trn:num"/>
-        <xs:element ref="trn:date-posted"/>
-        <xs:element ref="trn:date-entered"/>
-        <xs:element minOccurs="0" ref="trn:description"/>
-        <xs:element minOccurs="0" ref="trn:slots"/>
-        <xs:element ref="trn:splits"/>
-      </xs:sequence>
-      <xs:attribute name="version" use="required">
-        <xs:simpleType>
-          <xs:restriction base="xs:token">
-            <xs:enumeration value="2.0.0"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
+  <xs:complexType name="Transaction">
+    <xs:sequence>
+      <xs:element ref="trn:id"/>
+      <xs:element ref="trn:currency"/>
+      <xs:element minOccurs="0" ref="trn:num"/>
+      <xs:element ref="trn:date-posted"/>
+      <xs:element ref="trn:date-entered"/>
+      <xs:element minOccurs="0" ref="trn:description"/>
+      <xs:element minOccurs="0" ref="trn:slots"/>
+      <xs:element ref="trn:splits"/>
+    </xs:sequence>
+    <xs:attribute name="version" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="2.0.0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
   <!-- from split_to_dom_tree in src/backend/xml/gnc-transaction-xml-v2.c -->
   <!-- from write_template_transaction_data in src/backend/xml/io-gncxml-v2.c -->
-  <xs:element name="template-transactions">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="act:account"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="trn:transaction"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  <xs:complexType name="TemplateTransactions">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="account" type="act:Account"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="transaction" type="trn:Transaction"/>
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>

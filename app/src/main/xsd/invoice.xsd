@@ -50,33 +50,31 @@
   <xs:element name="charge-amt" type="gnc:GncNumeric"/>
   <xs:element name="slots" type="slot:slots"/>
   <!-- from invoice_dom_tree_create in src/backend/xml/gnc-invoice-xml-v2.c -->
-  <xs:element name="GncInvoice">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="invoice:guid"/>
-        <xs:element ref="invoice:id"/>
-        <xs:element ref="invoice:owner"/>
-        <xs:element ref="invoice:opened"/>
-        <xs:element minOccurs="0" ref="invoice:posted"/>
-        <xs:element minOccurs="0" ref="invoice:terms"/>
-        <xs:element minOccurs="0" ref="invoice:billing_id"/>
-        <xs:element minOccurs="0" ref="invoice:notes"/>
-        <xs:element ref="invoice:active"/>
-        <xs:element minOccurs="0" ref="invoice:posttxn"/>
-        <xs:element minOccurs="0" ref="invoice:postlot"/>
-        <xs:element minOccurs="0" ref="invoice:postacc"/>
-        <xs:element ref="invoice:currency"/>
-        <xs:element minOccurs="0" ref="invoice:billto"/>
-        <xs:element minOccurs="0" ref="invoice:charge-amt"/>
-        <xs:element minOccurs="0" ref="invoice:slots"/>
-      </xs:sequence>
-      <xs:attribute name="version" use="required">
-        <xs:simpleType>
-          <xs:restriction base="xs:token">
-            <xs:enumeration value="2.0.0"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:attribute>
-    </xs:complexType>
-  </xs:element>
+  <xs:complexType name="GncInvoice">
+    <xs:sequence>
+      <xs:element ref="invoice:guid"/>
+      <xs:element ref="invoice:id"/>
+      <xs:element ref="invoice:owner"/>
+      <xs:element ref="invoice:opened"/>
+      <xs:element minOccurs="0" ref="invoice:posted"/>
+      <xs:element minOccurs="0" ref="invoice:terms"/>
+      <xs:element minOccurs="0" ref="invoice:billing_id"/>
+      <xs:element minOccurs="0" ref="invoice:notes"/>
+      <xs:element ref="invoice:active"/>
+      <xs:element minOccurs="0" ref="invoice:posttxn"/>
+      <xs:element minOccurs="0" ref="invoice:postlot"/>
+      <xs:element minOccurs="0" ref="invoice:postacc"/>
+      <xs:element ref="invoice:currency"/>
+      <xs:element minOccurs="0" ref="invoice:billto"/>
+      <xs:element minOccurs="0" ref="invoice:charge-amt"/>
+      <xs:element minOccurs="0" ref="invoice:slots"/>
+    </xs:sequence>
+    <xs:attribute name="version" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="2.0.0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
 </xs:schema>
