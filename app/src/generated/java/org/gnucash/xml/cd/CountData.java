@@ -1,5 +1,5 @@
 
-package org.gnucash.xml.gnc;
+package org.gnucash.xml.cd;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
