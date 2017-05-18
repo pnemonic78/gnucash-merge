@@ -12,7 +12,7 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
 import javax.xml.namespace.QName;
-import org.gnucash.xml.book.Book;
+
 import org.gnucash.xml.cmdty.Commodity;
 
 

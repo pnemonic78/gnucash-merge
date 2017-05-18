@@ -17,7 +17,6 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementRefs;
 import javax.xml.bind.annotation.XmlType;
 import org.gnucash.xml.act.Account;
-import org.gnucash.xml.book.Book;
 import org.gnucash.xml.cmdty.Commodity;
 
 

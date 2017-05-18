@@ -4,6 +4,7 @@
  */
 package com.github.gnucash.merge;
 
+import org.gnucash.xml.gnc.Book;
 import org.gnucash.xml.gnc.GnuCashXml;
 
 import java.io.File;
@@ -54,11 +55,11 @@ public class Merger {
         GnuCashXml secondary = element.getValue();
 
         // Merge.
-        merge(primary, secondary);
+        GnuCashXml result = merge(primary, secondary);
 
         // Write back to file.
         Marshaller marshaller = context.createMarshaller();
-        marshaller.marshal(primary, destinationFile);
+        marshaller.marshal(result, destinationFile);
     }
 
     /**
@@ -70,6 +71,14 @@ public class Merger {
      */
     public GnuCashXml merge(GnuCashXml primary, GnuCashXml secondary) {
         System.out.println("±!@ " + primary + " " + secondary);
+        Book primaryBook = ((JAXBElement<Book>) primary.getContent().get(1)).getValue();
+        System.out.println("±!@ ver=" + primaryBook.getVersion());
+        System.out.println("±!@ act=" + primaryBook.getAccount());
+        System.out.println("±!@ cmd=" + primaryBook.getCommodity());
+        System.out.println("±!@ c-d=" + primaryBook.getCountData());
+        System.out.println("±!@ prc=" + primaryBook.getPricedb());
+        System.out.println("±!@ slt=" + primaryBook.getSlots());
+        System.out.println("±!@ trn=" + primaryBook.getTransaction());
         //TODO implement me!
 
         return primary;

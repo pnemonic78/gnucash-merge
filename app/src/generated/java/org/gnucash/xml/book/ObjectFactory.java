@@ -12,6 +12,8 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
 import javax.xml.namespace.QName;
+
+import org.gnucash.xml.gnc.Book;
 import org.gnucash.xml.gnc.Guid;
 import org.gnucash.xml.slot.Slots;
 

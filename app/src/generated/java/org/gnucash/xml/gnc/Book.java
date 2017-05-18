@@ -6,7 +6,7 @@
 //
 
 
-package org.gnucash.xml.book;
+package org.gnucash.xml.gnc;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +24,6 @@ import org.gnucash.xml.cmdty.Commodity;
 import org.gnucash.xml.cust.GncCustomer;
 import org.gnucash.xml.employee.GncEmployee;
 import org.gnucash.xml.entry.GncEntry;
-import org.gnucash.xml.gnc.CountData;
-import org.gnucash.xml.gnc.Guid;
 import org.gnucash.xml.invoice.GncInvoice;
 import org.gnucash.xml.job.GncJob;
 import org.gnucash.xml.order.GncOrder;
