@@ -67,13 +67,14 @@ public class Merger {
         // Merge.
         System.out.println("Merging data...");
         GnuCashXml result = merge(primary, secondary);
+        element = factory.createGncV2(result);
 
         // Write back to file.
         System.out.println("Writing to file \"" + destinationFile + "\"...");
         destinationFile.getAbsoluteFile().getParentFile().mkdirs();
         Marshaller marshaller = context.createMarshaller();
-        element = factory.createGncV2(result);
         marshaller.marshal(element, destinationFile);
+
         System.out.println("Finished merge.");
     }
 
