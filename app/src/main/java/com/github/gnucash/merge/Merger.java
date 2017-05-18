@@ -60,7 +60,7 @@ public class Merger {
         System.out.println("Reading primary file \"" + primaryFile + "\"...");
         JAXBElement<GnuCashXml> element = (JAXBElement<GnuCashXml>) unmarshaller.unmarshal(primaryFile);
         GnuCashXml primary = element.getValue();
-        System.out.println("Reading secondary file \"" + primaryFile + "\"...");
+        System.out.println("Reading secondary file \"" + secondaryFile + "\"...");
         element = (JAXBElement<GnuCashXml>) unmarshaller.unmarshal(secondaryFile);
         GnuCashXml secondary = element.getValue();
 
@@ -69,7 +69,7 @@ public class Merger {
         GnuCashXml result = merge(primary, secondary);
 
         // Write back to file.
-        System.out.println("Writing to file \"" + primaryFile + "\"...");
+        System.out.println("Writing to file \"" + destinationFile + "\"...");
         destinationFile.getParentFile().mkdirs();
         Marshaller marshaller = context.createMarshaller();
         marshaller.marshal(result, destinationFile);
