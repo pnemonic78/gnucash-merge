@@ -40,6 +40,7 @@ public class Merger {
      * @param primaryFile     The primary file.
      * @param secondaryFile   The secondary file with changes.
      * @param destinationFile The destination file.
+     * @throws JAXBElement if a JAXB error occurs.
      */
     @SuppressWarnings("unchecked")
     public void merge(File primaryFile, File secondaryFile, File destinationFile) throws JAXBException {
@@ -57,17 +58,20 @@ public class Merger {
 
         // Write back to file.
         Marshaller marshaller = context.createMarshaller();
-        marshaller.marshal(primary, primaryFile);
+        marshaller.marshal(primary, destinationFile);
     }
 
     /**
-     * Merge gnucash files.
+     * Merge gnucash data.
      *
-     * @param primary   The primary data. It is also the destination file.
+     * @param primary   The primary data. This is also the destination with merged data.
      * @param secondary The secondary data with changes.
+     * @return the merged data.
      */
-    public void merge(GnuCashXml primary, GnuCashXml secondary) {
-        //TODO implement me!
+    public GnuCashXml merge(GnuCashXml primary, GnuCashXml secondary) {
         System.out.println("±!@ " + primary + " " + secondary);
+        //TODO implement me!
+
+        return primary;
     }
 }
