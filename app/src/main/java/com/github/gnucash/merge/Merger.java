@@ -4,10 +4,14 @@
  */
 package com.github.gnucash.merge;
 
+import org.gnucash.xml.act.Account;
+import org.gnucash.xml.cmdty.Commodity;
 import org.gnucash.xml.gnc.Book;
 import org.gnucash.xml.gnc.GnuCashXml;
+import org.gnucash.xml.gnc.ObjectFactory;
 
 import java.io.File;
+import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -35,6 +39,8 @@ public class Merger {
         new Merger().merge(primaryFile, secondaryFile, destinationFile);
     }
 
+    protected final ObjectFactory factory = new ObjectFactory();
+
     /**
      * Merge gnucash files.
      *
@@ -45,7 +51,7 @@ public class Merger {
      */
     @SuppressWarnings("unchecked")
     public void merge(File primaryFile, File secondaryFile, File destinationFile) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(org.gnucash.xml.ObjectFactory.class);
+        JAXBContext context = JAXBContext.newInstance(ObjectFactory.class);
 
         // Read from files.
         Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -70,17 +76,33 @@ public class Merger {
      * @return the merged data.
      */
     public GnuCashXml merge(GnuCashXml primary, GnuCashXml secondary) {
-        System.out.println("±!@ " + primary + " " + secondary);
-        Book primaryBook = ((JAXBElement<Book>) primary.getContent().get(1)).getValue();
-        System.out.println("±!@ ver=" + primaryBook.getVersion());
-        System.out.println("±!@ act=" + primaryBook.getAccount());
-        System.out.println("±!@ cmd=" + primaryBook.getCommodity());
-        System.out.println("±!@ c-d=" + primaryBook.getCountData());
-        System.out.println("±!@ prc=" + primaryBook.getPricedb());
-        System.out.println("±!@ slt=" + primaryBook.getSlots());
-        System.out.println("±!@ trn=" + primaryBook.getTransaction());
-        //TODO implement me!
+        Book primaryBook = pipeBook(primary);
+        Book secondaryBook = pipeBook(secondary);
+
+        mergeBooks(primaryBook, secondaryBook);
 
         return primary;
+    }
+
+    @SuppressWarnings("unchecked")
+    private Book pipeBook(GnuCashXml gnc) {
+        List<JAXBElement<?>> content = gnc.getContent();
+        JAXBElement<Book> bookElement;
+        if (content.size() == 3) {
+            Commodity commodity = ((JAXBElement<Commodity>) content.remove(1)).getValue();
+            Account account = ((JAXBElement<Account>) content.remove(2)).getValue();
+            Book book = factory.createBook();
+            book.getCommodity().add(commodity);
+            book.getAccount().add(account);
+            bookElement = factory.createGnuCashXmlBook(book);
+            content.add(1, bookElement);
+        } else {
+            bookElement = (JAXBElement<Book>) content.get(1);
+        }
+        return bookElement.getValue();
+    }
+
+    protected void mergeBooks(Book primary, Book secondary) {
+        //TODO implement me!
     }
 }
