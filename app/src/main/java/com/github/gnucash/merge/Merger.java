@@ -5,9 +5,9 @@
 package com.github.gnucash.merge;
 
 import org.gnucash.xml.act.Account;
+import org.gnucash.xml.cd.CountData;
 import org.gnucash.xml.cmdty.Commodity;
 import org.gnucash.xml.gnc.Book;
-import org.gnucash.xml.cd.CountData;
 import org.gnucash.xml.gnc.GnuCashXml;
 
 import java.io.File;
