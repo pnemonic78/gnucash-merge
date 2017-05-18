@@ -9,7 +9,6 @@ import org.gnucash.xml.cmdty.Commodity;
 import org.gnucash.xml.gnc.Book;
 import org.gnucash.xml.cd.CountData;
 import org.gnucash.xml.gnc.GnuCashXml;
-import org.gnucash.xml.gnc.ObjectFactory;
 
 import java.io.File;
 import java.util.List;
@@ -40,7 +39,8 @@ public class Merger {
         new Merger().merge(primaryFile, secondaryFile, destinationFile);
     }
 
-    protected final ObjectFactory factory = new ObjectFactory();
+    protected final org.gnucash.xml.ObjectFactory factory = new org.gnucash.xml.ObjectFactory();
+    protected final org.gnucash.xml.gnc.ObjectFactory gncFactory = new org.gnucash.xml.gnc.ObjectFactory();
     protected final org.gnucash.xml.cd.ObjectFactory counterFactory = new org.gnucash.xml.cd.ObjectFactory();
 
     /**
@@ -53,7 +53,7 @@ public class Merger {
      */
     @SuppressWarnings("unchecked")
     public void merge(File primaryFile, File secondaryFile, File destinationFile) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(ObjectFactory.class);
+        JAXBContext context = JAXBContext.newInstance(org.gnucash.xml.ObjectFactory.class);
 
         // Read from files.
         Unmarshaller unmarshaller = context.createUnmarshaller();
@@ -70,9 +70,11 @@ public class Merger {
 
         // Write back to file.
         System.out.println("Writing to file \"" + destinationFile + "\"...");
-        destinationFile.getParentFile().mkdirs();
+        destinationFile.getAbsoluteFile().getParentFile().mkdirs();
         Marshaller marshaller = context.createMarshaller();
-        marshaller.marshal(result, destinationFile);
+        element = factory.createGncV2(result);
+        marshaller.marshal(element, destinationFile);
+        System.out.println("Finished merge.");
     }
 
     /**
@@ -98,10 +100,10 @@ public class Merger {
         if (content.size() == 3) {
             Commodity commodity = ((JAXBElement<Commodity>) content.remove(1)).getValue();
             Account account = ((JAXBElement<Account>) content.remove(2)).getValue();
-            Book book = factory.createBook();
+            Book book = gncFactory.createBook();
             book.getCommodity().add(commodity);
             book.getAccount().add(account);
-            bookElement = factory.createGnuCashXmlBook(book);
+            bookElement = gncFactory.createGnuCashXmlBook(book);
             content.add(1, bookElement);
         } else {
             bookElement = (JAXBElement<Book>) content.get(1);
