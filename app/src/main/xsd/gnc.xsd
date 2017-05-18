@@ -62,7 +62,7 @@
     <xs:choice>
       <xs:sequence>
         <xs:element name="count-data" type="gnc:count-data" default="1"/>
-        <xs:element name="book" type="book:Book"/>
+        <xs:element name="book" type="gnc:Book"/>
       </xs:sequence>
       <xs:sequence>
         <xs:element minOccurs="0" maxOccurs="2" name="count-data" type="gnc:count-data"/>
@@ -117,5 +117,36 @@
       <xs:group ref="cmdty:space1"/>
       <xs:element ref="cmdty:id"/>
     </xs:sequence>
+  </xs:complexType>
+  <!-- from write_book in src/backend/xml/io-gncxml-v2.c -->
+  <xs:complexType name="Book" >
+    <xs:sequence>
+      <xs:element ref="book:id"/>
+      <xs:element minOccurs="0" ref="book:slots"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="count-data" type="gnc:count-data"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="commodity" type="cmdty:Commodity"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="pricedb" type="price:PriceDb"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="account" type="act:Account"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="transaction" type="trn:Transaction"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="template-transactions" type="trn:TemplateTransactions"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="schedxaction" type="sx:ScheduledTransaction"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="budget" type="bgt:Budget"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GncBillTerm" type="billterm:GncBillTerm"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GncCustomer" type="cust:GncCustomer"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GncEmployee" type="employee:GncEmployee"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GncEntry" type="entry:GncEntry"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GncInvoice" type="invoice:GncInvoice"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GncJob" type="job:GncJob"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GncOrder" type="order:GncOrder"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GncTaxTable" type="taxtable:GncTaxTable"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GncVendor" type="vendor:GncVendor"/>
+    </xs:sequence>
+    <xs:attribute name="version" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="2.0.0"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
   </xs:complexType>
 </xs:schema>
