@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.gnucash.xml.act.Account;
 import org.gnucash.xml.bgt.Budget;
 import org.gnucash.xml.billterm.GncBillTerm;
+import org.gnucash.xml.cd.CountData;
 import org.gnucash.xml.cmdty.Commodity;
 import org.gnucash.xml.cust.GncCustomer;
 import org.gnucash.xml.employee.GncEmployee;
@@ -41,7 +42,7 @@ import org.gnucash.xml.vendor.GncVendor;
  *       &lt;sequence>
  *         &lt;element ref="{http://www.gnucash.org/XML/book}id"/>
  *         &lt;element ref="{http://www.gnucash.org/XML/book}slots" minOccurs="0"/>
- *         &lt;element name="count-data" type="{http://www.gnucash.org/XML/gnc}count-data" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="count-data" type="{http://www.gnucash.org/XML/cd}count-data" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="commodity" type="{http://www.gnucash.org/XML/cmdty}Commodity" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="pricedb" type="{http://www.gnucash.org/XML/price}PriceDb" minOccurs="0"/>
  *         &lt;element name="account" type="{http://www.gnucash.org/XML/act}Account" maxOccurs="unbounded" minOccurs="0"/>

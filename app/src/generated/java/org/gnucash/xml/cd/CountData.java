@@ -19,7 +19,28 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * &lt;complexType name="count-data">
  *   &lt;simpleContent>
  *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>int">
- *       &lt;attGroup ref="{http://www.gnucash.org/XML/cd}type"/>
+ *       &lt;attribute name="type" use="required">
+ *         &lt;simpleType>
+ *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
+ *             &lt;enumeration value="book"/>
+ *             &lt;enumeration value="commodity"/>
+ *             &lt;enumeration value="account"/>
+ *             &lt;enumeration value="transaction"/>
+ *             &lt;enumeration value="schedxaction"/>
+ *             &lt;enumeration value="budget"/>
+ *             &lt;enumeration value="price"/>
+ *             &lt;enumeration value="gnc:GncBillTerm"/>
+ *             &lt;enumeration value="gnc:GncCustomer"/>
+ *             &lt;enumeration value="gnc:GncEmployee"/>
+ *             &lt;enumeration value="gnc:GncEntry"/>
+ *             &lt;enumeration value="gnc:GncInvoice"/>
+ *             &lt;enumeration value="gnc:GncJob"/>
+ *             &lt;enumeration value="gnc:GncOrder"/>
+ *             &lt;enumeration value="gnc:GncTaxTable"/>
+ *             &lt;enumeration value="gnc:GncVendor"/>
+ *           &lt;/restriction>
+ *         &lt;/simpleType>
+ *       &lt;/attribute>
  *     &lt;/extension>
  *   &lt;/simpleContent>
  * &lt;/complexType>

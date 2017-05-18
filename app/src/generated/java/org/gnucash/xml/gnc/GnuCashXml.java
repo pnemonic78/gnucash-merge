@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementRefs;
 import javax.xml.bind.annotation.XmlType;
 import org.gnucash.xml.act.Account;
+import org.gnucash.xml.cd.CountData;
 import org.gnucash.xml.cmdty.Commodity;
 
 
@@ -24,11 +25,11 @@ import org.gnucash.xml.cmdty.Commodity;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice>
  *         &lt;sequence>
- *           &lt;element name="count-data" type="{http://www.gnucash.org/XML/gnc}count-data"/>
+ *           &lt;element name="count-data" type="{http://www.gnucash.org/XML/cd}count-data"/>
  *           &lt;element name="book" type="{http://www.gnucash.org/XML/gnc}Book"/>
  *         &lt;/sequence>
  *         &lt;sequence>
- *           &lt;element name="count-data" type="{http://www.gnucash.org/XML/gnc}count-data" maxOccurs="2" minOccurs="0"/>
+ *           &lt;element name="count-data" type="{http://www.gnucash.org/XML/cd}count-data" maxOccurs="2" minOccurs="0"/>
  *           &lt;element name="commodity" type="{http://www.gnucash.org/XML/cmdty}Commodity" minOccurs="0"/>
  *           &lt;element name="account" type="{http://www.gnucash.org/XML/act}Account" minOccurs="0"/>
  *         &lt;/sequence>
@@ -47,10 +48,10 @@ import org.gnucash.xml.cmdty.Commodity;
 public class GnuCashXml {
 
     @XmlElementRefs({
-        @XmlElementRef(name = "book", namespace = "http://www.gnucash.org/XML/gnc", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "account", namespace = "http://www.gnucash.org/XML/gnc", type = JAXBElement.class, required = false),
         @XmlElementRef(name = "commodity", namespace = "http://www.gnucash.org/XML/gnc", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "count-data", namespace = "http://www.gnucash.org/XML/gnc", type = JAXBElement.class, required = false)
+        @XmlElementRef(name = "book", namespace = "http://www.gnucash.org/XML/gnc", type = JAXBElement.class, required = false),
+        @XmlElementRef(name = "count-data", namespace = "http://www.gnucash.org/XML/gnc", type = JAXBElement.class, required = false),
+        @XmlElementRef(name = "account", namespace = "http://www.gnucash.org/XML/gnc", type = JAXBElement.class, required = false)
     })
     protected List<JAXBElement<?>> content;
 
@@ -60,8 +61,8 @@ public class GnuCashXml {
      * <p>
      * You are getting this "catch-all" property because of the following reason: 
      * The field name "CountData" is used by two different parts of a schema. See: 
-     * line 68 of file:/Users/moshe/GitHub/pnemonic78/gnucash-merge/app/src/main/xsd/gnc.xsd
-     * line 64 of file:/Users/moshe/GitHub/pnemonic78/gnucash-merge/app/src/main/xsd/gnc.xsd
+     * line 60 of file:/Users/moshe/GitHub/pnemonic78/gnucash-merge/app/src/main/xsd/gnc.xsd
+     * line 56 of file:/Users/moshe/GitHub/pnemonic78/gnucash-merge/app/src/main/xsd/gnc.xsd
      * <p>
      * To get rid of this property, apply a property customization to one 
      * of both of the following declarations to change their names: 
@@ -82,9 +83,9 @@ public class GnuCashXml {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
+     * {@link JAXBElement }{@code <}{@link CountData }{@code >}
      * {@link JAXBElement }{@code <}{@link Account }{@code >}
      * {@link JAXBElement }{@code <}{@link Commodity }{@code >}
-     * {@link JAXBElement }{@code <}{@link CountData }{@code >}
      * {@link JAXBElement }{@code <}{@link Book }{@code >}
      * 
      * 
