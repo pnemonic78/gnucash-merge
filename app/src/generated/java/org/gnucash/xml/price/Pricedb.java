@@ -44,7 +44,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 })
 public class PriceDb {
 
-    @XmlElement(required = true)
+    @XmlElement(namespace = "", required = true)
     protected List<Price> price;
     @XmlAttribute(name = "version", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
