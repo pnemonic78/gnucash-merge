@@ -1,2 +1,2 @@
 mkdir src/generated/java
-xjc -nv -d src/generated/java src/main/xsd/gnucash-v2.xsd
+xjc -nv -no-header -d src/generated/java src/main/xsd/gnucash-v2.xsd
