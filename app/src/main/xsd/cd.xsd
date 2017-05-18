@@ -27,28 +27,32 @@
   <xs:import namespace="http://www.gnucash.org/XML/ts" schemaLocation="ts.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
-  <xs:attributeGroup name="type">
-    <xs:attribute name="type" use="required" form="qualified">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
-          <xs:enumeration value="book"/>
-          <xs:enumeration value="commodity"/>
-          <xs:enumeration value="account"/>
-          <xs:enumeration value="transaction"/>
-          <xs:enumeration value="schedxaction"/>
-          <xs:enumeration value="budget"/>
-          <xs:enumeration value="price"/>
-          <xs:enumeration value="gnc:GncBillTerm"/>
-          <xs:enumeration value="gnc:GncCustomer"/>
-          <xs:enumeration value="gnc:GncEmployee"/>
-          <xs:enumeration value="gnc:GncEntry"/>
-          <xs:enumeration value="gnc:GncInvoice"/>
-          <xs:enumeration value="gnc:GncJob"/>
-          <xs:enumeration value="gnc:GncOrder"/>
-          <xs:enumeration value="gnc:GncTaxTable"/>
-          <xs:enumeration value="gnc:GncVendor"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
-  </xs:attributeGroup>
+  <xs:complexType name="count-data">
+    <xs:simpleContent>
+      <xs:extension base="xs:int">
+        <xs:attribute name="type" use="required" form="qualified">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="book"/>
+              <xs:enumeration value="commodity"/>
+              <xs:enumeration value="account"/>
+              <xs:enumeration value="transaction"/>
+              <xs:enumeration value="schedxaction"/>
+              <xs:enumeration value="budget"/>
+              <xs:enumeration value="price"/>
+              <xs:enumeration value="gnc:GncBillTerm"/>
+              <xs:enumeration value="gnc:GncCustomer"/>
+              <xs:enumeration value="gnc:GncEmployee"/>
+              <xs:enumeration value="gnc:GncEntry"/>
+              <xs:enumeration value="gnc:GncInvoice"/>
+              <xs:enumeration value="gnc:GncJob"/>
+              <xs:enumeration value="gnc:GncOrder"/>
+              <xs:enumeration value="gnc:GncTaxTable"/>
+              <xs:enumeration value="gnc:GncVendor"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
 </xs:schema>

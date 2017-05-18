@@ -50,22 +50,14 @@
   <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
 
-  <xs:complexType name="count-data">
-    <xs:simpleContent>
-      <xs:extension base="xs:int">
-        <xs:attributeGroup ref="cd:type"/>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
-
   <xs:complexType name="GnuCashXml">
     <xs:choice>
       <xs:sequence>
-        <xs:element name="count-data" type="gnc:count-data" default="1"/>
+        <xs:element name="count-data" type="cd:count-data" default="1"/>
         <xs:element name="book" type="gnc:Book"/>
       </xs:sequence>
       <xs:sequence>
-        <xs:element minOccurs="0" maxOccurs="2" name="count-data" type="gnc:count-data"/>
+        <xs:element minOccurs="0" maxOccurs="2" name="count-data" type="cd:count-data"/>
         <xs:element minOccurs="0" maxOccurs="1" name="commodity" type="cmdty:Commodity"/>
         <xs:element minOccurs="0" maxOccurs="1" name="account" type="act:Account"/>
       </xs:sequence>
@@ -123,7 +115,7 @@
     <xs:sequence>
       <xs:element ref="book:id"/>
       <xs:element minOccurs="0" ref="book:slots"/>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="count-data" type="gnc:count-data"/>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="count-data" type="cd:count-data"/>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="commodity" type="cmdty:Commodity"/>
       <xs:element minOccurs="0" maxOccurs="1" name="pricedb" type="price:PriceDb"/>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="account" type="act:Account"/>
