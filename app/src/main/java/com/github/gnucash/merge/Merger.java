@@ -23,24 +23,26 @@ public class Merger {
     public static void main(String[] args) throws Exception {
         System.out.println("gnucash merge.");
         if (args.length < 2) {
-            System.out.println("args: primary-file secondary-file");
+            System.out.println("args: primary-file secondary-file [destination-file]");
             System.exit(1);
             return;
         }
 
         File primaryFile = new File(args[0]);
         File secondaryFile = new File(args[1]);
-        new Merger().merge(primaryFile, secondaryFile);
+        File destinationFile = (args.length > 2) ? new File(args[2]) : primaryFile;
+        new Merger().merge(primaryFile, secondaryFile, destinationFile);
     }
 
     /**
      * Merge gnucash files.
      *
-     * @param primaryFile   The primary file. It is also the destination file.
-     * @param secondaryFile The secondary file with changes.
+     * @param primaryFile     The primary file.
+     * @param secondaryFile   The secondary file with changes.
+     * @param destinationFile The destination file.
      */
     @SuppressWarnings("unchecked")
-    public void merge(File primaryFile, File secondaryFile) throws JAXBException {
+    public void merge(File primaryFile, File secondaryFile, File destinationFile) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(org.gnucash.xml.ObjectFactory.class);
 
         // Read from files.
@@ -55,7 +57,7 @@ public class Merger {
 
         // Write back to file.
         Marshaller marshaller = context.createMarshaller();
-        //TODO marshaller.marshal(primary, primaryFile);
+        marshaller.marshal(primary, primaryFile);
     }
 
     /**
