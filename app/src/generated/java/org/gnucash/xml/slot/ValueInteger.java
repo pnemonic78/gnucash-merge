@@ -6,8 +6,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -19,13 +17,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * &lt;complexType name="valueInteger">
  *   &lt;simpleContent>
  *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>int">
- *       &lt;attribute name="type" use="required">
- *         &lt;simpleType>
- *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
- *             &lt;enumeration value="integer"/>
- *           &lt;/restriction>
- *         &lt;/simpleType>
- *       &lt;/attribute>
+ *       &lt;attribute name="type" use="required" type="{http://www.gnucash.org/XML/slot}ValueType" />
  *     &lt;/extension>
  *   &lt;/simpleContent>
  * &lt;/complexType>
@@ -42,8 +34,7 @@ public class ValueInteger {
     @XmlValue
     protected int value;
     @XmlAttribute(name = "type", required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String type;
+    protected ValueType type;
 
     /**
      * Gets the value of the value property.
@@ -66,10 +57,10 @@ public class ValueInteger {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ValueType }
      *     
      */
-    public String getType() {
+    public ValueType getType() {
         return type;
     }
 
@@ -78,10 +69,10 @@ public class ValueInteger {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ValueType }
      *     
      */
-    public void setType(String value) {
+    public void setType(ValueType value) {
         this.type = value;
     }
 

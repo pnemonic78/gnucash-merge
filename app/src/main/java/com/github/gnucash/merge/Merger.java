@@ -19,8 +19,8 @@ import org.gnucash.xml.job.GncJob;
 import org.gnucash.xml.order.GncOrder;
 import org.gnucash.xml.price.Price;
 import org.gnucash.xml.price.PriceDb;
+import org.gnucash.xml.slot.KvpSlot;
 import org.gnucash.xml.slot.Slots;
-import org.gnucash.xml.slot.ValueFrame;
 import org.gnucash.xml.sx.ScheduledTransaction;
 import org.gnucash.xml.taxtable.GncTaxTable;
 import org.gnucash.xml.trn.Transaction;
@@ -36,7 +36,6 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.namespace.QName;
 
 /**
  * Merge gnucash files.
@@ -489,35 +488,22 @@ public class Merger {
             primary = new org.gnucash.xml.slot.ObjectFactory().createSlots();
         }
 
-        QName qName;
         String id;
-        List<ValueFrame.Slot> primaryItems = primary.getKvpSlot();
-        Map<String, ValueFrame.Slot> primaryItemsById = new HashMap<>();
-        for (ValueFrame.Slot item : primaryItems) {
-            for (JAXBElement content : item.getContent()) {
-                qName = content.getName();
-                if ("key".equals(qName.getLocalPart())) {
-                    id = (String) content.getValue();
-                    primaryItemsById.put(id, item);
-                    break;
-                }
-            }
+        List<KvpSlot> primaryItems = primary.getSlot();
+        Map<String, KvpSlot> primaryItemsById = new HashMap<>();
+        for (KvpSlot item : primaryItems) {
+            id = item.getKey();
+            primaryItemsById.put(id, item);
         }
 
-        List<ValueFrame.Slot> secondaryItems = secondary.getKvpSlot();
-        for (ValueFrame.Slot item : secondaryItems) {
-            for (JAXBElement content : item.getContent()) {
-                qName = content.getName();
-                if ("key".equals(qName.getLocalPart())) {
-                    id = (String) content.getValue();
+        List<KvpSlot> secondaryItems = secondary.getSlot();
+        for (KvpSlot item : secondaryItems) {
+            id = item.getKey();
 
-                    // What was added?
-                    if (!primaryItemsById.containsKey(id)) {
-                        primaryItems.add(item);
-                        System.out.println("Slot added: " + id);
-                    }
-                    break;
-                }
+            // What was added?
+            if (!primaryItemsById.containsKey(id)) {
+                primaryItems.add(item);
+                System.out.println("Slot added: " + id);
             }
         }
 

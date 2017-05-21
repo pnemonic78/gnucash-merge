@@ -5,8 +5,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import org.gnucash.xml.gnc.GDate;
 
 
@@ -19,13 +17,7 @@ import org.gnucash.xml.gnc.GDate;
  * &lt;complexType name="valueGDate">
  *   &lt;complexContent>
  *     &lt;extension base="{http://www.gnucash.org/XML/gnc}GDate">
- *       &lt;attribute name="type" use="required">
- *         &lt;simpleType>
- *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
- *             &lt;enumeration value="gdate"/>
- *           &lt;/restriction>
- *         &lt;/simpleType>
- *       &lt;/attribute>
+ *       &lt;attribute name="type" use="required" type="{http://www.gnucash.org/XML/slot}ValueType" />
  *     &lt;/extension>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -40,18 +32,17 @@ public class ValueGDate
 {
 
     @XmlAttribute(name = "type", required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    protected String type;
+    protected ValueType type;
 
     /**
      * Gets the value of the type property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ValueType }
      *     
      */
-    public String getType() {
+    public ValueType getType() {
         return type;
     }
 
@@ -60,10 +51,10 @@ public class ValueGDate
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ValueType }
      *     
      */
-    public void setType(String value) {
+    public void setType(ValueType value) {
         this.type = value;
     }
 

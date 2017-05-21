@@ -28,94 +28,73 @@
   <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
   <xs:element name="key" type="xs:string"/>
+  <xs:simpleType name="ValueType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="integer"/>
+      <xs:enumeration value="double"/>
+      <xs:enumeration value="numeric"/>
+      <xs:enumeration value="string"/>
+      <xs:enumeration value="guid"/>
+      <xs:enumeration value="timespec"/>
+      <xs:enumeration value="gdate"/>
+      <xs:enumeration value="binary"/>
+      <xs:enumeration value="list"/>
+      <xs:enumeration value="frame"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Value">
+    <xs:complexContent>
+      <xs:extension base="xs:anyType">
+        <xs:attribute name="type" type="slot:ValueType" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="valueInteger">
     <xs:simpleContent>
       <xs:extension base="xs:int">
-        <xs:attribute name="type" use="required">
-          <xs:simpleType>
-            <xs:restriction base="xs:token">
-              <xs:enumeration value="integer"/>
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:attribute>
+        <xs:attribute name="type" type="slot:ValueType" use="required"/>
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
   <xs:complexType name="valueDouble">
     <xs:simpleContent>
       <xs:extension base="xs:double">
-        <xs:attribute name="type" use="required">
-          <xs:simpleType>
-            <xs:restriction base="xs:token">
-              <xs:enumeration value="double"/>
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:attribute>
+        <xs:attribute name="type" type="slot:ValueType" use="required"/>
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
   <xs:complexType name="valueNumeric">
     <xs:simpleContent>
       <xs:extension base="gnc:GncNumeric">
-        <xs:attribute name="type" use="required">
-          <xs:simpleType>
-            <xs:restriction base="xs:token">
-              <xs:enumeration value="numeric"/>
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:attribute>
+        <xs:attribute name="type" type="slot:ValueType" use="required"/>
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
   <xs:complexType name="valueString">
     <xs:simpleContent>
       <xs:extension base="xs:string">
-        <xs:attribute name="type" use="required">
-          <xs:simpleType>
-            <xs:restriction base="xs:token">
-              <xs:enumeration value="string"/>
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:attribute>
+        <xs:attribute name="type" type="slot:ValueType" use="required"/>
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
   <xs:complexType name="valueGUID">
     <xs:simpleContent>
       <xs:extension base="gnc:GUID">
-        <xs:attribute name="type" use="required">
-          <xs:simpleType>
-            <xs:restriction base="xs:token">
-              <xs:enumeration value="guid"/>
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:attribute>
+        <xs:attribute name="type" type="slot:ValueType" use="required"/>
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
   <xs:complexType name="valueTimeSpec">
     <xs:complexContent>
       <xs:extension base="gnc:TimeSpec">
-        <xs:attribute name="type" use="required">
-          <xs:simpleType>
-            <xs:restriction base="xs:token">
-              <xs:enumeration value="timespec"/>
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:attribute>
+        <xs:attribute name="type" type="slot:ValueType" use="required"/>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="valueGDate">
     <xs:complexContent>
       <xs:extension base="gnc:GDate">
-        <xs:attribute name="type" use="required">
-          <xs:simpleType>
-            <xs:restriction base="xs:token">
-              <xs:enumeration value="gdate"/>
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:attribute>
+        <xs:attribute name="type" type="slot:ValueType" use="required"/>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
@@ -127,50 +106,25 @@
             <xs:pattern value="[0-9a-f]*"/>
           </xs:restriction>
         </xs:simpleType>
-        <xs:attribute name="type" use="required">
-          <xs:simpleType>
-            <xs:restriction base="xs:token">
-              <xs:enumeration value="binary"/>
-            </xs:restriction>
-          </xs:simpleType>
-        </xs:attribute>
+        <xs:attribute name="type" type="slot:ValueType" use="required"/>
       </xs:restriction>
     </xs:simpleContent>
   </xs:complexType>
   <xs:complexType name="valueList">
-    <xs:group minOccurs="0" maxOccurs="unbounded" ref="slot:KvpValue"/>
-    <xs:attribute name="type" use="required">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
-          <xs:enumeration value="list"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="value" type="slot:Value"/>
+    </xs:sequence>
+    <xs:attribute name="type" type="slot:ValueType" use="required"/>
   </xs:complexType>
   <xs:complexType name="valueFrame">
-    <xs:group minOccurs="0" maxOccurs="unbounded" ref="slot:KvpSlot"/>
-    <xs:attribute name="type" use="required">
-      <xs:simpleType>
-        <xs:restriction base="xs:token">
-          <xs:enumeration value="frame"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
+    <xs:complexContent>
+      <xs:extension base="slot:Slots">
+        <xs:attribute name="type" type="slot:ValueType" use="required"/>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
   <!-- from src/backend/xml/sixtp-dom-generators.c -->
-  <xs:group name="KvpSlot">
-    <xs:sequence>
-      <xs:element name="slot" form="unqualified">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element ref="slot:key"/>
-            <xs:group ref="slot:KvpValue"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:sequence>
-  </xs:group>
-  <xs:group name="KvpValue">
+  <!--xs:group name="KvpValue">
     <xs:choice>
       <xs:element name="value" type="slot:valueInteger"/>
       <xs:element name="value" type="slot:valueDouble"/>
@@ -183,8 +137,16 @@
       <xs:element name="value" type="slot:valueList"/>
       <xs:element name="value" type="slot:valueFrame"/>
     </xs:choice>
-  </xs:group>
-  <xs:complexType name="slots">
-    <xs:group maxOccurs="unbounded" ref="slot:KvpSlot"/>
+  </xs:group-->
+  <xs:complexType name="KvpSlot">
+    <xs:all>
+      <xs:element ref="slot:key"/>
+      <xs:element name="value" type="slot:Value"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Slots">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="slot" type="slot:KvpSlot"/>
+    </xs:sequence>
   </xs:complexType>
 </xs:schema>

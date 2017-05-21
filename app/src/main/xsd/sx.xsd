@@ -69,7 +69,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="slots" type="slot:slots"/>
+  <xs:element name="slots" type="slot:Slots"/>
   <xs:complexType name="DeferredInstance">
     <xs:sequence>
       <xs:element minOccurs="0" ref="sx:last"/>

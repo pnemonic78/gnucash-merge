@@ -33,7 +33,7 @@
   <xs:element name="date-posted" type="gnc:TimeSpec"/>
   <xs:element name="date-entered" type="gnc:TimeSpec"/>
   <xs:element name="description" type="xs:string"/>
-  <xs:element name="slots" type="slot:slots"/>
+  <xs:element name="slots" type="slot:Slots"/>
   <xs:element name="splits">
     <xs:complexType>
       <xs:sequence>

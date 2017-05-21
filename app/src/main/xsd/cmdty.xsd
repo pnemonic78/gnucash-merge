@@ -52,7 +52,7 @@
   </xs:element>
   <xs:element name="quote_source" type="xs:string"/>
   <xs:element name="quote_tz" type="xs:string"/>
-  <xs:element name="slots" type="slot:slots"/>
+  <xs:element name="slots" type="slot:Slots"/>
   <!-- from gnc_commodity_dom_tree_create in src/backend/xml/gnc-commodity-xml-v2.c -->
   <xs:complexType name="Commodity">
     <xs:sequence>

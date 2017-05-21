@@ -28,7 +28,7 @@
   <xs:import namespace="http://www.gnucash.org/XML/tte" schemaLocation="tte.xsd"/>
   <xs:import namespace="http://www.gnucash.org/XML/vendor" schemaLocation="vendor.xsd"/>
   <xs:element name="id" type="gnc:guid"/>
-  <xs:element name="slots" type="slot:slots"/>
+  <xs:element name="slots" type="slot:Slots"/>
   <!-- from gnc_lot_dom_tree_create in src/backend/xml/gnc-lot-xml-v2.c -->
   <xs:complexType name="Lot">
     <xs:sequence>

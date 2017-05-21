@@ -25,21 +25,12 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _Key_QNAME = new QName("http://www.gnucash.org/XML/slot", "key");
-    private final static QName _ValueFrameSlotValue_QNAME = new QName("http://www.gnucash.org/XML/slot", "value");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.gnucash.xml.slot
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link ValueFrame }
-     * 
-     */
-    public ValueFrame createValueFrame() {
-        return new ValueFrame();
     }
 
     /**
@@ -51,14 +42,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ValueTimeSpec }
-     * 
-     */
-    public ValueTimeSpec createValueTimeSpec() {
-        return new ValueTimeSpec();
-    }
-
-    /**
      * Create an instance of {@link ValueNumeric }
      * 
      */
@@ -67,11 +50,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ValueString }
+     * Create an instance of {@link KvpSlot }
      * 
      */
-    public ValueString createValueString() {
-        return new ValueString();
+    public KvpSlot createKvpSlot() {
+        return new KvpSlot();
     }
 
     /**
@@ -88,6 +71,38 @@ public class ObjectFactory {
      */
     public ValueGDate createValueGDate() {
         return new ValueGDate();
+    }
+
+    /**
+     * Create an instance of {@link ValueGUID }
+     * 
+     */
+    public ValueGUID createValueGUID() {
+        return new ValueGUID();
+    }
+
+    /**
+     * Create an instance of {@link ValueTimeSpec }
+     * 
+     */
+    public ValueTimeSpec createValueTimeSpec() {
+        return new ValueTimeSpec();
+    }
+
+    /**
+     * Create an instance of {@link ValueString }
+     * 
+     */
+    public ValueString createValueString() {
+        return new ValueString();
+    }
+
+    /**
+     * Create an instance of {@link ValueFrame }
+     * 
+     */
+    public ValueFrame createValueFrame() {
+        return new ValueFrame();
     }
 
     /**
@@ -115,19 +130,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ValueGUID }
+     * Create an instance of {@link Value }
      * 
      */
-    public ValueGUID createValueGUID() {
-        return new ValueGUID();
-    }
-
-    /**
-     * Create an instance of {@link ValueFrame.Slot }
-     * 
-     */
-    public ValueFrame.Slot createValueFrameSlot() {
-        return new ValueFrame.Slot();
+    public Value createValue() {
+        return new Value();
     }
 
     /**
@@ -137,15 +144,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://www.gnucash.org/XML/slot", name = "key")
     public JAXBElement<String> createKey(String value) {
         return new JAXBElement<String>(_Key_QNAME, String.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ValueInteger }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://www.gnucash.org/XML/slot", name = "value", scope = ValueFrame.Slot.class)
-    public JAXBElement<ValueInteger> createValueFrameSlotValue(ValueInteger value) {
-        return new JAXBElement<ValueInteger>(_ValueFrameSlotValue_QNAME, ValueInteger.class, ValueFrame.Slot.class, value);
     }
 
 }

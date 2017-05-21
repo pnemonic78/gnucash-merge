@@ -46,7 +46,7 @@
   <xs:element name="quantity" type="gnc:GncNumeric"/>
   <xs:element name="account" type="gnc:guid"/>
   <xs:element name="lot" type="gnc:guid"/>
-  <xs:element name="slots" type="slot:slots"/>
+  <xs:element name="slots" type="slot:Slots"/>
   <xs:complexType name="Split">
     <xs:sequence>
       <xs:element ref="split:id"/>

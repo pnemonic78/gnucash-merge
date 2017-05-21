@@ -62,7 +62,7 @@
   </xs:element>
   <xs:element name="code" type="xs:string"/>
   <xs:element name="description" type="xs:string"/>
-  <xs:element name="slots" type="slot:slots"/>
+  <xs:element name="slots" type="slot:Slots"/>
   <xs:element name="parent" type="gnc:guid"/>
   <xs:element name="lots">
     <xs:complexType>

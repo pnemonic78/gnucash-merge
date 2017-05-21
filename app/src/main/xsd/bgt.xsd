@@ -32,7 +32,7 @@
   <xs:element name="description" type="xs:string"/>
   <xs:element name="num-periods" type="xs:int"/>
   <xs:element name="recurrence" type="recurrence:RecurrenceContent"/>
-  <xs:element name="slots" type="slot:slots"/>
+  <xs:element name="slots" type="slot:Slots"/>
   <!-- from gnc_budget_dom_tree_create in src/backend/xml/gnc-budget-xml-v2.c -->
   <xs:complexType name="Budget">
     <xs:sequence>

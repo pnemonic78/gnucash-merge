@@ -61,7 +61,7 @@
     </xs:simpleType>
   </xs:element>
   <xs:element name="taxtable" type="gnc:guid"/>
-  <xs:element name="slots" type="slot:slots"/>
+  <xs:element name="slots" type="slot:Slots"/>
   <!-- from customer_dom_tree_create in src/backend/xml/gnc-customer-xml-v2.c -->
   <xs:complexType name="GncCustomer">
     <xs:sequence>
