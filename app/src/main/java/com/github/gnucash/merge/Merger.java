@@ -168,7 +168,10 @@ public class Merger {
             id = item.getId().getValue();
 
             // What was added?
-            if (!primaryItemsById.containsKey(id)) {
+            if (primaryItemsById.containsKey(id)) {
+                Account primaryItem = primaryItemsById.get(id);
+                primary.setSlots(mergeSlots(primaryItem.getSlots(), item.getSlots()));
+            } else {
                 primaryItems.add(item);
                 System.out.println("Account added: " + id);
             }
@@ -190,7 +193,10 @@ public class Merger {
             id = item.getId().getValue();
 
             // What was added?
-            if (!primaryItemsById.containsKey(id)) {
+            if (primaryItemsById.containsKey(id)) {
+                Budget primaryItem = primaryItemsById.get(id);
+                primary.setSlots(mergeSlots(primaryItem.getSlots(), item.getSlots()));
+            } else {
                 primaryItems.add(item);
                 System.out.println("Budget added: " + id);
             }
@@ -216,7 +222,10 @@ public class Merger {
             id = item.getGuid().getValue();
 
             // What was added?
-            if (!primaryItemsById.containsKey(id)) {
+            if (primaryItemsById.containsKey(id)) {
+                GncBillTerm primaryItem = primaryItemsById.get(id);
+                primary.setSlots(mergeSlots(primaryItem.getSlots(), item.getSlots()));
+            } else {
                 primaryItems.add(item);
                 System.out.println("Bill Term added: " + id);
             }
@@ -238,7 +247,10 @@ public class Merger {
             id = item.getGuid().getValue();
 
             // What was added?
-            if (!primaryItemsById.containsKey(id)) {
+            if (primaryItemsById.containsKey(id)) {
+                GncCustomer primaryItem = primaryItemsById.get(id);
+                primary.setSlots(mergeSlots(primaryItem.getSlots(), item.getSlots()));
+            } else {
                 primaryItems.add(item);
                 System.out.println("Customer added: " + id);
             }
@@ -260,7 +272,10 @@ public class Merger {
             id = item.getGuid().getValue();
 
             // What was added?
-            if (!primaryItemsById.containsKey(id)) {
+            if (primaryItemsById.containsKey(id)) {
+                GncEmployee primaryItem = primaryItemsById.get(id);
+                primary.setSlots(mergeSlots(primaryItem.getSlots(), item.getSlots()));
+            } else {
                 primaryItems.add(item);
                 System.out.println("Employee added: " + id);
             }
@@ -304,7 +319,10 @@ public class Merger {
             id = item.getGuid().getValue();
 
             // What was added?
-            if (!primaryItemsById.containsKey(id)) {
+            if (primaryItemsById.containsKey(id)) {
+                GncInvoice primaryItem = primaryItemsById.get(id);
+                primary.setSlots(mergeSlots(primaryItem.getSlots(), item.getSlots()));
+            } else {
                 primaryItems.add(item);
                 System.out.println("Budget added: " + id);
             }
@@ -392,7 +410,10 @@ public class Merger {
             id = item.getGuid().getValue();
 
             // What was added?
-            if (!primaryItemsById.containsKey(id)) {
+            if (primaryItemsById.containsKey(id)) {
+                GncVendor primaryItem = primaryItemsById.get(id);
+                primary.setSlots(mergeSlots(primaryItem.getSlots(), item.getSlots()));
+            } else {
                 primaryItems.add(item);
                 System.out.println("Vendor added: " + id);
             }
@@ -446,7 +467,10 @@ public class Merger {
             id = item.getId().getValue();
 
             // What was added?
-            if (!primaryItemsById.containsKey(id)) {
+            if (primaryItemsById.containsKey(id)) {
+                ScheduledTransaction primaryItem = primaryItemsById.get(id);
+                primary.setSlots(mergeSlots(primaryItem.getSlots(), item.getSlots()));
+            } else {
                 primaryItems.add(item);
                 System.out.println("Scheduled Transaction added: " + id);
             }
@@ -519,7 +543,10 @@ public class Merger {
             id = item.getId().getValue();
 
             // What was added?
-            if (!primaryItemsById.containsKey(id)) {
+            if (primaryItemsById.containsKey(id)) {
+                Transaction primaryItem = primaryItemsById.get(id);
+                primary.setSlots(mergeSlots(primaryItem.getSlots(), item.getSlots()));
+            } else {
                 primaryItems.add(item);
                 System.out.println("Transaction added: " + id);
             }
