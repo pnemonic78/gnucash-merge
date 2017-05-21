@@ -113,25 +113,93 @@ public class Merger {
     }
 
     protected void mergeBooks(Book primary, Book secondary) {
-//        mergeAccounts(primary.getAccount(), secondary.getAccount());
-//        mergeBudgets(primary.getBudget(), secondary.getBudget());
-//        mergeCommodities(primary.getCommodity(), secondary.getCommodity());
-//        mergeBillTerms(primary.getGncBillTerm(), secondary.getGncBillTerm());
-//        mergeCustomers(primary.getGncCustomer(), secondary.getGncCustomer());
-//        mergeEmployees(primary.getGncEmployee(), secondary.getGncEmployee());
-//        mergeEntries(primary.getGncEntry(), secondary.getGncEntry());
-//        mergeInvoices(primary.getGncInvoice(), secondary.getGncInvoice());
-//        mergeJobs(primary.getGncJob(), secondary.getGncJob());
-//        mergeOrders(primary.getGncOrder(), secondary.getGncOrder());
-//        mergeTaxTables(primary.getGncTaxTable(), secondary.getGncTaxTable());
-//        mergeVendors(primary.getGncVendor(), secondary.getGncVendor());
-//        mergePrices(primary.getPricedb(), secondary.getPricedb());
-//        mergeSchedules(primary.getSchedxaction(), secondary.getSchedxaction());
-//        mergeSlots(primary.getSlots(), secondary.getSlots());
-//        mergeTemplateTransactions(primary.getTemplateTransactions(), secondary.getTemplateTransactions());
-//        mergeTransactions(primary.getTransaction(), secondary.getTransaction());
+        mergeAccounts(primary, secondary);
+        mergeBudgets(primary, secondary);
+        mergeCommodities(primary, secondary);
+        mergeBillTerms(primary, secondary);
+        mergeCustomers(primary, secondary);
+        mergeEmployees(primary, secondary);
+        mergeEntries(primary, secondary);
+        mergeInvoices(primary, secondary);
+        mergeJobs(primary, secondary);
+        mergeOrders(primary, secondary);
+        mergeTaxTables(primary, secondary);
+        mergeVendors(primary, secondary);
+        mergePrices(primary, secondary);
+        mergeSchedules(primary, secondary);
+        mergeSlots(primary, secondary);
+        mergeTemplateTransactions(primary, secondary);
+        mergeTransactions(primary, secondary);
 
         updateCounters(primary);
+    }
+
+    protected void mergeAccounts(Book primary, Book secondary) {
+
+    }
+
+    protected void mergeBudgets(Book primary, Book secondary) {
+
+    }
+
+    protected void mergeCommodities(Book primary, Book secondary) {
+
+    }
+
+    protected void mergeBillTerms(Book primary, Book secondary) {
+
+    }
+
+    protected void mergeCustomers(Book primary, Book secondary) {
+
+    }
+
+    protected void mergeEmployees(Book primary, Book secondary) {
+
+    }
+
+    protected void mergeEntries(Book primary, Book secondary) {
+
+    }
+
+    protected void mergeInvoices(Book primary, Book secondary) {
+
+    }
+
+    protected void mergeJobs(Book primary, Book secondary) {
+
+    }
+
+    protected void mergeOrders(Book primary, Book secondary) {
+
+    }
+
+    protected void mergeTaxTables(Book primary, Book secondary) {
+
+    }
+
+    protected void mergeVendors(Book primary, Book secondary) {
+
+    }
+
+    protected void mergePrices(Book primary, Book secondary) {
+
+    }
+
+    protected void mergeSchedules(Book primary, Book secondary) {
+
+    }
+
+    protected void mergeSlots(Book primary, Book secondary) {
+
+    }
+
+    protected void mergeTemplateTransactions(Book primary, Book secondary) {
+
+    }
+
+    protected void mergeTransactions(Book primary, Book secondary) {
+
     }
 
     /**
