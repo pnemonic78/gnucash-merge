@@ -16,12 +16,12 @@ import org.w3c.dom.Element;
 
 
 /**
- * <p>Java class for value complex type.
+ * <p>Java class for Value complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="value">
+ * &lt;complexType name="Value">
  *   &lt;complexContent>
  *     &lt;extension base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="type" use="required" type="{http://www.gnucash.org/XML/slot}ValueType" />
@@ -34,7 +34,7 @@ import org.w3c.dom.Element;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "value", propOrder = {
+@XmlType(name = "Value", propOrder = {
     "any"
 })
 public class Value {

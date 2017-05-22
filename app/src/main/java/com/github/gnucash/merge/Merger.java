@@ -19,7 +19,6 @@ import org.gnucash.xml.job.GncJob;
 import org.gnucash.xml.order.GncOrder;
 import org.gnucash.xml.price.Price;
 import org.gnucash.xml.price.PriceDb;
-import org.gnucash.xml.slot.KvpSlot;
 import org.gnucash.xml.slot.Slots;
 import org.gnucash.xml.sx.ScheduledTransaction;
 import org.gnucash.xml.taxtable.GncTaxTable;
@@ -76,16 +75,14 @@ public class Merger {
         // Read from files.
         Unmarshaller unmarshaller = context.createUnmarshaller();
         System.out.println("Reading primary file \"" + primaryFile + "\"...");
-        JAXBElement<GnuCashXml> element = (JAXBElement<GnuCashXml>) unmarshaller.unmarshal(primaryFile);
-        GnuCashXml primary = element.getValue();
+        GnuCashXml primary = readBook(unmarshaller, primaryFile);
         System.out.println("Reading secondary file \"" + secondaryFile + "\"...");
-        element = (JAXBElement<GnuCashXml>) unmarshaller.unmarshal(secondaryFile);
-        GnuCashXml secondary = element.getValue();
+        GnuCashXml secondary = readBook(unmarshaller, secondaryFile);
 
         // Merge.
         System.out.println("Merging data...");
         GnuCashXml result = merge(primary, secondary);
-        element = factory.createGncV2(result);
+        JAXBElement<GnuCashXml> element = factory.createGncV2(result);
 
         // Write back to file.
         System.out.println("Writing to file \"" + destinationFile + "\"...");
@@ -94,6 +91,11 @@ public class Merger {
         marshaller.marshal(element, destinationFile);
 
         System.out.println("Finished merge.");
+    }
+
+    protected GnuCashXml readBook(Unmarshaller unmarshaller, File file) throws JAXBException {
+        JAXBElement<GnuCashXml> element = (JAXBElement<GnuCashXml>) unmarshaller.unmarshal(file);
+        return element.getValue();
     }
 
     /**
@@ -115,6 +117,9 @@ public class Merger {
     @SuppressWarnings("unchecked")
     private Book pipeBook(GnuCashXml gnc) {
         List<JAXBElement<?>> content = gnc.getContent();
+        if (content.isEmpty()) {
+            return null;
+        }
         JAXBElement<Book> bookElement;
         if (content.size() == 3) {
             Commodity commodity = ((JAXBElement<Commodity>) content.remove(1)).getValue();
@@ -489,21 +494,31 @@ public class Merger {
         }
 
         String id;
-        List<KvpSlot> primaryItems = primary.getSlot();
-        Map<String, KvpSlot> primaryItemsById = new HashMap<>();
-        for (KvpSlot item : primaryItems) {
-            id = item.getKey();
-            primaryItemsById.put(id, item);
+        List<Slots.Slot> primaryItems = primary.getKvpSlot();
+        Map<String, Slots.Slot> primaryItemsById = new HashMap<>();
+        for (Slots.Slot item : primaryItems) {
+            for (JAXBElement keyOrValue : item.getContent()) {
+                if ("key".equals(keyOrValue.getName().getLocalPart())) {
+                    id = (String) keyOrValue.getValue();
+                    primaryItemsById.put(id, item);
+                    break;
+                }
+            }
         }
 
-        List<KvpSlot> secondaryItems = secondary.getSlot();
-        for (KvpSlot item : secondaryItems) {
-            id = item.getKey();
+        List<Slots.Slot> secondaryItems = secondary.getKvpSlot();
+        for (Slots.Slot item : secondaryItems) {
+            for (JAXBElement keyOrValue : item.getContent()) {
+                if ("key".equals(keyOrValue.getName().getLocalPart())) {
+                    id = (String) keyOrValue.getValue();
 
-            // What was added?
-            if (!primaryItemsById.containsKey(id)) {
-                primaryItems.add(item);
-                System.out.println("Slot added: " + id);
+                    // What was added?
+                    if (!primaryItemsById.containsKey(id)) {
+                        primaryItems.add(item);
+                        System.out.println("Slot added: " + id);
+                    }
+                    break;
+                }
             }
         }
 

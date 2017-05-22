@@ -6,6 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -18,9 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="valueList">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="value" type="{http://www.gnucash.org/XML/slot}value" maxOccurs="unbounded" minOccurs="0"/>
- *       &lt;/sequence>
+ *       &lt;group ref="{http://www.gnucash.org/XML/slot}KvpValue" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;attribute name="type" use="required" type="{http://www.gnucash.org/XML/slot}ValueType" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,27 +30,28 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "valueList", propOrder = {
-    "value"
+    "kvpValue"
 })
 public class ValueList {
 
-    protected List<Value> value;
+    @XmlElement(name = "value")
+    protected List<Value> kvpValue;
     @XmlAttribute(name = "type", required = true)
     protected ValueType type;
 
     /**
-     * Gets the value of the value property.
+     * Gets the value of the kvpValue property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the value property.
+     * This is why there is not a <CODE>set</CODE> method for the kvpValue property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getValue().add(newItem);
+     *    getKvpValue().add(newItem);
      * </pre>
      * 
      * 
@@ -61,11 +61,11 @@ public class ValueList {
      * 
      * 
      */
-    public List<Value> getValue() {
-        if (value == null) {
-            value = new ArrayList<Value>();
+    public List<Value> getKvpValue() {
+        if (kvpValue == null) {
+            kvpValue = new ArrayList<Value>();
         }
-        return this.value;
+        return this.kvpValue;
     }
 
     /**

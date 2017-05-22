@@ -25,6 +25,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _Key_QNAME = new QName("http://www.gnucash.org/XML/slot", "key");
+    private final static QName _SlotsSlotValue_QNAME = new QName("http://www.gnucash.org/XML/slot", "value");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.gnucash.xml.slot
@@ -47,14 +48,6 @@ public class ObjectFactory {
      */
     public ValueNumeric createValueNumeric() {
         return new ValueNumeric();
-    }
-
-    /**
-     * Create an instance of {@link KvpSlot }
-     * 
-     */
-    public KvpSlot createKvpSlot() {
-        return new KvpSlot();
     }
 
     /**
@@ -114,6 +107,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Value }
+     * 
+     */
+    public Value createValue() {
+        return new Value();
+    }
+
+    /**
      * Create an instance of {@link ValueDouble }
      * 
      */
@@ -130,11 +131,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Value }
+     * Create an instance of {@link Slots.Slot }
      * 
      */
-    public Value createValue() {
-        return new Value();
+    public Slots.Slot createSlotsSlot() {
+        return new Slots.Slot();
     }
 
     /**
@@ -144,6 +145,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://www.gnucash.org/XML/slot", name = "key")
     public JAXBElement<String> createKey(String value) {
         return new JAXBElement<String>(_Key_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Value }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://www.gnucash.org/XML/slot", name = "value", scope = Slots.Slot.class)
+    public JAXBElement<Value> createSlotsSlotValue(Value value) {
+        return new JAXBElement<Value>(_SlotsSlotValue_QNAME, Value.class, Slots.Slot.class, value);
     }
 
 }
