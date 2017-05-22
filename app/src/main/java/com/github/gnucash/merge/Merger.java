@@ -91,6 +91,7 @@ public class Merger {
     public void merge(File primaryFile, File secondaryFile, File destinationFile) throws ParserConfigurationException, IOException, SAXException, TransformerException {
         // Read from files.
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        documentBuilderFactory.setNamespaceAware(true);
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         System.out.println("Reading primary file \"" + primaryFile + "\"...");
         Document primary = documentBuilder.parse(primaryFile);
