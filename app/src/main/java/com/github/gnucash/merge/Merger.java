@@ -42,6 +42,7 @@ import javax.xml.bind.Unmarshaller;
  * @author Moshe Waisberg
  */
 public class Merger {
+
     public static void main(String[] args) throws Exception {
         System.out.println("gnucash merge.");
         if (args.length < 2) {
@@ -59,6 +60,7 @@ public class Merger {
     protected final org.gnucash.xml.ObjectFactory factory = new org.gnucash.xml.ObjectFactory();
     protected final org.gnucash.xml.gnc.ObjectFactory gncFactory = new org.gnucash.xml.gnc.ObjectFactory();
     protected final org.gnucash.xml.cd.ObjectFactory counterFactory = new org.gnucash.xml.cd.ObjectFactory();
+    protected final org.gnucash.xml.slot.ObjectFactory slotFactory = new org.gnucash.xml.slot.ObjectFactory();
 
     /**
      * Merge gnucash files.
@@ -490,7 +492,7 @@ public class Merger {
             return primary;
         }
         if (primary == null) {
-            primary = new org.gnucash.xml.slot.ObjectFactory().createSlots();
+            primary = slotFactory.createSlots();
         }
 
         String id;
