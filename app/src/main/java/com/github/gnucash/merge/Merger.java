@@ -5,6 +5,7 @@
 package com.github.gnucash.merge;
 
 import org.gnucash.xml.act.Account;
+import org.gnucash.xml.act.Lots;
 import org.gnucash.xml.bgt.Budget;
 import org.gnucash.xml.billterm.GncBillTerm;
 import org.gnucash.xml.cd.CountData;
@@ -16,6 +17,7 @@ import org.gnucash.xml.gnc.Book;
 import org.gnucash.xml.gnc.GnuCashXml;
 import org.gnucash.xml.invoice.GncInvoice;
 import org.gnucash.xml.job.GncJob;
+import org.gnucash.xml.lot.Lot;
 import org.gnucash.xml.order.GncOrder;
 import org.gnucash.xml.price.Price;
 import org.gnucash.xml.price.PriceDb;
@@ -61,6 +63,7 @@ public class Merger {
     protected final org.gnucash.xml.gnc.ObjectFactory gncFactory = new org.gnucash.xml.gnc.ObjectFactory();
     protected final org.gnucash.xml.cd.ObjectFactory counterFactory = new org.gnucash.xml.cd.ObjectFactory();
     protected final org.gnucash.xml.slot.ObjectFactory slotFactory = new org.gnucash.xml.slot.ObjectFactory();
+    protected final org.gnucash.xml.act.ObjectFactory accountFactory = new org.gnucash.xml.act.ObjectFactory();
 
     /**
      * Merge gnucash files.
@@ -177,6 +180,7 @@ public class Merger {
             if (primaryItemsById.containsKey(id)) {
                 Account primaryItem = primaryItemsById.get(id);
                 primary.setSlots(mergeSlots(primaryItem.getSlots(), item.getSlots()));
+                primaryItem.setLots(mergeLots(primaryItem.getLots(), item.getLots()));
             } else {
                 primaryItems.add(item);
                 System.out.println("Account added: " + id);
@@ -210,7 +214,7 @@ public class Merger {
     }
 
     protected void mergeCommodities(Book primary, Book secondary) {
-
+        //TODO implement me!
     }
 
     protected void mergeBillTerms(Book primary, Book secondary) {
@@ -554,6 +558,40 @@ public class Merger {
                 System.out.println("Transaction added: " + id);
             }
         }
+    }
+
+    protected Lots mergeLots(Lots primary, Lots secondary) {
+        if (secondary == null) {
+            return primary;
+        }
+        if (primary == null) {
+            primary = accountFactory.createLots();
+        }
+
+        String id;
+
+        List<Lot> primaryItems = primary.getLot();
+        Map<String, Lot> primaryItemsById = new HashMap<>();
+        for (Lot item : primaryItems) {
+            id = item.getId().getValue();
+            primaryItemsById.put(id, item);
+        }
+
+        List<Lot> secondaryItems = secondary.getLot();
+        for (Lot item : secondaryItems) {
+            id = item.getId().getValue();
+
+            // What was added?
+            if (primaryItemsById.containsKey(id)) {
+                Lot primaryItem = primaryItemsById.get(id);
+                primaryItem.setSlots(mergeSlots(primaryItem.getSlots(), item.getSlots()));
+            } else {
+                primaryItems.add(item);
+                System.out.println("Lot added: " + id);
+            }
+        }
+
+        return primary;
     }
 
     /**
