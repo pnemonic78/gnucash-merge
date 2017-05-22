@@ -7,11 +7,11 @@ package com.github.gnucash.merge;
 import org.w3c.dom.Document;
 
 /**
- * Merge gnucash files.
+ * Merge gnucash documents.
  *
  * @author Moshe Waisberg
  */
-public interface GncMerger {
+public interface DOMMerger {
 
     /**
      * Merge gnucash data.

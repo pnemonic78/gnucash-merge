@@ -38,11 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -103,7 +99,7 @@ public class Merger {
 
         // Merge.
         System.out.println("Merging data...");
-        GncMerger merger = createMerger(primary);
+        DOMMerger merger = createMerger(primary);
 
         Document merged = merger.merge(primary, secondary);
 
@@ -119,7 +115,7 @@ public class Merger {
         System.out.println("Finished merge.");
     }
 
-    private GncMerger createMerger(Document document) {
+    private DOMMerger createMerger(Document document) {
         Element root = document.getDocumentElement();
         String name = root.getTagName();
         if ("gnc-v2".equals(name)) {

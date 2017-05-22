@@ -4,7 +4,7 @@
  */
 package com.github.gnucash.merge.v2;
 
-import com.github.gnucash.merge.GncMerger;
+import com.github.gnucash.merge.DOMMerger;
 
 import org.w3c.dom.Document;
 
@@ -13,7 +13,7 @@ import org.w3c.dom.Document;
  *
  * @author Moshe Waisberg
  */
-public class Merger2 implements GncMerger {
+public class Merger2 implements DOMMerger {
     @Override
     public Document merge(Document primary, Document secondary) {
         return primary;
