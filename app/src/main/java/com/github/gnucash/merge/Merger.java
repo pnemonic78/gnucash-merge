@@ -4,6 +4,8 @@
  */
 package com.github.gnucash.merge;
 
+import com.github.gnucash.merge.v2.Merger2;
+
 import org.gnucash.xml.act.Account;
 import org.gnucash.xml.act.Lots;
 import org.gnucash.xml.bgt.Budget;
@@ -26,8 +28,12 @@ import org.gnucash.xml.sx.ScheduledTransaction;
 import org.gnucash.xml.taxtable.GncTaxTable;
 import org.gnucash.xml.trn.Transaction;
 import org.gnucash.xml.vendor.GncVendor;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +43,15 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Result;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 /**
  * Merge gnucash files.
@@ -71,36 +86,46 @@ public class Merger {
      * @param primaryFile     The primary file.
      * @param secondaryFile   The secondary file with changes.
      * @param destinationFile The destination file.
-     * @throws JAXBElement if a JAXB error occurs.
+     * @throws IOException                  If an I/O error occurs.
+     * @throws ParserConfigurationException If an XML error occurs.
+     * @throws SAXException                 If an XML error occurs.
+     * @throws TransformerException         If an XML error occurs.
      */
     @SuppressWarnings("unchecked")
-    public void merge(File primaryFile, File secondaryFile, File destinationFile) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(org.gnucash.xml.ObjectFactory.class);
-
+    public void merge(File primaryFile, File secondaryFile, File destinationFile) throws ParserConfigurationException, IOException, SAXException, TransformerException {
         // Read from files.
-        Unmarshaller unmarshaller = context.createUnmarshaller();
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         System.out.println("Reading primary file \"" + primaryFile + "\"...");
-        GnuCashXml primary = readBook(unmarshaller, primaryFile);
+        Document primary = documentBuilder.parse(primaryFile);
         System.out.println("Reading secondary file \"" + secondaryFile + "\"...");
-        GnuCashXml secondary = readBook(unmarshaller, secondaryFile);
+        Document secondary = documentBuilder.parse(secondaryFile);
 
         // Merge.
         System.out.println("Merging data...");
-        GnuCashXml result = merge(primary, secondary);
-        JAXBElement<GnuCashXml> element = factory.createGncV2(result);
+        GncMerger merger = createMerger(primary);
+
+        Document merged = merger.merge(primary, secondary);
 
         // Write back to file.
         System.out.println("Writing to file \"" + destinationFile + "\"...");
         destinationFile.getAbsoluteFile().getParentFile().mkdirs();
-        Marshaller marshaller = context.createMarshaller();
-        marshaller.marshal(element, destinationFile);
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        DOMSource source = new DOMSource(merged);
+        Result result = new StreamResult(destinationFile);
+        transformer.transform(source, result);
 
         System.out.println("Finished merge.");
     }
 
-    protected GnuCashXml readBook(Unmarshaller unmarshaller, File file) throws JAXBException {
-        JAXBElement<GnuCashXml> element = (JAXBElement<GnuCashXml>) unmarshaller.unmarshal(file);
-        return element.getValue();
+    private GncMerger createMerger(Document document) {
+        Element root = document.getDocumentElement();
+        String name = root.getTagName();
+        if ("gnc-v2".equals(name)) {
+            return new Merger2();
+        }
+        return null;
     }
 
     /**
