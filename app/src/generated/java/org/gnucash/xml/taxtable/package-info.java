@@ -11,6 +11,7 @@
         @XmlNs(namespaceURI = "http://www.gnucash.org/XML/cust", prefix = "cust"),
         @XmlNs(namespaceURI = "http://www.gnucash.org/XML/employee", prefix = "employee"),
         @XmlNs(namespaceURI = "http://www.gnucash.org/XML/entry", prefix = "entry"),
+        @XmlNs(namespaceURI = "http://www.gnucash.org/XML/fs", prefix = "fs"),
         @XmlNs(namespaceURI = "http://www.gnucash.org/XML/gnc", prefix = "gnc"),
         @XmlNs(namespaceURI = "http://www.gnucash.org/XML/invoice", prefix = "invoice"),
         @XmlNs(namespaceURI = "http://www.gnucash.org/XML/job", prefix = "job"),
