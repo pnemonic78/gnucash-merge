@@ -8,12 +8,17 @@ import com.github.gnucash.merge.DOMMerger;
 
 import org.gnucash.xml.cd.CountData;
 import org.gnucash.xml.slot.Slots;
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Merge version 2.0.0 gnucash files.
@@ -39,25 +44,228 @@ public class Merger2 implements DOMMerger {
 
     @Override
     public Element mergeBook(Element primary, Element secondary) {
-        mergeAccounts(primary, secondary);
-        mergeBudgets(primary, secondary);
-        mergeCommodities(primary, secondary);
-        mergeBillTerms(primary, secondary);
-        mergeCustomers(primary, secondary);
-        mergeEmployees(primary, secondary);
-        mergeEntries(primary, secondary);
-        mergeInvoices(primary, secondary);
-        mergeJobs(primary, secondary);
-        mergeOrders(primary, secondary);
-        mergeTaxTables(primary, secondary);
-        mergeVendors(primary, secondary);
-        mergePrices(primary, secondary);
-        mergeSchedules(primary, secondary);
-        mergeSlots(primary, secondary);
-        mergeTemplateTransactions(primary, secondary);
-        mergeTransactions(primary, secondary);
+        if (secondary == null) {
+            return primary;
+        }
+        Document primaryDocument = primary.getOwnerDocument();
 
-        updateCounters(primary);
+        final int counterTypesLength = BookCountDataType.values().length;
+        Element[] primaryCounters = new Element[counterTypesLength];
+
+        List<Element> primaryAccounts = new ArrayList<>();
+        List<Element> primaryBudgets = new ArrayList<>();
+        List<Element> primaryBillTerms = new ArrayList<>();
+        List<Element> primaryCommodities = new ArrayList<>();
+        List<Element> primaryCustomers = new ArrayList<>();
+        List<Element> primaryEmployees = new ArrayList<>();
+        List<Element> primaryEntries = new ArrayList<>();
+        List<Element> primaryInvoices = new ArrayList<>();
+        List<Element> primaryJobs = new ArrayList<>();
+        List<Element> primaryOrders = new ArrayList<>();
+        List<Element> primaryTaxTables = new ArrayList<>();
+        List<Element> primaryPrices = new ArrayList<>();
+        List<Element> primarySchedules = new ArrayList<>();
+        List<Element> primaryTemplateTransactions = new ArrayList<>();
+        List<Element> primaryTransactions = new ArrayList<>();
+        List<Element> primaryVendors = new ArrayList<>();
+        Map<String, Element> primaryAccountsById = new HashMap<>();
+        Map<String, Element> primaryBudgetsById = new HashMap<>();
+        Map<String, Element> primaryBillTermsById = new HashMap<>();
+        Map<String, Element> primaryCommoditiesById = new HashMap<>();
+        Map<String, Element> primaryCustomersById = new HashMap<>();
+        Map<String, Element> primaryEmployeesById = new HashMap<>();
+        Map<String, Element> primaryEntriesById = new HashMap<>();
+        Map<String, Element> primaryInvoicesById = new HashMap<>();
+        Map<String, Element> primaryJobsById = new HashMap<>();
+        Map<String, Element> primaryOrdersById = new HashMap<>();
+        Map<String, Element> primaryTaxTablesById = new HashMap<>();
+        Map<String, Element> primaryPricesById = new HashMap<>();
+        Map<String, Element> primarySchedulesById = new HashMap<>();
+        Map<String, Element> primaryTransactionsById = new HashMap<>();
+        Map<String, Element> primaryVendorsById = new HashMap<>();
+        Element primarySlots = null;
+
+        Element element;
+        String type;
+        BookCountDataType countDataType;
+        Node firstElementAfterCounters = null;
+
+        Node node = primary.getFirstChild();
+        while (node != null) {
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                element = (Element) node;
+
+                if (isElement(node, "count-data", NAMESPACE_GNC)) {
+                    type = element.getAttributeNS(NAMESPACE_CD, "type");
+                    countDataType = BookCountDataType.find(type);
+                    primaryCounters[countDataType.ordinal()] = element;
+                    firstElementAfterCounters = null;
+                } else if (firstElementAfterCounters == null) {
+                    firstElementAfterCounters = node;
+                }
+
+                if (isElement(node, "commodity", NAMESPACE_GNC)) {
+                    primaryCommodities.add(element);
+                    primaryCommoditiesById.put(getSpaceId(element, NAMESPACE_CMDTY), element);
+                } else if (isElement(node, "pricedb", NAMESPACE_GNC)) {
+                    Node price = node.getFirstChild();
+                    while (price != null) {
+                        if (price.getNodeType() == Node.ELEMENT_NODE) {
+                            if (isElement(price, "price", null)) {
+                                element = (Element) price;
+                                primaryPrices.add(element);
+                                primaryPricesById.put(getId(element, NAMESPACE_PRICE), element);
+                            }
+                        }
+                        price = price.getNextSibling();
+                    }
+                } else if (isElement(node, "account", NAMESPACE_GNC)) {
+                    primaryAccounts.add(element);
+                    primaryAccountsById.put(getId(element, NAMESPACE_ACT), element);
+                } else if (isElement(node, "transaction", NAMESPACE_GNC)) {
+                    primaryTransactions.add(element);
+                    primaryTransactionsById.put(getId(element, NAMESPACE_TRN), element);
+                } else if (isElement(node, "template-transactions", NAMESPACE_GNC)) {
+                    primaryTemplateTransactions.add(element);
+                } else if (isElement(node, "schedxaction", NAMESPACE_GNC)) {
+                    primarySchedules.add(element);
+                    primarySchedulesById.put(getId(element, NAMESPACE_SX), element);
+                } else if (isElement(node, "budget", NAMESPACE_GNC)) {
+                    primaryBudgets.add(element);
+                    primaryBudgetsById.put(getId(element, NAMESPACE_BGT), element);
+                } else if (isElement(node, "GncBillTerm", NAMESPACE_GNC)) {
+                    primaryBillTerms.add(element);
+                    primaryBillTermsById.put(getId(element, NAMESPACE_BILLTERM), element);
+                } else if (isElement(node, "GncCustomer", NAMESPACE_GNC)) {
+                    primaryCustomers.add(element);
+                    primaryCustomersById.put(getId(element, NAMESPACE_CUST), element);
+                } else if (isElement(node, "GncEmployee", NAMESPACE_GNC)) {
+                    primaryEmployees.add(element);
+                    primaryEmployeesById.put(getId(element, NAMESPACE_EMPLOYEE), element);
+                } else if (isElement(node, "GncEntry", NAMESPACE_GNC)) {
+                    primaryEntries.add(element);
+                    primaryEntriesById.put(getId(element, NAMESPACE_ENTRY), element);
+                } else if (isElement(node, "GncInvoice", NAMESPACE_GNC)) {
+                    primaryInvoices.add(element);
+                    primaryInvoicesById.put(getId(element, NAMESPACE_INVOICE), element);
+                } else if (isElement(node, "GncJob", NAMESPACE_GNC)) {
+                    primaryJobs.add(element);
+                    primaryJobsById.put(getId(element, NAMESPACE_JOB), element);
+                } else if (isElement(node, "GncOrder", NAMESPACE_GNC)) {
+                    primaryOrders.add(element);
+                    primaryOrdersById.put(getId(element, NAMESPACE_ORDER), element);
+                } else if (isElement(node, "GncTaxTable", NAMESPACE_GNC)) {
+                    primaryTaxTables.add(element);
+                    primaryTaxTablesById.put(getId(element, NAMESPACE_TAXTABLE), element);
+                } else if (isElement(node, "GncVendor", NAMESPACE_GNC)) {
+                    primaryVendors.add(element);
+                    primaryVendorsById.put(getId(element, NAMESPACE_VENDOR), element);
+                } else if (isElement(node, "slots", NAMESPACE_BOOK)) {
+                    primarySlots = element;
+                }
+            }
+            node = node.getNextSibling();
+        }
+
+        System.out.println("±!@ " + primarySlots);
+        Element secondaryElement;
+        //TODO implement me!
+
+        // Update the counters.
+        Element counter, counterSibling;
+        int count, ordinal;
+        String prefixGnc = getPrefix(primaryDocument, NAMESPACE_GNC);
+        String prefixCd = getPrefix(primaryDocument, NAMESPACE_CD);
+
+        for (BookCountDataType countType : BookCountDataType.values()) {
+            ordinal = countType.ordinal();
+            count = 0;
+            switch (countType) {
+                case ACCOUNT:
+                    count = primaryAccounts.size();
+                    break;
+                case BILLTERM:
+                    count = primaryBillTerms.size();
+                    break;
+                case BUDGET:
+                    count = primaryBudgets.size();
+                    break;
+                case COMMODITY:
+                    count = primaryCommodities.size();
+                    break;
+                case CUSTOMER:
+                    count = primaryCustomers.size();
+                    break;
+                case EMPLOYEE:
+                    count = primaryEmployees.size();
+                    break;
+                case ENTRY:
+                    count = primaryEntries.size();
+                    break;
+                case INVOICE:
+                    count = primaryInvoices.size();
+                    break;
+                case JOB:
+                    count = primaryJobs.size();
+                    break;
+                case ORDER:
+                    count = primaryOrders.size();
+                    break;
+                case PRICE:
+                    count = primaryPrices.size();
+                    break;
+                case SCHED_XACTION:
+                    count = primarySchedules.size();
+                    break;
+                case TAX_TABLE:
+                    count = primaryTaxTables.size();
+                    break;
+                case TRANSACTION:
+                    count = primaryTransactions.size();
+                    break;
+                case VENDOR:
+                    count = primaryVendors.size();
+                    break;
+            }
+
+            counter = primaryCounters[ordinal];
+            if (counter != null) {
+                if (count == 0) {
+                    primary.removeChild(counter);
+                    primaryCounters[ordinal] = null;
+                } else {
+                    counter.setTextContent(String.valueOf(count));
+                }
+            } else if (count > 0) {
+                counter = primaryDocument.createElementNS(NAMESPACE_GNC, "count-data");
+                counter.setPrefix(prefixGnc);
+                counter.setAttributeNS(NAMESPACE_CD, prefixCd + ":type", countType.getName());
+                counter.setTextContent(String.valueOf(count));
+
+                // Insert in the correct ordering.
+                for (int i = ordinal + 1; i < counterTypesLength; i++) {
+                    counterSibling = primaryCounters[i];
+                    if (counterSibling != null) {
+                        primary.insertBefore(counter, counterSibling);
+                        break;
+                    }
+                }
+                if (counter.getParentNode() == null) {
+                    for (int i = ordinal - 1; i >= 0; i--) {
+                        counterSibling = primaryCounters[i];
+                        if (counterSibling != null) {
+                            primary.insertBefore(counter, counterSibling.getNextSibling());
+                            break;
+                        }
+                    }
+                    if ((counter.getParentNode() == null) && (firstElementAfterCounters != null)) {
+                        primary.insertBefore(counter, firstElementAfterCounters.getNextSibling());
+                    }
+                }
+
+                primaryCounters[ordinal] = counter;
+            }
+        }
 
         return primary;
     }
@@ -76,21 +284,21 @@ public class Merger2 implements DOMMerger {
 
         for (int i = 0; i < length; i++) {
             node = content.item(i);
-            if (isElement(node, "book", NS_GNC)) {
+            if (isElement(node, "book", NAMESPACE_GNC)) {
                 return (Element) node;
             }
         }
 
-        Element book = document.createElementNS("book", NS_GNC);
+        Element book = document.createElementNS("book", NAMESPACE_GNC);
         root.appendChild(book);
 
         for (int i = 0; i < length; i++) {
             node = content.item(0);
-            if (isElement(node, "commodity", NS_GNC)) {
+            if (isElement(node, "commodity", NAMESPACE_GNC)) {
                 book.appendChild(root.removeChild(node));
-            } else if (isElement(node, "account", NS_GNC)) {
+            } else if (isElement(node, "account", NAMESPACE_GNC)) {
                 book.appendChild(root.removeChild(node));
-            } else if (isElement(node, "count-data", NS_GNC)) {
+            } else if (isElement(node, "count-data", NAMESPACE_GNC)) {
                 root.removeChild(node);
             }
         }
@@ -99,34 +307,80 @@ public class Merger2 implements DOMMerger {
     }
 
     protected boolean isElement(Node node, String name, String namespace) {
-        return (node.getNodeType() == Node.ELEMENT_NODE) && name.equals(node.getLocalName()) && namespace.equals(node.getNamespaceURI());
+        return (node.getNodeType() == Node.ELEMENT_NODE)
+                && name.equals(node.getLocalName())
+                && ((namespace == node.getNamespaceURI()) || namespace.equals(node.getNamespaceURI()));
+    }
+
+    protected Map<String, Element> mapElements(Element parent, String name, String namespace, String idNamespace) {
+        NodeList nodes = parent.getElementsByTagNameNS(namespace, name);
+        Map<String, Element> elementsById = new HashMap<>();
+        final int length = nodes.getLength();
+        Element element;
+        for (int i = 0; i < length; i++) {
+            element = (Element) nodes.item(i);
+            elementsById.put(getId(element, idNamespace), element);
+        }
+        return elementsById;
+    }
+
+    protected String getId(Element parent, String namespace) {
+        NodeList nodes = parent.getElementsByTagNameNS(namespace, "guid");
+        int length = nodes.getLength();
+        if (length == 0) {
+            nodes = parent.getElementsByTagNameNS(namespace, "id");
+            length = nodes.getLength();
+        }
+        Element element;
+        Attr attr;
+        for (int i = 0; i < length; i++) {
+            element = (Element) nodes.item(i);
+            attr = element.getAttributeNode("type");
+            if ((attr != null) && "guid".equals(attr.getValue())) {
+                return element.getTextContent().trim();
+            }
+        }
+        return null;
+    }
+
+    protected String getSpaceId(Element parent, String namespace) {
+        Node node = parent.getFirstChild();
+        String space = null;
+        String id = null;
+        while ((node != null) && ((space == null) || (id == null))) {
+            if (isElement(node, "space", namespace)) {
+                space = node.getTextContent().trim();
+            } else if (isElement(node, "id", namespace)) {
+                id = node.getTextContent().trim();
+            }
+            node = node.getNextSibling();
+        }
+        return space + "/" + id;
     }
 
     @Override
     public Element mergeAccounts(Element primary, Element secondary) {
-//        String id;
-//
-//        List<Account> primaryItems = primary.getAccount();
-//        Map<String, Account> primaryItemsById = new HashMap<>();
-//        for (Account item : primaryItems) {
-//            id = item.getId().getValue();
-//            primaryItemsById.put(id, item);
-//        }
-//
-//        List<Account> secondaryItems = secondary.getAccount();
-//        for (Account item : secondaryItems) {
-//            id = item.getId().getValue();
-//
-//            // What was added?
-//            if (primaryItemsById.containsKey(id)) {
-//                Account primaryItem = primaryItemsById.get(id);
-//                primary.setSlots(mergeSlots(primaryItem.getSlots(), item.getSlots()));
-//                primaryItem.setLots(mergeLots(primaryItem.getLots(), item.getLots()));
-//            } else {
-//                primaryItems.add(item);
-//                System.out.println("Account added: " + id);
-//            }
-//        }
+        Map<String, Element> primaryItemsById = mapElements(primary, "account", NAMESPACE_GNC, NAMESPACE_ACT);
+
+        NodeList secondaryItems = secondary.getElementsByTagNameNS(NAMESPACE_GNC, "account");
+        final int length = secondaryItems.getLength();
+        Element item;
+        String id;
+        for (int i = 0; i < length; i++) {
+            item = (Element) secondaryItems.item(i);
+            id = getId(item, NAMESPACE_ACT);
+
+            // What was changed or added?
+            if (primaryItemsById.containsKey(id)) {
+                Element primaryItem = primaryItemsById.get(id);
+                //TODO primary.setSlots(mergeSlots(primaryItem.getSlots(), item.getSlots()));
+                //TODO primaryItem.setLots(mergeLots(primaryItem.getLots(), item.getLots()));
+            } else {
+                // FIXME must append in correct section of "account" elements to maintain schema consistent.
+                primary.appendChild(secondary.removeChild(item));
+                System.out.println("Account added: " + id);
+            }
+        }
 
         return primary;
     }
@@ -616,5 +870,19 @@ public class Merger2 implements DOMMerger {
 //            counter.setValue(count);
 //            counters.add(counter);
         }
+    }
+
+    protected String getPrefix(Document document, String namespaceURI) {
+        Element root = document.getDocumentElement();
+        NamedNodeMap attrs = root.getAttributes();
+        Attr attr;
+        int length = attrs.getLength();
+        for (int i = 0; i < length; i++) {
+            attr = (Attr) attrs.item(i);
+            if ((NAMESPACE_XMLNS.equals(attr.getNamespaceURI())) && namespaceURI.equals(attr.getValue())) {
+                return attr.getLocalName();
+            }
+        }
+        return null;
     }
 }
