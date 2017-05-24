@@ -191,7 +191,7 @@ public class Merger2 implements DOMMerger {
                 if (isElement(node, "commodity", NAMESPACE_GNC)) {
                     id = getSpaceId(element, NAMESPACE_CMDTY);
                     if (!primaryCommoditiesById.containsKey(id)) {
-                        addElement(element, primaryCommodities);
+                        node = addElement(element, primaryCommodities);
                         System.out.println("Commodity added: " + id);
                     }
                 } else if (isElement(node, "pricedb", NAMESPACE_GNC)) {
@@ -210,13 +210,13 @@ public class Merger2 implements DOMMerger {
                 } else if (isElement(node, "account", NAMESPACE_GNC)) {
                     id = getId(element, NAMESPACE_ACT);
                     if (!primaryAccountsById.containsKey(id)) {
-                        addElement(element, primaryAccounts);
+                        node = addElement(element, primaryAccounts);
                         System.out.println("Account added: " + id);
                     }
                 } else if (isElement(node, "transaction", NAMESPACE_GNC)) {
                     id = getId(element, NAMESPACE_TRN);
                     if (!primaryTransactionsById.containsKey(id)) {
-                        addElement(element, primaryTransactions);
+                        node = addElement(element, primaryTransactions);
                         System.out.println("Transaction added: " + id);
                     }
                 } else if (isElement(node, "template-transactions", NAMESPACE_GNC)) {
@@ -224,67 +224,67 @@ public class Merger2 implements DOMMerger {
                 } else if (isElement(node, "schedxaction", NAMESPACE_GNC)) {
                     id = getId(element, NAMESPACE_SX);
                     if (!primarySchedulesById.containsKey(id)) {
-                        addElement(element, primarySchedules);
+                        node = addElement(element, primarySchedules);
                         System.out.println("Scheduled Transaction added: " + id);
                     }
                 } else if (isElement(node, "budget", NAMESPACE_GNC)) {
                     id = getId(element, NAMESPACE_BGT);
                     if (!primaryBudgetsById.containsKey(id)) {
-                        addElement(element, primaryBudgets);
+                        node = addElement(element, primaryBudgets);
                         System.out.println("Budget added: " + id);
                     }
                 } else if (isElement(node, "GncBillTerm", NAMESPACE_GNC)) {
                     id = getId(element, NAMESPACE_BILLTERM);
                     if (!primaryBillTermsById.containsKey(id)) {
-                        addElement(element, primaryBillTerms);
+                        node = addElement(element, primaryBillTerms);
                         System.out.println("Bill Term added: " + id);
                     }
                 } else if (isElement(node, "GncCustomer", NAMESPACE_GNC)) {
                     id = getId(element, NAMESPACE_CUST);
                     if (!primaryCustomersById.containsKey(id)) {
-                        addElement(element, primaryCustomers);
+                        node = addElement(element, primaryCustomers);
                         System.out.println("Customer added: " + id);
                     }
                 } else if (isElement(node, "GncEmployee", NAMESPACE_GNC)) {
                     id = getId(element, NAMESPACE_EMPLOYEE);
                     if (!primaryEmployeesById.containsKey(id)) {
-                        addElement(element, primaryEmployees);
+                        node = addElement(element, primaryEmployees);
                         System.out.println("Employee added: " + id);
                     }
                 } else if (isElement(node, "GncEntry", NAMESPACE_GNC)) {
                     id = getId(element, NAMESPACE_ENTRY);
                     if (!primaryEntriesById.containsKey(id)) {
-                        addElement(element, primaryEntries);
+                        node = addElement(element, primaryEntries);
                         System.out.println("Entry added: " + id);
                     }
                 } else if (isElement(node, "GncInvoice", NAMESPACE_GNC)) {
                     id = getId(element, NAMESPACE_INVOICE);
                     if (!primaryInvoicesById.containsKey(id)) {
-                        addElement(element, primaryInvoices);
+                        node = addElement(element, primaryInvoices);
                         System.out.println("Invoice added: " + id);
                     }
                 } else if (isElement(node, "GncJob", NAMESPACE_GNC)) {
                     id = getId(element, NAMESPACE_JOB);
                     if (!primaryJobsById.containsKey(id)) {
-                        addElement(element, primaryJobs);
+                        node = addElement(element, primaryJobs);
                         System.out.println("Job added: " + id);
                     }
                 } else if (isElement(node, "GncOrder", NAMESPACE_GNC)) {
                     id = getId(element, NAMESPACE_ORDER);
                     if (!primaryOrdersById.containsKey(id)) {
-                        addElement(element, primaryOrders);
+                        node = addElement(element, primaryOrders);
                         System.out.println("Order added: " + id);
                     }
                 } else if (isElement(node, "GncTaxTable", NAMESPACE_GNC)) {
                     id = getId(element, NAMESPACE_TAXTABLE);
                     if (!primaryTaxTablesById.containsKey(id)) {
-                        addElement(element, primaryTaxTables);
+                        node = addElement(element, primaryTaxTables);
                         System.out.println("Tax Table added: " + id);
                     }
                 } else if (isElement(node, "GncVendor", NAMESPACE_GNC)) {
                     id = getId(element, NAMESPACE_VENDOR);
                     if (!primaryVendorsById.containsKey(id)) {
-                        addElement(element, primaryVendors);
+                        node = addElement(element, primaryVendors);
                         System.out.println("Vendor added: " + id);
                     }
                 } else if (isElement(node, "slots", NAMESPACE_BOOK)) {
@@ -999,12 +999,14 @@ public class Merger2 implements DOMMerger {
         return document.lookupPrefix(namespaceURI);
     }
 
-    protected void addElement(Element secondary, List<Element> primaryElements) {
+    protected Node addElement(Element secondary, List<Element> primaryElements) {
+        Node nextSibling = secondary.getNextSibling();
         Element primaryElement = primaryElements.get(primaryElements.size() - 1);
         secondary = (Element) primaryElement.getOwnerDocument()
                 .importNode(secondary.getParentNode().removeChild(secondary), true);
         primaryElement.getParentNode()
                 .insertBefore(secondary, primaryElement.getNextSibling());
         primaryElements.add(secondary);
+        return nextSibling;
     }
 }
