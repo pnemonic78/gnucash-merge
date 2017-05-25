@@ -580,7 +580,8 @@ public class Merger2 implements DOMMerger {
             }
             Document document = primary.getOwnerDocument();
             primarySlots = document.createElementNS(namespaceURI, getPrefix(document, namespaceURI) + ":" + "slots");
-            primary.appendChild(primarySlots);//"slots" almost always the last element.
+            //FIXME "slots" almost always the last element, unless before "child" or "parent".
+            primary.appendChild(primarySlots);
         }
         mergeSlots(primarySlots, secondarySlots);
     }
