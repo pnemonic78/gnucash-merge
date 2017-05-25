@@ -208,6 +208,7 @@ public class Merger2 implements DOMMerger {
                 if (primaryElementsById.containsKey(id)) {
                     primaryElement = primaryElementsById.get(id);
                     mergeSlots(primaryElement, element, namespaceURI);
+                    mergeLots(primaryElement, element, namespaceURI);
                 } else {
                     addElement(primary, element, primaryAccounts);
                     System.out.println("Account added: " + id);
@@ -637,39 +638,104 @@ public class Merger2 implements DOMMerger {
         //TODO implement me!
     }
 
-    protected Node mergeLots(Element primary, Element secondary) {
-        Node nextSibling = secondary.getNextSibling();
-//        if (secondary == null) {
-//            return primary;
-//        }
-//        if (primary == null) {
-//            primary = accountFactory.createLots();
-//        }
-//
-//        String id;
-//
-//        List<Lot> primaryItems = primary.getLot();
-//        Map<String, Lot> primaryItemsById = new HashMap<>();
-//        for (Lot item : primaryItems) {
-//            id = item.getId().getValue();
-//            primaryItemsById.put(id, item);
-//        }
-//
-//        List<Lot> secondaryItems = secondary.getLot();
-//        for (Lot item : secondaryItems) {
-//            id = item.getId().getValue();
-//
-//            // What was added?
-//            if (primaryItemsById.containsKey(id)) {
-//                Lot primaryItem = primaryItemsById.get(id);
-//                primaryItem.setSlots(mergeSlots(primaryItem.getSlots(), item.getSlots()));
-//            } else {
-//                primaryItems.add(item);
-//                System.out.println("Lot added: " + id);
-//            }
-//        }
+    protected void mergeLots(Element primary, Element secondary, String namespaceURI) {
+        if (secondary == null) {
+            return;
+        }
 
-        return nextSibling;
+        Element primarySlots = null;
+        Element secondarySlots = null;
+        Element element;
+        Node node;
+        Node nodeNext = primary.getFirstChild();
+        while (nodeNext != null) {
+            node = nodeNext;
+            nodeNext = node.getNextSibling();
+
+            if (node.getNodeType() != Node.ELEMENT_NODE) {
+                continue;
+            }
+            element = (Element) node;
+
+            if (isElement(node, "lots", namespaceURI)) {
+                primarySlots = element;
+                break;
+            }
+        }
+
+        nodeNext = secondary.getFirstChild();
+        while (nodeNext != null) {
+            node = nodeNext;
+            nodeNext = node.getNextSibling();
+
+            if (node.getNodeType() != Node.ELEMENT_NODE) {
+                continue;
+            }
+            element = (Element) node;
+
+            if (isElement(node, "lots", namespaceURI)) {
+                secondarySlots = element;
+                break;
+            }
+        }
+
+        if (primarySlots == null) {
+            if (secondarySlots == null) {
+                return;
+            }
+            Document document = primary.getOwnerDocument();
+            primarySlots = document.createElementNS(namespaceURI, getPrefix(document, namespaceURI) + ":" + "lots");
+            // "slots" almost the last element.
+            primary.appendChild(primarySlots);
+        }
+        mergeLots(primarySlots, secondarySlots);
+    }
+
+    protected void mergeLots(Element primary, Element secondary) {
+        if (secondary == null) {
+            return;
+        }
+
+        List<Element> primaryLots = new ArrayList<>();
+        Map<String, Element> primaryLotsById = new HashMap<>();
+        String id;
+        Element element;
+        Node node;
+        Node nodeNext = primary.getFirstChild();
+        while (nodeNext != null) {
+            node = nodeNext;
+            nodeNext = node.getNextSibling();
+
+            if (node.getNodeType() != Node.ELEMENT_NODE) {
+                continue;
+            }
+            element = (Element) node;
+
+            if (isElement(node, "lot", null)) {
+                id = getSlotId(element);
+                primaryLots.add(element);
+                primaryLotsById.put(id, element);
+            }
+        }
+
+        nodeNext = secondary.getFirstChild();
+        while (nodeNext != null) {
+            node = nodeNext;
+            nodeNext = node.getNextSibling();
+
+            if (node.getNodeType() != Node.ELEMENT_NODE) {
+                continue;
+            }
+            element = (Element) node;
+
+            if (isElement(node, "lot", null)) {
+                id = getSlotId(element);
+                if (!primaryLotsById.containsKey(id)) {
+                    addElement(primary, element, primaryLots);
+                    System.out.println("Lot added: " + id + " to " + primary.getNodeName() + " " + getId((Element) primary.getParentNode(), primary.getNamespaceURI()));
+                }
+            }
+        }
     }
 
     protected boolean isElement(Node node, String name, String namespaceURI) {
