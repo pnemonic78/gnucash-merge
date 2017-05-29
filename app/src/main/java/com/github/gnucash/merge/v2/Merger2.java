@@ -89,6 +89,8 @@ public class Merger2 implements DOMMerger {
         BookCountDataType countDataType;
         Node firstElementAfterCounters = null;
         Map<String, Element> primaryElementsById;
+        Element primaryElement;
+        int compare;
 
         Node node;
         Node nodeNext = primary.getFirstChild();
@@ -122,8 +124,22 @@ public class Merger2 implements DOMMerger {
                 primaryAccountsById.put(id, element);
             } else if (isElement(node, "transaction", NAMESPACE_GNC)) {
                 id = getId(element, NAMESPACE_TRN);
-                primaryTransactions.add(element);
-                primaryTransactionsById.put(id, element);
+                if (primaryTransactionsById.containsKey(id)) {
+                    // Keep only the latest.
+                    primaryElement = primaryTransactionsById.get(id);
+                    compare = compareTransaction(primaryElement, element);
+                    if (compare < 0) {
+                        primaryTransactions.remove(primaryElement);
+                        primaryTransactions.add(element);
+                        primaryTransactionsById.put(id, element);
+                    } else {
+                        primary.removeChild(element);
+                        System.out.println("Duplicate transaction removed: " + id);
+                    }
+                } else {
+                    primaryTransactions.add(element);
+                    primaryTransactionsById.put(id, element);
+                }
             } else if (isElement(node, "template-transactions", NAMESPACE_GNC)) {
                 primaryTemplateTransactions.add(element);
             } else if (isElement(node, "schedxaction", NAMESPACE_GNC)) {
@@ -176,7 +192,6 @@ public class Merger2 implements DOMMerger {
         }
 
         // What secondary elements changed?
-        Element primaryElement;
         nodeNext = secondary.getFirstChild();
         while (nodeNext != null) {
             node = nodeNext;
@@ -744,30 +759,13 @@ public class Merger2 implements DOMMerger {
                 && Objects.equals(namespaceURI, node.getNamespaceURI());
     }
 
-    protected Map<String, Element> mapElements(Element parent, String name, String namespaceURI, String idNamespace) {
-        NodeList nodes = parent.getElementsByTagNameNS(namespaceURI, name);
-        Map<String, Element> elementsById = new HashMap<>();
-        final int length = nodes.getLength();
-        Element element;
-        for (int i = 0; i < length; i++) {
-            element = (Element) nodes.item(i);
-            elementsById.put(getId(element, idNamespace), element);
-        }
-        return elementsById;
-    }
-
     protected String getId(Element parent, String namespaceURI) {
-        NodeList nodes = parent.getElementsByTagNameNS(namespaceURI, "guid");
-        int length = nodes.getLength();
-        if (length == 0) {
-            nodes = parent.getElementsByTagNameNS(namespaceURI, "id");
-            length = nodes.getLength();
+        Element element = getElement(parent, "guid", namespaceURI);
+        if (element == null) {
+            element = getElement(parent, "id", namespaceURI);
         }
-        Element element;
-        Attr attr;
-        for (int i = 0; i < length; i++) {
-            element = (Element) nodes.item(i);
-            attr = element.getAttributeNode("type");
+        if (element != null) {
+            Attr attr = element.getAttributeNode("type");
             if ((attr != null) && "guid".equals(attr.getValue())) {
                 return element.getTextContent().trim();
             }
@@ -830,5 +828,56 @@ public class Merger2 implements DOMMerger {
         }
         primaryElements.add(secondary);
         return secondary;
+    }
+
+    protected int compareTransaction(Element element1, Element element2) {
+        Element dateEntered1 = getElement(element1, "date-entered", NAMESPACE_TRN);
+        Element dateEntered2 = getElement(element2, "date-entered", NAMESPACE_TRN);
+        int c = compareTimeSpec(dateEntered1, dateEntered2);
+        if (c != 0) {
+            return c;
+        }
+        Element datePosted1 = getElement(element1, "date-posted", NAMESPACE_TRN);
+        Element datePosted2 = getElement(element2, "date-posted", NAMESPACE_TRN);
+        return compareTimeSpec(datePosted1, datePosted2);
+    }
+
+    protected int compareTimeSpec(Element element1, Element element2) {
+        if (element1 == null) {
+            if (element2 == null) {
+                return 0;
+            }
+            return -1;
+        }
+        if (element2 == null) {
+            return 1;
+        }
+        Element date1 = getElement(element1, "date", NAMESPACE_TS);
+        Element date2 = getElement(element2, "date", NAMESPACE_TS);
+        return compareTimeSpec(date1.getTextContent(), date2.getTextContent());
+    }
+
+    protected int compareTimeSpec(String time1, String time2) {
+        if (time1 == null) {
+            if (time2 == null) {
+                return 0;
+            }
+            return -1;
+        }
+        if (time2 == null) {
+            return 1;
+        }
+        return time1.trim().compareTo(time2.trim());
+    }
+
+    protected Element getElement(Element parent, String name, String namespaceURI) {
+        Node node = parent.getFirstChild();
+        while (node != null) {
+            if (isElement(node, name, namespaceURI)) {
+                return (Element) node;
+            }
+            node = node.getNextSibling();
+        }
+        return null;
     }
 }
