@@ -8,11 +8,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- * Merge gnucash documents.
+ * Merge gnucash XML files.
  *
  * @author Moshe Waisberg
  */
-public interface DOMMerger {
+public interface DOMMerger extends GncMerger {
 
     String NAMESPACE_XMLNS = "http://www.w3.org/2000/xmlns/";
 
@@ -53,7 +53,7 @@ public interface DOMMerger {
      * @param secondary The secondary data with changes.
      * @return the merged data.
      */
-    Document merge(Document primary, Document secondary);
+    Document mergeDocument(Document primary, Document secondary);
 
     /**
      * Merge gnucash data.

@@ -26,7 +26,7 @@ import java.util.Objects;
 public class Merger2 implements DOMMerger {
 
     @Override
-    public Document merge(Document primary, Document secondary) {
+    public Document mergeDocument(Document primary, Document secondary) {
         return mergeGnuCashXml(primary, secondary);
     }
 

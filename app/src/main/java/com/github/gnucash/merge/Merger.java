@@ -69,7 +69,7 @@ public class Merger {
         System.out.println("Merging data...");
         DOMMerger merger = createMerger(primary);
 
-        Document merged = merger.merge(primary, secondary);
+        Document merged = merger.mergeDocument(primary, secondary);
 
         // Write back to file.
         System.out.println("Writing to file \"" + destinationFile + "\"...");
