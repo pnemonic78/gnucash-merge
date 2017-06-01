@@ -41,7 +41,17 @@ public class Merger {
         File primaryFile = new File(args[0]);
         File secondaryFile = new File(args[1]);
         File destinationFile = (args.length > 2) ? new File(args[2]) : primaryFile;
-        new Merger().merge(primaryFile, secondaryFile, destinationFile);
+        new Merger(new SystemMergeListener()).merge(primaryFile, secondaryFile, destinationFile);
+    }
+
+    private final DOMMergerListener listener;
+
+    public Merger() {
+        this(null);
+    }
+
+    public Merger(DOMMergerListener listener) {
+        this.listener = listener;
     }
 
     /**
@@ -56,31 +66,97 @@ public class Merger {
      * @throws TransformerException         If an XML error occurs.
      */
     public void merge(File primaryFile, File secondaryFile, File destinationFile) throws ParserConfigurationException, IOException, SAXException, TransformerException {
+        notifyMergeStart();
+
         // Read from files.
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         documentBuilderFactory.setNamespaceAware(true);
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        System.out.println("Reading primary file \"" + primaryFile + "\"...");
+        notifyReadPrimaryFileStart(primaryFile);
         Document primary = documentBuilder.parse(primaryFile);
-        System.out.println("Reading secondary file \"" + secondaryFile + "\"...");
+        notifyReadPrimaryFileFinish(primaryFile);
+        notifyReadingSecondaryFileStart(secondaryFile);
         Document secondary = documentBuilder.parse(secondaryFile);
+        notifyReadingSecondaryFileFinish(secondaryFile);
 
         // Merge.
-        System.out.println("Merging data...");
+        notifyMergeDocumentStart(primary, secondary);
         DOMMerger merger = createMerger(primary);
-
         Document merged = merger.mergeDocument(primary, secondary);
+        notifyMergeDocumentFinish(merged);
 
         // Write back to file.
-        System.out.println("Writing to file \"" + destinationFile + "\"...");
+        notifyWriteDestinationFileStart(destinationFile);
         destinationFile.getAbsoluteFile().getParentFile().mkdirs();
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource source = new DOMSource(merged);
         Result result = new StreamResult(destinationFile);
         transformer.transform(source, result);
+        notifyWriteDestinationFileFinish(destinationFile);
 
-        System.out.println("Finished merge.");
+        notifyMergeFinish();
+    }
+
+    private void notifyReadPrimaryFileStart(File file) {
+        if (listener != null) {
+            listener.onReadPrimaryFileStart(file);
+        }
+    }
+
+    private void notifyReadPrimaryFileFinish(File file) {
+        if (listener != null) {
+            listener.onReadPrimaryFileFinish(file);
+        }
+    }
+
+    private void notifyReadingSecondaryFileStart(File file) {
+        if (listener != null) {
+            listener.onReadingSecondaryFileStart(file);
+        }
+    }
+
+    private void notifyReadingSecondaryFileFinish(File file) {
+        if (listener != null) {
+            listener.onReadingSecondaryFileFinish(file);
+        }
+    }
+
+    private void notifyMergeDocumentStart(Document primary, Document secondary) {
+        if (listener != null) {
+            listener.onMergeDocumentStart(primary, secondary);
+        }
+
+    }
+
+    private void notifyMergeDocumentFinish(Document merged) {
+        if (listener != null) {
+            listener.onMergeDocumentFinish(merged);
+        }
+    }
+
+    private void notifyWriteDestinationFileStart(File file) {
+        if (listener != null) {
+            listener.onWriteDestinationFileStart(file);
+        }
+    }
+
+    private void notifyWriteDestinationFileFinish(File file) {
+        if (listener != null) {
+            listener.onWriteDestinationFileFinish(file);
+        }
+    }
+
+    private void notifyMergeStart() {
+        if (listener != null) {
+            listener.onMergeStart();
+        }
+    }
+
+    private void notifyMergeFinish() {
+        if (listener != null) {
+            listener.onMergeFinish();
+        }
     }
 
     private DOMMerger createMerger(Document document) {

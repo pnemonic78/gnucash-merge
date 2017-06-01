@@ -8,7 +8,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 /**
- * Merge gnucash XML files.
+ * Merge gnucash XML documents.
  *
  * @author Moshe Waisberg
  */
