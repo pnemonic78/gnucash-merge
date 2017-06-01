@@ -5,6 +5,8 @@
 package com.github.gnucash.merge.v2;
 
 import com.github.gnucash.merge.DOMMerger;
+import com.github.gnucash.merge.DOMMergerListener;
+import com.github.gnucash.merge.GncMergerListener;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -24,6 +26,17 @@ import java.util.Objects;
  * @author Moshe Waisberg
  */
 public class Merger2 implements DOMMerger {
+
+    protected final DOMMergerListener listener;
+
+    public Merger2(DOMMergerListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public GncMergerListener getListener() {
+        return listener;
+    }
 
     @Override
     public Document mergeDocument(Document primary, Document secondary) {

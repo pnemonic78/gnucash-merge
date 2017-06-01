@@ -9,5 +9,6 @@ package com.github.gnucash.merge;
  *
  * @author Moshe Waisberg
  */
-public interface GncMerger {
+public interface GncMerger<L extends GncMergerListener> {
+    L getListener();
 }

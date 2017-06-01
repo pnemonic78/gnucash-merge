@@ -12,7 +12,7 @@ import org.w3c.dom.Element;
  *
  * @author Moshe Waisberg
  */
-public interface DOMMerger extends GncMerger {
+public interface DOMMerger<L extends DOMMergerListener> extends GncMerger<L> {
 
     String NAMESPACE_XMLNS = "http://www.w3.org/2000/xmlns/";
 

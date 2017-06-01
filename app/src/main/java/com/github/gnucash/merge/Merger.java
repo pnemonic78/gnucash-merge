@@ -159,11 +159,11 @@ public class Merger {
         }
     }
 
-    private DOMMerger createMerger(Document document) {
+    protected DOMMerger createMerger(Document document) {
         Element root = document.getDocumentElement();
         String name = root.getTagName();
         if ("gnc-v2".equals(name)) {
-            return new Merger2();
+            return new Merger2(listener);
         }
         return null;
     }
