@@ -147,7 +147,7 @@ public class Merger2 implements DOMMerger {
                         primaryTransactionsById.put(id, element);
                     } else {
                         primary.removeChild(element);
-                        System.out.println("Duplicate transaction removed: " + id);
+                        notifyTransactionRemoved(element, id);
                     }
                 } else {
                     primaryTransactions.add(element);
@@ -223,8 +223,8 @@ public class Merger2 implements DOMMerger {
                     primaryElement = primaryElementsById.get(id);
                     mergeSlots(primaryElement, element, namespaceURI);
                 } else {
-                    addElement(primary, element, primaryCommodities);
-                    System.out.println("Commodity added: " + id);
+                    element = addElement(primary, element, primaryCommodities);
+                    notifyCommodityAdded(element, id);
                 }
             } else if (isElement(node, "pricedb", NAMESPACE_GNC)) {
                 //FIXME what if no primary pricesdb but is secondary pricesdb?
@@ -238,8 +238,8 @@ public class Merger2 implements DOMMerger {
                     mergeSlots(primaryElement, element, namespaceURI);
                     mergeLots(primaryElement, element, namespaceURI);
                 } else {
-                    addElement(primary, element, primaryAccounts);
-                    System.out.println("Account added: " + id);
+                    element = addElement(primary, element, primaryAccounts);
+                    notifyAccountAdded(element, id);
                 }
             } else if (isElement(node, "transaction", NAMESPACE_GNC)) {
                 namespaceURI = NAMESPACE_TRN;
@@ -249,8 +249,8 @@ public class Merger2 implements DOMMerger {
                     primaryElement = primaryElementsById.get(id);
                     mergeSlots(primaryElement, element, namespaceURI);
                 } else {
-                    addElement(primary, element, primaryTransactions);
-                    System.out.println("Transaction added: " + id);
+                    element = addElement(primary, element, primaryTransactions);
+                    notifyTransactionAdded(element, id);
                 }
             } else if (isElement(node, "template-transactions", NAMESPACE_GNC)) {
                 //TODO
@@ -262,8 +262,8 @@ public class Merger2 implements DOMMerger {
                     primaryElement = primaryElementsById.get(id);
                     mergeSlots(primaryElement, element, namespaceURI);
                 } else {
-                    addElement(primary, element, primarySchedules);
-                    System.out.println("Scheduled Transaction added: " + id);
+                    element = addElement(primary, element, primarySchedules);
+                    notifyScheduledTransactionAdded(element, id);
                 }
             } else if (isElement(node, "budget", NAMESPACE_GNC)) {
                 namespaceURI = NAMESPACE_BGT;
@@ -273,8 +273,8 @@ public class Merger2 implements DOMMerger {
                     primaryElement = primaryElementsById.get(id);
                     mergeSlots(primaryElement, element, namespaceURI);
                 } else {
-                    addElement(primary, element, primaryBudgets);
-                    System.out.println("Budget added: " + id);
+                    element = addElement(primary, element, primaryBudgets);
+                    notifyBudgetAdded(element, id);
                 }
             } else if (isElement(node, "GncBillTerm", NAMESPACE_GNC)) {
                 namespaceURI = NAMESPACE_BILLTERM;
@@ -284,8 +284,8 @@ public class Merger2 implements DOMMerger {
                     primaryElement = primaryElementsById.get(id);
                     mergeSlots(primaryElement, element, namespaceURI);
                 } else {
-                    addElement(primary, element, primaryBillTerms);
-                    System.out.println("Bill Term added: " + id);
+                    element = addElement(primary, element, primaryBillTerms);
+                    notifyBillTermAdded(element, id);
                 }
             } else if (isElement(node, "GncCustomer", NAMESPACE_GNC)) {
                 namespaceURI = NAMESPACE_CUST;
@@ -295,8 +295,8 @@ public class Merger2 implements DOMMerger {
                     primaryElement = primaryElementsById.get(id);
                     mergeSlots(primaryElement, element, namespaceURI);
                 } else {
-                    addElement(primary, element, primaryCustomers);
-                    System.out.println("Customer added: " + id);
+                    element = addElement(primary, element, primaryCustomers);
+                    notifyCustomerAdded(element, id);
                 }
             } else if (isElement(node, "GncEmployee", NAMESPACE_GNC)) {
                 namespaceURI = NAMESPACE_EMPLOYEE;
@@ -306,8 +306,8 @@ public class Merger2 implements DOMMerger {
                     primaryElement = primaryElementsById.get(id);
                     mergeSlots(primaryElement, element, namespaceURI);
                 } else {
-                    addElement(primary, element, primaryEmployees);
-                    System.out.println("Employee added: " + id);
+                    element = addElement(primary, element, primaryEmployees);
+                    notifyEmployeeAdded(element, id);
                 }
             } else if (isElement(node, "GncEntry", NAMESPACE_GNC)) {
                 namespaceURI = NAMESPACE_ENTRY;
@@ -317,8 +317,8 @@ public class Merger2 implements DOMMerger {
                     primaryElement = primaryElementsById.get(id);
                     mergeSlots(primaryElement, element, namespaceURI);
                 } else {
-                    addElement(primary, element, primaryEntries);
-                    System.out.println("Entry added: " + id);
+                    element = addElement(primary, element, primaryEntries);
+                    notifyEntryAdded(element, id);
                 }
             } else if (isElement(node, "GncInvoice", NAMESPACE_GNC)) {
                 namespaceURI = NAMESPACE_INVOICE;
@@ -328,8 +328,8 @@ public class Merger2 implements DOMMerger {
                     primaryElement = primaryElementsById.get(id);
                     mergeSlots(primaryElement, element, namespaceURI);
                 } else {
-                    addElement(primary, element, primaryInvoices);
-                    System.out.println("Invoice added: " + id);
+                    element = addElement(primary, element, primaryInvoices);
+                    notifyInvoiceAdded(element, id);
                 }
             } else if (isElement(node, "GncJob", NAMESPACE_GNC)) {
                 namespaceURI = NAMESPACE_JOB;
@@ -339,8 +339,8 @@ public class Merger2 implements DOMMerger {
                     primaryElement = primaryElementsById.get(id);
                     mergeSlots(primaryElement, element, namespaceURI);
                 } else {
-                    addElement(primary, element, primaryJobs);
-                    System.out.println("Job added: " + id);
+                    element = addElement(primary, element, primaryJobs);
+                    notifyJobAdded(element, id);
                 }
             } else if (isElement(node, "GncOrder", NAMESPACE_GNC)) {
                 namespaceURI = NAMESPACE_ORDER;
@@ -350,8 +350,8 @@ public class Merger2 implements DOMMerger {
                     primaryElement = primaryElementsById.get(id);
                     mergeSlots(primaryElement, element, namespaceURI);
                 } else {
-                    addElement(primary, element, primaryOrders);
-                    System.out.println("Order added: " + id);
+                    element = addElement(primary, element, primaryOrders);
+                    notifyOrderAdded(element, id);
                 }
             } else if (isElement(node, "GncTaxTable", NAMESPACE_GNC)) {
                 namespaceURI = NAMESPACE_TAXTABLE;
@@ -361,8 +361,8 @@ public class Merger2 implements DOMMerger {
                     primaryElement = primaryElementsById.get(id);
                     mergeSlots(primaryElement, element, namespaceURI);
                 } else {
-                    addElement(primary, element, primaryTaxTables);
-                    System.out.println("Tax Table added: " + id);
+                    element = addElement(primary, element, primaryTaxTables);
+                    notifyTaxTableAdded(element, id);
                 }
             } else if (isElement(node, "GncVendor", NAMESPACE_GNC)) {
                 namespaceURI = NAMESPACE_VENDOR;
@@ -372,8 +372,8 @@ public class Merger2 implements DOMMerger {
                     primaryElement = primaryElementsById.get(id);
                     mergeSlots(primaryElement, element, namespaceURI);
                 } else {
-                    addElement(primary, element, primaryVendors);
-                    System.out.println("Vendor added: " + id);
+                    element = addElement(primary, element, primaryVendors);
+                    notifyVendorAdded(element, id);
                 }
             } else if (isElement(node, "slots", NAMESPACE_BOOK)) {
                 //FIXME what if no primary pricesdb but is secondary pricesdb?
@@ -555,8 +555,8 @@ public class Merger2 implements DOMMerger {
             if (isElement(node, "price", null)) {
                 id = getId(element, NAMESPACE_PRICE);
                 if (!primaryPricesById.containsKey(id)) {
-                    addElement(primary, element, primaryPrices);
-                    System.out.println("Price added: " + id);
+                    element = addElement(primary, element, primaryPrices);
+                    notifyPriceAdded(element, id);
                 }
             }
         }
@@ -619,6 +619,7 @@ public class Merger2 implements DOMMerger {
         if (secondary == null) {
             return;
         }
+        final String primaryId = getId((Element) primary.getParentNode(), primary.getNamespaceURI());
 
         List<Element> primarySlots = new ArrayList<>();
         Map<String, Element> primarySlotsById = new HashMap<>();
@@ -655,8 +656,8 @@ public class Merger2 implements DOMMerger {
             if (isElement(node, "slot", null)) {
                 id = getSlotId(element);
                 if (!primarySlotsById.containsKey(id)) {
-                    addElement(primary, element, primarySlots);
-                    System.out.println("Slot added: " + id + " to " + primary.getNodeName() + " " + getId((Element) primary.getParentNode(), primary.getNamespaceURI()));
+                    element = addElement(primary, element, primarySlots);
+                    notifySlotAdded(primary, primaryId, element, id);
                 }
             }
         }
@@ -723,6 +724,7 @@ public class Merger2 implements DOMMerger {
         if (secondary == null) {
             return;
         }
+        final String primaryId = getId((Element) primary.getParentNode(), primary.getNamespaceURI());
 
         List<Element> primaryLots = new ArrayList<>();
         Map<String, Element> primaryLotsById = new HashMap<>();
@@ -759,8 +761,8 @@ public class Merger2 implements DOMMerger {
             if (isElement(node, "lot", null)) {
                 id = getSlotId(element);
                 if (!primaryLotsById.containsKey(id)) {
-                    addElement(primary, element, primaryLots);
-                    System.out.println("Lot added: " + id + " to " + primary.getNodeName() + " " + getId((Element) primary.getParentNode(), primary.getNamespaceURI()));
+                    element = addElement(primary, element, primaryLots);
+                    notifyLotAdded(primary, primaryId, element, id);
                 }
             }
         }
@@ -892,5 +894,113 @@ public class Merger2 implements DOMMerger {
             node = node.getNextSibling();
         }
         return null;
+    }
+
+    private void notifyAccountAdded(Element element, String id) {
+        if (listener != null) {
+            listener.onAccountAdded(element, id);
+        }
+    }
+
+    private void notifyBudgetAdded(Element element, String id) {
+        if (listener != null) {
+            listener.onBudgetAdded(element, id);
+        }
+    }
+
+    private void notifyBillTermAdded(Element element, String id) {
+        if (listener != null) {
+            listener.onBillTermAdded(element, id);
+        }
+    }
+
+    private void notifyCommodityAdded(Element element, String id) {
+        if (listener != null) {
+            listener.onCommodityAdded(element, id);
+        }
+    }
+
+    private void notifyCustomerAdded(Element element, String id) {
+        if (listener != null) {
+            listener.onCustomerAdded(element, id);
+        }
+    }
+
+    private void notifyEmployeeAdded(Element element, String id) {
+        if (listener != null) {
+            listener.onEmployeeAdded(element, id);
+        }
+    }
+
+    private void notifyEntryAdded(Element element, String id) {
+        if (listener != null) {
+            listener.onEntryAdded(element, id);
+        }
+    }
+
+    private void notifyInvoiceAdded(Element element, String id) {
+        if (listener != null) {
+            listener.onInvoiceAdded(element, id);
+        }
+    }
+
+    private void notifyJobAdded(Element element, String id) {
+        if (listener != null) {
+            listener.onJobAdded(element, id);
+        }
+    }
+
+    private void notifyLotAdded(Element primary, String primaryId, Element element, String id) {
+        if (listener != null) {
+            listener.onLotAdded(primary, primaryId, element, id);
+        }
+    }
+
+    private void notifyOrderAdded(Element element, String id) {
+        if (listener != null) {
+            listener.onOrderAdded(element, id);
+        }
+    }
+
+    private void notifyPriceAdded(Element element, String id) {
+        if (listener != null) {
+            listener.onPriceAdded(element, id);
+        }
+    }
+
+    private void notifyScheduledTransactionAdded(Element element, String id) {
+        if (listener != null) {
+            listener.onScheduledTransactionAdded(element, id);
+        }
+    }
+
+    private void notifySlotAdded(Element primary, String primaryId, Element element, String id) {
+        if (listener != null) {
+            listener.onSlotAdded(primary, primaryId, element, id);
+        }
+    }
+
+    private void notifyTaxTableAdded(Element element, String id) {
+        if (listener != null) {
+            listener.onTaxTableAdded(element, id);
+        }
+    }
+
+    private void notifyTransactionAdded(Element element, String id) {
+        if (listener != null) {
+            listener.onTransactionAdded(element, id);
+        }
+    }
+
+    private void notifyTransactionRemoved(Element element, String id) {
+        if (listener != null) {
+            listener.onTransactionRemoved(element, id);
+        }
+    }
+
+    private void notifyVendorAdded(Element element, String id) {
+        if (listener != null) {
+            listener.onVendorAdded(element, id);
+        }
     }
 }
