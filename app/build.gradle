@@ -6,11 +6,13 @@ plugins {
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
 
-sourceSets {
-    main {
-        java {
-            srcDirs += ['src/generated/java']
-        }
+mainClassName = 'com.github.gnucash.merge.Merger'
+
+jar {
+    baseName = "gnucash-merge"
+    version = "1.0"
+    manifest {
+        attributes 'Main-Class': mainClassName
     }
 }
 
