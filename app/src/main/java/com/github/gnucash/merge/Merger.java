@@ -4,14 +4,15 @@
  */
 package com.github.gnucash.merge;
 
-import com.github.gnucash.merge.v2.Merger2;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.zip.GZIPInputStream;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -22,6 +23,9 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+
+import com.github.gnucash.merge.v2.Merger2;
+import com.sun.org.apache.xerces.internal.impl.io.MalformedByteSequenceException;
 
 /**
  * Merge gnucash files.
@@ -73,10 +77,10 @@ public class Merger {
         documentBuilderFactory.setNamespaceAware(true);
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         notifyReadPrimaryFileStart(primaryFile);
-        Document primary = documentBuilder.parse(primaryFile);
+        Document primary = parse(documentBuilder, primaryFile);
         notifyReadPrimaryFileFinish(primaryFile);
         notifyReadingSecondaryFileStart(secondaryFile);
-        Document secondary = documentBuilder.parse(secondaryFile);
+        Document secondary = parse(documentBuilder, secondaryFile);
         notifyReadingSecondaryFileFinish(secondaryFile);
 
         // Merge.
@@ -96,6 +100,41 @@ public class Merger {
         notifyWriteDestinationFileFinish(destinationFile);
 
         notifyMergeFinish();
+    }
+
+    private Document parse(DocumentBuilder documentBuilder, File file) throws IOException, SAXException {
+        try {
+            return documentBuilder.parse(file);
+        } catch (MalformedByteSequenceException e) {
+            return parseGZip(documentBuilder, file);
+        }
+    }
+
+    private Document parse(DocumentBuilder documentBuilder, InputStream in) throws IOException, SAXException {
+        return documentBuilder.parse(in);
+    }
+
+    private Document parseGZip(DocumentBuilder documentBuilder, File file) throws IOException, SAXException {
+        InputStream in = new FileInputStream(file);
+        GZIPInputStream zin = null;
+        try {
+            zin = new GZIPInputStream(in);
+            in = null;
+            return parse(documentBuilder, zin);
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (Exception ignore) {
+                }
+            }
+            if (zin != null) {
+                try {
+                    zin.close();
+                } catch (Exception ignore) {
+                }
+            }
+        }
     }
 
     private void notifyReadPrimaryFileStart(File file) {
